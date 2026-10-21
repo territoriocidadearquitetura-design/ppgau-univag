@@ -15,7 +15,9 @@ const BASE = D("BASE"), PG_INFO = D("PG_INFO"), PG_DOCS = D("PG_DOCS"), FICHA_DO
   HIST = D("HIST"), HIST_CAT = D("HIST_CAT"), PROJ = D("PROJ"), IMPACTO = D("IMPACTO"), EVENTOS = D("EVENTOS"), REDE = D("REDE"), ATUALIZ = D("ATUALIZ");
 
 const WIX = "https://www.univag-ppgau.com";
-const PDF = id => `${WIX}/_files/ugd/036f6f_${id}.pdf`;
+// PDFs do site antigo que a coordenação enviou: servidos do próprio site (pasta docs/); os demais seguem no Wix.
+const PDF_LOCAL = { c32c56de7e2a4fdabd1ddb64cb534d62: "docs/edital-mestrado-2026-2-remanescentes.pdf", "250868416ab44b9c932939923d3c11a4": "docs/regulamento-pos-doutorado.pdf", "5e7fb1b2d12c48ed8cfc1a8fdc623c1b": "docs/calendario-2025-1.pdf", a3d1f7f3c3c347288876767e1a9ac492: "docs/anais-tcha-pesquisa.pdf", "175ba2c2abf545dd953c4d4797ee185f": "docs/e-book-100-pracas-de-cuiaba.pdf" };
+const PDF = id => PDF_LOCAL[id] || `${WIX}/_files/ugd/036f6f_${id}.pdf`;
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const slugN = n => n.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/\W+/g, "-").replace(/^-|-$/g, "");
 const semAc = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
@@ -103,7 +105,7 @@ ${corpo}
 <div><h4>PPGAU UNIVAG</h4><p>Programa de Pós-Graduação <em>Stricto Sensu</em> em Arquitetura e Urbanismo</p><p>Mestrado acadêmico · Código CAPES 50014013001P9 · Nota 3</p></div>
 <div><h4>Endereço</h4><p>UNIVAG Centro Universitário<br>Av. Dom Orlando Chaves, 2.655<br>Cristo Rei, Várzea Grande, MT<br>CEP 78118-900</p></div>
 <div><h4>Contato</h4><ul class="rd-ct"><li><a href="tel:+556536886110">(65) 3688-6110</a></li><li><a href="mailto:jeane.godoy@univag.edu.br">jeane.godoy@univag.edu.br</a></li><li><a href="mailto:angelo.palmisano@univag.edu.br">angelo.palmisano@univag.edu.br</a></li></ul></div>
-<div class="rd-nav"><h4>Navegue</h4><ul><li><a href="disciplinas.html">Disciplinas e horários</a></li><li><a href="academico.html">Acadêmico</a></li><li><a href="dados/">PPGAU em dados</a></li><li><a href="dados/#/responder">Autoavaliação</a></li><li><a href="bancas.html">Bancas e defesas</a></li><li><a href="egressos.html">Egressos</a></li><li><a href="noticias.html">Notícias</a></li><li><a href="revista.html">Revista Vernácula</a></li><li>${ext("https://www.repositoriodigital.univag.com.br/index.php/mestradoarq/issue/archive", "Repositório de dissertações")}</li></ul></div>
+<div class="rd-nav"><h4>Navegue</h4><ul><li><a href="disciplinas.html">Disciplinas e horários</a></li><li><a href="academico.html">Acadêmico</a></li><li><a href="dados/">PPGAU em dados</a></li><li><a href="dados/#/responder">Autoavaliação</a></li><li><a href="bancas.html">Bancas e defesas</a></li><li><a href="egressos.html">Egressos</a></li><li><a href="noticias.html">Notícias</a></li><li><a href="galeria.html">Galeria de fotos</a></li><li><a href="documentos.html">Documentos</a></li><li><a href="revista.html">Revista Vernácula</a></li><li>${ext("https://www.repositoriodigital.univag.com.br/index.php/mestradoarq/issue/archive", "Repositório de dissertações")}</li></ul></div>
 </div>
 <div class="legal"><div class="wrap"><p>© 2026 PPGAU/UNIVAG · Coordenação: Profa. Dra. Jeane Aparecida Rombi de Godoy · Coordenação adjunta: Prof. Dr. Angelo Palmisano</p><p>Organização e diagramação do site: Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)</p></div></div>
 </footer>
@@ -206,10 +208,9 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
 
 <section class="blk" aria-labelledby="h-not"><div class="lv-home-cab"><h2 id="h-not">Notícias</h2><a class="btn sec" href="noticias.html">Todas as notícias ${ICO.seta}</a></div>
 <div class="grid g3 noti2"><!--NOT_HOME--></div>
-<div class="grid g3 noti" style="margin-top:18px">
-<a class="card nt" href="linha-do-tempo.html"><img src="https://static.wixstatic.com/media/036f6f_5e4a479536e143c0a1fc740ed2b36281~mv2.jpeg/v1/fit/w_1280,h_943,q_90,enc_auto/036f6f_5e4a479536e143c0a1fc740ed2b36281~mv2.jpeg" width="1280" height="943" loading="lazy" alt="Destaque do PPGAU UNIVAG" onerror="this.remove()"><span class="eyebrow">Destaque</span><h3>Atividades do programa</h3><p>Eventos, defesas e ações do PPGAU ao longo dos anos.</p></a>
-<a class="card nt" href="eventos.html"><img src="https://static.wixstatic.com/media/036f6f_069f9c5644ad488ca81b8bf0ccab9a35~mv2.jpeg/v1/fill/w_560,h_506,al_c,q_80,enc_auto/036f6f_069f9c5644ad488ca81b8bf0ccab9a35~mv2.jpeg" width="560" height="506" loading="lazy" alt="Registro de atividade do PPGAU UNIVAG" onerror="this.remove()"><span class="eyebrow">Eventos</span><h3>Encontros, seminários e bancas</h3><p>Agenda e registros dos eventos do programa.</p></a>
-</div></section>
+</section>
+<!--GAL_HOME-->
+<section hidden></section>
 
 <section class="blk" aria-labelledby="h-acesso"><h2 id="h-acesso">Acesso rápido</h2>
 <div class="grid">
@@ -623,11 +624,11 @@ const LIVROS = [
   { t: "Anais do Latin American Symposium City, Architecture and Sustainability", v: "Volume I", org: "Jeane Aparecida Rombi de Godoy; Angelo Palmisano; Sandra Medina Benini", ed: "ANAP/UNIVAG", loc: "Várzea Grande", ano: 2024, tipo: "anais", prog: 1, pdf: E3 + "...ANAIS-volumeI-CityArchitectureandSustainability.c85d06935fed4092b2a4.pdf" },
   { t: "Anais do Latin American Symposium City, Architecture and Sustainability", v: "Volume II", org: "Jeane Aparecida Rombi de Godoy; Angelo Palmisano; Sandra Medina Benini", ed: "ANAP/UNIVAG", loc: "Várzea Grande", ano: 2024, pg: 810, tipo: "anais", prog: 1, pdf: E3 + "...ANAIS-volumeII-CityArchitectureandSustainability.2f17bc5b7fe74dd2a879.pdf" },
   { t: "Anais do Encontro Técnico e Científico para Construção de Cidades Verdes", org: "Jeane Aparecida Rombi de Godoy; Angelo Palmisano; Sandra Medina Benini; Gisele Carignani; Erica Lemos Gulinelli", ed: "ANAP", loc: "Tupã", ano: 2024, edn: "4. ed.", pg: 524, tipo: "anais", prog: 1, pdf: E3 + "CidadesVerdes.a2ab2c3b1650448ca197.pdf" },
-  { t: "Anais Tchá Pesquisa", org: "Natallia Sanches e Souza; Diana Carolina Jesus de Paula; Jeane Aparecida Rombi de Godoy; Carmelina Suquerê de Moraes", ed: "UNIVAG/ANAP", loc: "Várzea Grande", ano: 2024, tipo: "anais", prog: 1, pdf: WIX + "/_files/ugd/036f6f_a3d1f7f3c3c347288876767e1a9ac492.pdf" },
+  { t: "Anais Tchá Pesquisa", org: "Natallia Sanches e Souza; Diana Carolina Jesus de Paula; Jeane Aparecida Rombi de Godoy; Carmelina Suquerê de Moraes", ed: "UNIVAG/ANAP", loc: "Várzea Grande", ano: 2024, tipo: "anais", prog: 1, pdf: PDF("a3d1f7f3c3c347288876767e1a9ac492") },
   { t: "Desafios da ampliação da pesquisa no Centro-Oeste", sub: "a experiência da associação da PUC-Campinas na criação do Programa de Pós-Graduação em Arquitetura e Urbanismo do UNIVAG", org: "Laura Machado de Mello Bueno; Jeane Aparecida Rombi de Godoy; Manoel Lemes da Silva Neto; Daniel Ribeiro; Erica Lemos Gulinelli; Sandra Medina Benini; Lucas Vicente", ed: "Splendet/PUC-Campinas", loc: "Campinas", ano: 2024, pg: 505, isbn: "978-65-89946-37-3", tipo: "colet", prog: 1, pdf: WIX + "/_files/ugd/036f6f_56afbd2249fd407b915689cfa3810be3.pdf" },
   { t: "Brasil Urbano", sub: "desenvolvimento, desafios habitacionais e sustentabilidade", org: "Jeane Aparecida Rombi de Godoy; Angelo Palmisano; Sandra Medina Benini; Erica Lemos Gulinelli", ed: "Editora ANAP", loc: "Tupã", ano: 2024, pg: 169, isbn: "978-65-86753-80-6", tipo: "colet", prog: 1, capa: "f414e0_78f3541d4a5540b2b11d0b36491bf166~mv2.png", est: "brasil-urbano" },
   { t: "Infraestrutura, planejamento e meio ambiente", sub: "perspectivas urbanas no Brasil", org: "Jeane Aparecida Rombi de Godoy; Angelo Palmisano; Sandra Medina Benini; Erica Lemos Gulinelli", ed: "Editora ANAP", loc: "Tupã", ano: 2024, pg: 132, isbn: "978-65-86753-81-3", tipo: "colet", prog: 1, capa: "f414e0_16d88e8580d14c1c9c3d1b3f9e4cd315~mv2.png", est: "infraestrutura-planejamento-e-meio-ambiente" },
-  { t: "100 Praças de Cuiabá", sub: "materialização da apropriação do espaço público", org: "Joel Marcos Gatto", autor: 1, ed: "Editora ANAP", loc: "Tupã", ano: 2024, isbn: "978-65-83518-00-2", tipo: "livro", prog: 1, nota: "Prefácio de Jeane Aparecida Rombi de Godoy.", capa: "f414e0_bf2ef1e9368c426eaf0789f9765211be~mv2.jpg", pdf: WIX + "/_files/ugd/036f6f_175ba2c2abf545dd953c4d4797ee185f.pdf", est: "100-praças-de-cuiabá-materialização-da-apropriação-do-espaço-público" },
+  { t: "100 Praças de Cuiabá", sub: "materialização da apropriação do espaço público", org: "Joel Marcos Gatto", autor: 1, ed: "Editora ANAP", loc: "Tupã", ano: 2024, isbn: "978-65-83518-00-2", tipo: "livro", prog: 1, nota: "Prefácio de Jeane Aparecida Rombi de Godoy.", capa: "f414e0_bf2ef1e9368c426eaf0789f9765211be~mv2.jpg", pdf: PDF("175ba2c2abf545dd953c4d4797ee185f"), est: "100-praças-de-cuiabá-materialização-da-apropriação-do-espaço-público" },
   { t: "Quadrinhos para pensar a cidade", sub: "uma experiência de extensão universitária", org: "Jéssica Seabra; Diana Carolina Jesus de Paula; Natallia Sanches e Souza; Fábio Friol Guedes de Paiva", autor: 1, ed: "UNIVAG Centro Universitário", loc: "Várzea Grande", ano: 2026, pg: 78, tipo: "livro", prog: 1, ler: "https://online.fliphtml5.com/lvrxv/kxpi/", capa: "https://online.fliphtml5.com/lvrxv/kxpi/files/shot.jpg" },
   { t: "Anais do Simpósio Brasileiro Cidade, Paisagem e a Natureza", v: "Vol. I", org: "Marta Enokibara; Jeane Aparecida Rombi de Godoy", ed: "ANAP", loc: "Tupã", ano: 2025, edn: "4. ed.", isbn: "978-65-83518-04-0", tipo: "anais", capa: "f414e0_9e9c1bc5683b4207b473e823515406ab~mv2.png", est: "anais-do-simpósio-brasileiro-cidade-paisagem-e-a-natureza-vol-i" },
   { t: "Anais do Simpósio Brasileiro Cidade, Paisagem e a Natureza", v: "Vol. II", org: "Marta Enokibara; Jeane Aparecida Rombi de Godoy", ed: "ANAP", loc: "Tupã", ano: 2025, edn: "4. ed.", pg: 725, isbn: "978-65-83518-05-7", tipo: "anais", capa: "f414e0_dec1281d874b4b229a25e5d4b4561f4b~mv2.png", est: "anais-do-simpósio-brasileiro-cidade-paisagem-e-a-natureza" },
@@ -1104,6 +1105,51 @@ P.push({
 login("ppgau-site-coord","restrito-coord.bin",o=>{document.getElementById("ap-cont").innerHTML=o.html});})();`
 });
 
+// ---------- Galeria de fotos ----------
+// Fotos enviadas pela coordenação (as mesmas do site antigo), em gerador/midia/galeria/<grupo>/NN.jpg e NN-p.jpg (miniatura).
+// Grupos e títulos em gerador/galeria.json. A Início mostra um mosaico com uma foto de cada grupo.
+{
+  const GAL = JSON.parse(fs.readFileSync(path.join(__dirname, "galeria.json"), "utf8"));
+  const src = (g, f, p) => `img/galeria/${g.k}/${f[0]}${p ? "-p" : ""}.jpg`;
+  const foto = (g, f, i) => `<a class="gl-f" href="${src(g, f)}" data-gal="${g.k}" data-i="${i}" style="--r:${(f[1] / f[2]).toFixed(3)}"><img src="${src(g, f, 1)}" width="${f[1]}" height="${f[2]}" loading="lazy" alt="${esc(g.t)}${g.d ? ", " + esc(g.d) : ""}: foto ${i + 1} de ${g.f.length}"></a>`;
+  const tot = GAL.reduce((a, g) => a + g.f.length, 0);
+  globalThis.__GAL_HOME = `<section class="blk" aria-labelledby="h-gal"><div class="lv-home-cab"><h2 id="h-gal">Destaques em fotos</h2><a class="btn sec" href="galeria.html">Ver a galeria completa ${ICO.seta}</a></div>
+<div class="gl-mos">${GAL.filter(g => g.k !== "campus").slice(0, 8).map(g => { const f = g.f[Math.min(g.f.length - 1, g.k === "seminarios-2025-08" ? 24 : g.k === "atividades-2025-2" ? 2 : 0)]; return `<a class="gl-m" href="galeria.html#${g.k}"><img src="${src(g, f, 1)}" width="${f[1]}" height="${f[2]}" loading="lazy" alt=""><span><b>${esc(g.t)}</b>${g.d ? `<small>${esc(g.d)}</small>` : ""}</span></a>`; }).join("")}</div></section>`;
+  P.push({
+    arq: "galeria.html", titulo: "Galeria de fotos", desc: `Fotos das atividades do PPGAU UNIVAG: seminários, aulas, eventos, premiações e o campus. ${tot} fotos.`,
+    hero: { crumb: true, eyebrow: "Memória do programa", p: `Seminários de pesquisa, aulas, eventos, premiações e o campus do UNIVAG: ${tot} fotos em ${GAL.length} álbuns. Clique em uma foto para ampliar.`, kpis: [[tot, "fotos"], [GAL.length, "álbuns"]] },
+    corpo: `<nav class="gl-ind" aria-label="Álbuns">${GAL.map(g => `<a href="#${g.k}">${esc(g.t)}${g.d ? ` <small>${esc(g.d)}</small>` : ""}</a>`).join("")}</nav>
+${GAL.map(g => `<section class="blk gl-alb" id="${g.k}" aria-labelledby="h-${g.k}"><h2 id="h-${g.k}">${esc(g.t)}${g.d ? ` <small>${esc(g.d)}</small>` : ""}</h2><p class="meta">${g.f.length} ${g.f.length > 1 ? "fotos" : "foto"}</p><div class="gl-grade">${g.f.map((f, i) => foto(g, f, i)).join("")}</div></section>`).join("\n")}
+<dialog class="gl-dlg" id="gl-dlg" aria-label="Foto ampliada"><img alt=""><p class="gl-leg"></p><button type="button" class="gl-x" aria-label="Fechar">×</button><button type="button" class="gl-ant" aria-label="Foto anterior">‹</button><button type="button" class="gl-prox" aria-label="Próxima foto">›</button></dialog>`,
+    js: `(()=>{const d=document.getElementById("gl-dlg"),im=d.querySelector("img"),lg=d.querySelector(".gl-leg");let l=[],i=0;
+const mostra=()=>{const a=l[i];im.src=a.getAttribute("href");im.alt=a.querySelector("img").alt;lg.textContent=a.querySelector("img").alt};
+document.addEventListener("click",e=>{const a=e.target.closest(".gl-f");if(!a)return;e.preventDefault();l=[...document.querySelectorAll('.gl-f[data-gal="'+a.dataset.gal+'"]')];i=+a.dataset.i;mostra();d.showModal()});
+const vai=n=>{i=(i+n+l.length)%l.length;mostra()};d.querySelector(".gl-ant").onclick=()=>vai(-1);d.querySelector(".gl-prox").onclick=()=>vai(1);d.querySelector(".gl-x").onclick=()=>d.close();
+d.addEventListener("click",e=>{if(e.target===d)d.close()});d.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")vai(-1);if(e.key==="ArrowRight")vai(1)});})();`
+  });
+}
+
+// ---------- Documentos ----------
+// Editais, resultados, regulamentos e relatórios do site antigo, servidos de docs/ (cópias em gerador/docs).
+{
+  const D = [
+    ["Institucional", [["Planejamento Estratégico PPGAU-UNIVAG, ciclo avaliativo 2021–2024", "planejamento-estrategico-2021-2024.pdf"], ["Processos, procedimentos e resultados da autoavaliação (2021–2024)", "autoavaliacao-2021-2024.pdf"], ["Apresentação do PPGAU-UNIVAG, 2º semestre de 2025", "apresentacao-ppgau-2025-2.pdf"], ["Relatório da produção docente", "relatorio-producao-docente.pdf"], ["Política de privacidade", "politica-de-privacidade.pdf"]]],
+    ["Processo seletivo de discentes", [["Edital nº 05/2026: vagas remanescentes, 2º semestre de 2026", "edital-mestrado-2026-2-remanescentes.pdf"], ["Relação dos candidatos aprovados em 18/06/2026", "aprovados-2026-2.pdf"], ["Edital do processo seletivo, 2º semestre de 2026", "edital-mestrado-2026-2.pdf"], ["Edital do processo seletivo, 1º semestre de 2026", "edital-mestrado-2026-1.pdf"], ["Aprovados, 2º semestre de 2025: resultado final", "aprovados-2025-2-final.pdf"], ["Aprovados, 2º semestre de 2025: Edital 01/2025", "aprovados-2025-2-edital-01-2025.pdf"], ["Edital do processo seletivo, 2º semestre de 2025", "edital-mestrado-2025-2.pdf"], ["Aprovados, 1º semestre de 2025", "aprovados-2025-1.pdf"], ["Edital do processo seletivo, 1º semestre de 2025", "edital-mestrado-2025-1.pdf"], ["Edital do processo seletivo, 2º semestre de 2024", "edital-mestrado-2024-2.pdf"], ["Ficha de inscrição do processo seletivo (Word)", "ficha-de-inscricao-mestrado.docx"]]],
+    ["Bolsas", [["Edital nº 03/2026: seleção de bolsista (PIBPG/CNPq)", "edital-03-2026-bolsa-cnpq.pdf"], ["Resultado do Edital nº 03/2026", "resultado-edital-03-2026-bolsa.pdf"]]],
+    ["Processo seletivo de docentes", [["Edital nº 4/2025: processo seletivo docente para o 1º semestre de 2026", "edital-docente-2026.pdf"]]],
+    ["Pós-doutorado", [["Regulamento de Pós-Doutorado do UNIVAG (v. 5)", "regulamento-pos-doutorado.pdf"], ["Edital do processo seletivo para pós-doutorado, ingresso em 2025", "edital-pos-doutorado-2025.pdf"], ["Edital nº 15/2024 do processo seletivo para pós-doutorado", "edital-pos-doutorado-2024.pdf"], ["Lista dos supervisores do pós-doutorado, 2025", "supervisores-pos-doutorado-2025.pdf"], ["Lista dos supervisores do pós-doutorado, 2024", "supervisores-pos-doutorado-2024.pdf"], ["Termo de aprovação de projeto de pós-doutorado", "termo-aprovacao-projeto-pos-doutorado.pdf"]]],
+    ["Acadêmico", [["Calendário do 1º semestre de 2025", "calendario-2025-1.pdf"], ["Memorando: orientações de postura para discentes em aulas remotas", "memorando-aulas-remotas.pdf"]]],
+    ["Publicações", [["Anais Tchá Pesquisa (1ª edição)", "anais-tcha-pesquisa.pdf"], ["E-book 100 Praças de Cuiabá", "e-book-100-pracas-de-cuiaba.pdf"], ["Jornalzinho do PPGAU", "jornalzinho-ppgau.pdf"], ["Declaração de direitos autorais (Word)", "declaracao-direitos-autorais.docx"]]]];
+  const tam = f => { try { const b = fs.statSync(path.join(__dirname, "docs", f)).size; return b > 1e6 ? (b / 1e6).toFixed(1).replace(".", ",") + " MB" : Math.max(1, Math.round(b / 1e3)) + " KB"; } catch (e) { return ""; } };
+  const n = D.reduce((a, g) => a + g[1].length, 0);
+  P.push({
+    arq: "documentos.html", titulo: "Documentos", desc: `Editais, resultados, regulamentos, relatórios e publicações do PPGAU UNIVAG para baixar. ${n} arquivos.`,
+    hero: { crumb: true, eyebrow: "Arquivos do programa", p: "Editais e resultados dos processos seletivos, bolsas, pós-doutorado, regulamentos, calendário, relatórios e publicações para baixar." },
+    corpo: D.map(([t, l]) => `<section class="blk"><h2>${t}</h2><ul class="doc-l">${l.map(([nm, f]) => `<li><a href="docs/${f}" target="_blank" rel="noopener"><span class="doc-ic" aria-hidden="true">${/\.docx$/.test(f) ? "DOC" : "PDF"}</span><span>${esc(nm)}<small>${/\.docx$/.test(f) ? "Word" : "PDF"} · ${tam(f)}</small></span></a></li>`).join("")}</ul></section>`).join("\n")
+  });
+  globalThis.__DOCS_IDX = D.flatMap(([t, l]) => l.map(([nm, f]) => ["Documento", nm, t, "docs/" + f]));
+}
+
 // Busca no site: página de resultados completa, com filtro por tipo e link compartilhável (busca.html?q=...).
 P.push({
   arq: "busca.html", titulo: "Buscar no site", desc: "Busque pessoas, disciplinas, dissertações, projetos, livros, artigos da revista, eventos e páginas do PPGAU UNIVAG.",
@@ -1126,7 +1172,7 @@ f.querySelectorAll(".bv-dicas button").forEach(b=>b.addEventListener("click",()=
 inp.value=new URLSearchParams(location.search).get("q")||"";roda();if(!inp.value)inp.focus();});`
 });
 
-for (const p of P) fs.writeFileSync(path.join(OUT, p.arq), pagina(p).replace("<!--LIV_HOME-->", globalThis.__LIV_HOME.map(l => `<li><a href="livros.html" title="${esc(l.t + (l.v ? " · " + l.v : ""))}">${capaLivro(l)}<span>${esc(l.t)}${l.v ? " · " + esc(l.v) : ""}</span></a></li>`).join("")).replace("<!--BANCA_HOME-->", globalThis.__BANCA_HOME).replace("<!--NOT_HOME-->", globalThis.__NOT_HOME).replace("<!--VERN_CAPAS-->", globalThis.__VERN_CAPAS.replace(/<a /g, "<span ").replace(/<\/a>/g, "</span>").replace(/ href="[^"]*" target="_blank" rel="noopener"/g, "")));
+for (const p of P) fs.writeFileSync(path.join(OUT, p.arq), pagina(p).replace("<!--GAL_HOME-->", globalThis.__GAL_HOME || "").replace("<!--LIV_HOME-->", globalThis.__LIV_HOME.map(l => `<li><a href="livros.html" title="${esc(l.t + (l.v ? " · " + l.v : ""))}">${capaLivro(l)}<span>${esc(l.t)}${l.v ? " · " + esc(l.v) : ""}</span></a></li>`).join("")).replace("<!--BANCA_HOME-->", globalThis.__BANCA_HOME).replace("<!--NOT_HOME-->", globalThis.__NOT_HOME).replace("<!--VERN_CAPAS-->", globalThis.__VERN_CAPAS.replace(/<a /g, "<span ").replace(/<\/a>/g, "</span>").replace(/ href="[^"]*" target="_blank" rel="noopener"/g, "")));
 fs.copyFileSync(path.join(__dirname, "site.css"), path.join(OUT, "site.css"));
 fs.copyFileSync(path.join(__dirname, "mapa.js"), path.join(OUT, "mapa.js"));
 fs.copyFileSync(path.join(__dirname, "disciplinas.js"), path.join(OUT, "disciplinas.js"));
@@ -1137,7 +1183,7 @@ for (const b of proxBancas) fs.writeFileSync(path.join(OUT, `banca-${slugN(b.al)
 {
   const B = [], slugD = n => n.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/\W+/g, "-");
   // Palavras que as pessoas costumam digitar e não aparecem no título da página.
-  const KW = { "ingresso.html": "processo seletivo edital inscrição vagas seleção bolsa bolsista proficiência pós-doutorado", "contato.html": "telefone email e-mail endereço secretaria coordenação", "academico.html": "créditos trancamento matrícula qualificação defesa aproveitamento regulamento", "disciplinas.html": "horário aula calendário turma agenda semestre professor", "programa.html": "histórico missão objetivos linhas área de concentração grupos parcerias", "index.html": "início home como chegar mapa localização onde fica univag", "producao.html": "dissertações projetos pesquisa extensão iniciação científica ic periódicos", "livros.html": "livros anais e-book ebook download pdf isbn coletânea", "revista.html": "periódico qualis issn artigo submissão vernácula", "mapa.html": "rede coautoria colaboração", "eventos.html": "simpósio congresso seminário prêmio mídia", "bancas.html": "defesa banca qualificação zoom transmissão agenda", "egressos.html": "ex-alunos mestres formados trajetória onde atuam território", "noticias.html": "novidades avisos lançamento", "painel-coordenacao.html": "coordenação coordenador capes avaliação 2021 2024 quadrienal ficha apontamentos restrito senha", "relatorio.html": "relatório pdf imprimir documento resumo geral", "area-professor.html": "professor docente metas quadrienal 2025 2028 doutorado apcn restrito senha painel" };
+  const KW = { "galeria.html": "fotos imagens álbum seminário aula evento premiação CAU campus", "documentos.html": "edital resultado aprovados regulamento calendário pdf baixar download ficha inscrição pós-doutorado bolsa", "ingresso.html": "processo seletivo edital inscrição vagas seleção bolsa bolsista proficiência pós-doutorado", "contato.html": "telefone email e-mail endereço secretaria coordenação", "academico.html": "créditos trancamento matrícula qualificação defesa aproveitamento regulamento", "disciplinas.html": "horário aula calendário turma agenda semestre professor", "programa.html": "histórico missão objetivos linhas área de concentração grupos parcerias", "index.html": "início home como chegar mapa localização onde fica univag", "producao.html": "dissertações projetos pesquisa extensão iniciação científica ic periódicos", "livros.html": "livros anais e-book ebook download pdf isbn coletânea", "revista.html": "periódico qualis issn artigo submissão vernácula", "mapa.html": "rede coautoria colaboração", "eventos.html": "simpósio congresso seminário prêmio mídia", "bancas.html": "defesa banca qualificação zoom transmissão agenda", "egressos.html": "ex-alunos mestres formados trajetória onde atuam território", "noticias.html": "novidades avisos lançamento", "painel-coordenacao.html": "coordenação coordenador capes avaliação 2021 2024 quadrienal ficha apontamentos restrito senha", "relatorio.html": "relatório pdf imprimir documento resumo geral", "area-professor.html": "professor docente metas quadrienal 2025 2028 doutorado apcn restrito senha painel" };
   for (const p of P) B.push(["Página", p.titulo, p.desc, p.arq, KW[p.arq] || ""]);
   for (const d of corpo) B.push(["Docente", d.n, d.tit, `docente-${slugN(d.n)}.html`, (d.f.form || []).join(" ")]);
   const GR = { discente: ["Discente", "discentes"], egresso: ["Egresso", "egressos"], "pos-doc": ["Pós-doutorado", "posdoc"] };
@@ -1151,6 +1197,7 @@ for (const b of proxBancas) fs.writeFileSync(path.join(OUT, `banca-${slugN(b.al)
   for (const x of IMPACTO.impacto) if (x.tipo !== "evento") B.push(["Destaque", x.titulo, x.tipo + (x.ano ? " · " + x.ano : ""), "eventos.html"]);
   for (const l of LIVROS) B.push([TIPO_LIV[l.tipo] === "Anais" ? "Anais" : "Livro", l.t + (l.v ? " · " + l.v : ""), `${l.org.split("; ").slice(0, 2).join(", ")}${l.org.split("; ").length > 2 ? " et al." : ""} · ${l.ano}`, "livros.html", [l.sub, l.isbn, l.org].join(" ")]);
   B.push(...globalThis.__VERN_IDX);
+  B.push(...(globalThis.__DOCS_IDX || []));
   for (const b of BANCAS) B.push(["Banca", b.al + ": " + b.ti, (proxBancas.includes(b) ? "Agendada · " : "Realizada · ") + dataLonga(b.ini) + " · orientação " + b.or, "bancas.html", b.banca.map(m => m[0]).join(" ") + " defesa"]);
   for (const n of NOTICIAS) B.push(["Notícia", n.t, dataCurta(n.d) + " · " + n.tag, "noticias.html", n.p]);
   B.push(["Revista", "Revista Vernácula · Territórios Contemporâneos", "ISSN 2965-6125 · Qualis B2", "revista.html"], ["Atlas", "Atlas Socioambiental da RMVRC", "Mapa interativo dos setores censitários", "https://editoraanap-tupa.github.io/atlas/"], ["Página", "Autoavaliação 2026", "Questionário anônimo, até 03/11/2026", "dados/#/responder"]);
@@ -1161,6 +1208,7 @@ for (const f of fs.readdirSync(__dirname).filter(f => /^atlas-mapa-\w+\.svg$/.te
 fs.writeFileSync(path.join(OUT, "mapa-dados.js"), globalThis.__MAPA);
 for (const f of ["logo-ppgau.png", "logo-univag.png"]) fs.copyFileSync(path.join(SRC, f), path.join(OUT, "img", f));
 fs.cpSync(path.join(__dirname, "midia"), path.join(OUT, "img"), { recursive: true });
+fs.cpSync(path.join(__dirname, "docs"), path.join(OUT, "docs"), { recursive: true });
 for (const f of ["restrito-prof.bin", "restrito-coord.bin"]) if (fs.existsSync(path.join(__dirname, f))) fs.copyFileSync(path.join(__dirname, f), path.join(OUT, f));
 for (const f of fs.readdirSync(path.join(SRC, "fotos"))) fs.copyFileSync(path.join(SRC, "fotos", f), path.join(OUT, "img/fotos", f));
 // Portal "em dados" completo em /dados, sem alteração de código.
