@@ -1,0 +1,1094 @@
+{
+ "titulo": "Calendário Acadêmico II Semestre de 2026 - Mestrado em Arquitetura e Urbanismo - Versão 7 - 22/07/2026",
+ "turmas": [
+  "Turma 10 - Ingressantes I Semestre de 2025",
+  "Turma 11 - Ingressantes II Semestre de 2025",
+  "Turma 12 - Ingressantes I Semestre de 2026",
+  "Turma 13 - Ingressantes II Semestre de 2026 - Calouros"
+ ],
+ "sessoes": [
+  {
+   "data": "2026-08-01",
+   "semana": "Sábado",
+   "mes": 8,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Seminários I, II e III",
+   "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+   "prof": "Jessica Seabra / Gisele Carignani",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 8
+  },
+  {
+   "data": "2026-08-01",
+   "semana": "Sábado",
+   "mes": 8,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Seminários I, II e III",
+   "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+   "prof": "Jessica Seabra / Gisele Carignani",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 9
+  },
+  {
+   "data": "2026-08-07",
+   "semana": "Sexta-feira",
+   "mes": 8,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Seminários I, II e III",
+   "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+   "prof": "Jessica Seabra / Gisele Carignani",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 10
+  },
+  {
+   "data": "2026-08-08",
+   "semana": "Sábado",
+   "mes": 8,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Seminários I, II e III",
+   "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+   "prof": "Jessica Seabra / Gisele Carignani",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 11
+  },
+  {
+   "data": "2026-08-08",
+   "semana": "Sábado",
+   "mes": 8,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Seminários I, II e III",
+   "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+   "prof": "Jessica Seabra / Gisele Carignani",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 12
+  },
+  {
+   "data": "2026-08-14",
+   "semana": "Sexta-feira",
+   "mes": 8,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Seminários I, II e III",
+   "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+   "prof": "Jessica Seabra / Gisele Carignani",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 13
+  },
+  {
+   "data": "2026-08-15",
+   "semana": "Sábado",
+   "mes": 8,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Atividades de Produção Científica",
+   "nome": "V - Seminário de Pesquisa em Arquitetura e Urbanismo do PPGAU-UNIVAG",
+   "prof": "Todos os Professores e Alunos do PPGAU-UNIVAG",
+   "ch": 3,
+   "turmas": [
+    "todas"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 14
+  },
+  {
+   "data": "2026-08-15",
+   "semana": "Sábado",
+   "mes": 8,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Atividades de Produção Científica",
+   "nome": "V - Seminário de Pesquisa em Arquitetura e Urbanismo do PPGAU-UNIVAG",
+   "prof": "Todos os Professores e Alunos do PPGAU-UNIVAG",
+   "ch": 3,
+   "turmas": [
+    "todas"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 15
+  },
+  {
+   "data": "2026-08-21",
+   "semana": "Sexta-feira",
+   "mes": 8,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Seminários I, II e III",
+   "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+   "prof": "Jessica Seabra / Gisele Carignani",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 16
+  },
+  {
+   "data": "2026-08-22",
+   "semana": "Sábado",
+   "mes": 8,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Seminários I, II e III",
+   "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+   "prof": "Jessica Seabra / Gisele Carignani",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 17
+  },
+  {
+   "data": "2026-08-22",
+   "semana": "Sábado",
+   "mes": 8,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Seminários I, II e III",
+   "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+   "prof": "Jessica Seabra / Gisele Carignani",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 18
+  },
+  {
+   "data": null,
+   "semana": "",
+   "mes": 8,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Seminários I, II e III",
+   "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+   "prof": "Jessica Seabra / Gisele Carignani",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 19
+  },
+  {
+   "data": "2026-08-28",
+   "semana": "Sexta-feira",
+   "mes": 8,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 20
+  },
+  {
+   "data": "2026-08-29",
+   "semana": "Sábado",
+   "mes": 8,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 21
+  },
+  {
+   "data": "2026-08-29",
+   "semana": "Sábado",
+   "mes": 8,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 22
+  },
+  {
+   "data": "2026-09-04",
+   "semana": "Sexta-feira",
+   "mes": 9,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 23
+  },
+  {
+   "data": "2026-09-05",
+   "semana": "Sábado",
+   "mes": 9,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 24
+  },
+  {
+   "data": "2026-09-05",
+   "semana": "Sábado",
+   "mes": 9,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 25
+  },
+  {
+   "data": "2026-09-11",
+   "semana": "Sexta-feira",
+   "mes": 9,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 26
+  },
+  {
+   "data": "2026-09-12",
+   "semana": "Sábado",
+   "mes": 9,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 27
+  },
+  {
+   "data": "2026-09-12",
+   "semana": "Sábado",
+   "mes": 9,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 28
+  },
+  {
+   "data": "2026-09-18",
+   "semana": "Sexta-feira",
+   "mes": 9,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 29
+  },
+  {
+   "data": "2026-09-19",
+   "semana": "Sábado",
+   "mes": 9,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 30
+  },
+  {
+   "data": "2026-09-19",
+   "semana": "Sábado",
+   "mes": 9,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 31
+  },
+  {
+   "data": "2026-09-25",
+   "semana": "Sexta-feira",
+   "mes": 9,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 32
+  },
+  {
+   "data": "2026-09-26",
+   "semana": "Sábado",
+   "mes": 9,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 33
+  },
+  {
+   "data": "2026-09-26",
+   "semana": "Sábado",
+   "mes": 9,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Obrigatória 1 e 2",
+   "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+   "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+   "ch": 3,
+   "turmas": [
+    "12",
+    "13"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 34
+  },
+  {
+   "data": "2026-10-09",
+   "semana": "Sexta-feira",
+   "mes": 10,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 35
+  },
+  {
+   "data": "2026-10-10",
+   "semana": "Sábado",
+   "mes": 10,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 36
+  },
+  {
+   "data": "2026-10-10",
+   "semana": "Sábado",
+   "mes": 10,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 37
+  },
+  {
+   "data": "2026-10-16",
+   "semana": "Sexta-feira",
+   "mes": 10,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 38
+  },
+  {
+   "data": "2026-10-17",
+   "semana": "Sábado",
+   "mes": 10,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 39
+  },
+  {
+   "data": "2026-10-17",
+   "semana": "Sábado",
+   "mes": 10,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 40
+  },
+  {
+   "data": "2026-10-23",
+   "semana": "Sexta-feira",
+   "mes": 10,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 41
+  },
+  {
+   "data": "2026-10-24",
+   "semana": "Sábado",
+   "mes": 10,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 42
+  },
+  {
+   "data": "2026-10-24",
+   "semana": "Sábado",
+   "mes": 10,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 43
+  },
+  {
+   "data": null,
+   "semana": "",
+   "mes": 10,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 44
+  },
+  {
+   "data": null,
+   "semana": "",
+   "mes": 10,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 45
+  },
+  {
+   "data": null,
+   "semana": "",
+   "mes": 10,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 46
+  },
+  {
+   "data": "2026-10-30",
+   "semana": "Sexta-feira",
+   "mes": 10,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 47
+  },
+  {
+   "data": "2026-10-31",
+   "semana": "Sábado",
+   "mes": 10,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 48
+  },
+  {
+   "data": "2026-10-31",
+   "semana": "Sábado",
+   "mes": 10,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Eletiva 2",
+   "nome": "Teoria e História do Urbanismo",
+   "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+   "ch": 3,
+   "turmas": [
+    "13"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 49
+  },
+  {
+   "data": "2026-11-04",
+   "semana": "Quarta-feira",
+   "mes": 11,
+   "h": "9:00 h às 17:00 h",
+   "cat": "3º Simpósio Brasileiro \"Território, Cidade e Arquitetura\"",
+   "nome": "3º Simpósio Brasileiro \"Território, Cidade e Arquitetura\"",
+   "prof": "3º Simpósio Brasileiro \"Território, Cidade e Arquitetura\"",
+   "ch": null,
+   "turmas": [
+    "todas"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 50
+  },
+  {
+   "data": "2026-11-05",
+   "semana": "Quinta-feira",
+   "mes": 11,
+   "h": "9:00 h às 17:00 h",
+   "cat": "3º Simpósio Brasileiro \"Território, Cidade e Arquitetura\"",
+   "nome": "3º Simpósio Brasileiro \"Território, Cidade e Arquitetura\"",
+   "prof": "3º Simpósio Brasileiro \"Território, Cidade e Arquitetura\"",
+   "ch": null,
+   "turmas": [
+    "todas"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 51
+  },
+  {
+   "data": "2026-11-06",
+   "semana": "Sexta-feira",
+   "mes": 11,
+   "h": "9:00 h às 17:00 h",
+   "cat": "3º Simpósio Brasileiro \"Território, Cidade e Arquitetura\"",
+   "nome": "3º Simpósio Brasileiro \"Território, Cidade e Arquitetura\"",
+   "prof": "3º Simpósio Brasileiro \"Território, Cidade e Arquitetura\"",
+   "ch": null,
+   "turmas": [
+    "todas"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 52
+  },
+  {
+   "data": "2026-11-06",
+   "semana": "Sexta-feira",
+   "mes": 11,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 53
+  },
+  {
+   "data": "2026-11-07",
+   "semana": "Sábado",
+   "mes": 11,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 54
+  },
+  {
+   "data": "2026-11-07",
+   "semana": "Sábado",
+   "mes": 11,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 55
+  },
+  {
+   "data": "2026-11-13",
+   "semana": "Sexta-feira",
+   "mes": 11,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 56
+  },
+  {
+   "data": "2026-11-14",
+   "semana": "Sábado",
+   "mes": 11,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 57
+  },
+  {
+   "data": "2026-11-14",
+   "semana": "Sábado",
+   "mes": 11,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 58
+  },
+  {
+   "data": "2026-11-27",
+   "semana": "Sexta-feira",
+   "mes": 11,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 59
+  },
+  {
+   "data": "2026-11-28",
+   "semana": "Sábado",
+   "mes": 11,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 60
+  },
+  {
+   "data": "2026-11-28",
+   "semana": "Sábado",
+   "mes": 11,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 61
+  },
+  {
+   "data": "2026-12-04",
+   "semana": "Sexta-feira",
+   "mes": 12,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 62
+  },
+  {
+   "data": "2026-12-05",
+   "semana": "Sábado",
+   "mes": 12,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 63
+  },
+  {
+   "data": "2026-12-05",
+   "semana": "Sábado",
+   "mes": 12,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Sala híbrida: presencial e virtual ao vivo",
+   "linha": 64
+  },
+  {
+   "data": "2026-12-11",
+   "semana": "Sexta-feira",
+   "mes": 12,
+   "h": "19:00 h às 22:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 65
+  },
+  {
+   "data": "2026-12-12",
+   "semana": "Sábado",
+   "mes": 12,
+   "h": "9:00 h às 12:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 66
+  },
+  {
+   "data": "2026-12-12",
+   "semana": "Sábado",
+   "mes": 12,
+   "h": "14:00 h às 17:00 h",
+   "cat": "Disciplina Eletiva 1, 3 e 4",
+   "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+   "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+   "ch": 3,
+   "turmas": [
+    "11",
+    "12",
+    "13"
+   ],
+   "local": "Presencial no campus UNIVAG",
+   "linha": 67
+  }
+ ],
+ "plano": {
+  "10": {
+   "rotulo": "I Semestre 2025",
+   "itens": [
+    {
+     "comp": "Orientação",
+     "nome": "Orientação",
+     "prof": "",
+     "ch": null
+    }
+   ]
+  },
+  "11": {
+   "rotulo": "II Semestre 2025",
+   "itens": [
+    {
+     "comp": "Disciplina Eletiva 4",
+     "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+     "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+     "ch": 45
+    },
+    {
+     "comp": "Seminários III",
+     "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+     "prof": "Jessica Seabra / Gisele Carignani",
+     "ch": 30
+    },
+    {
+     "comp": "Extensão",
+     "nome": "Prática Docente",
+     "prof": "Angelo Palmisano",
+     "ch": 15
+    },
+    {
+     "comp": "Orientação",
+     "nome": "Orientação",
+     "prof": "",
+     "ch": null
+    }
+   ]
+  },
+  "12": {
+   "rotulo": "I Semestre 2026",
+   "itens": [
+    {
+     "comp": "Disciplina Obrigatória 2",
+     "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+     "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+     "ch": 45
+    },
+    {
+     "comp": "Disciplina Eletiva 3",
+     "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+     "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+     "ch": 45
+    },
+    {
+     "comp": "Seminários II",
+     "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+     "prof": "Jessica Seabra / Gisele Carignani",
+     "ch": 30
+    },
+    {
+     "comp": "Extensão",
+     "nome": "Prática Docente",
+     "prof": "Angelo Palmisano",
+     "ch": 15
+    },
+    {
+     "comp": "Orientação",
+     "nome": "Orientação",
+     "prof": "",
+     "ch": null
+    }
+   ]
+  },
+  "13": {
+   "rotulo": "II Semestre 2026",
+   "itens": [
+    {
+     "comp": "Disciplina Obrigatória 1",
+     "nome": "Arquitetura e Cidade: Produção e Organização do Espaço",
+     "prof": "Jeane Aparecida Rombi de Godoy / Sandra Medina Benini / Erica Lemos Gulinelli",
+     "ch": 45
+    },
+    {
+     "comp": "Disciplina Eletiva 1",
+     "nome": "Políticas Públicas de Desenvolvimento Territorial: Instrumentos, agentes e métodos",
+     "prof": "Gisele Carigani / Natallia Sanches e Souza / Diana Carolina Jesus de Paula",
+     "ch": 45
+    },
+    {
+     "comp": "Disciplina Eletiva 2",
+     "nome": "Teoria e História do Urbanismo",
+     "prof": "Sandra Medina Benini / Erica Lemos Gulinelli / Antonio Busnardo Filho",
+     "ch": 45
+    },
+    {
+     "comp": "Seminários I",
+     "nome": "Seminários Avançados em Pesquisa e Dissertação - Escrita Acadêmica",
+     "prof": "Jessica Seabra / Gisele Carignani",
+     "ch": 30
+    },
+    {
+     "comp": "Extensão",
+     "nome": "Prática Docente",
+     "prof": "Angelo Palmisano",
+     "ch": 15
+    },
+    {
+     "comp": "Orientação",
+     "nome": "Orientação",
+     "prof": "",
+     "ch": null
+    }
+   ]
+  }
+ }
+}

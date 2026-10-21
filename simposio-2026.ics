@@ -1,0 +1,31 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//PPGAU UNIVAG//Site//PT
+BEGIN:VEVENT
+UID:simposio-tca-2026-4@ppgau-univag
+DTSTAMP:20261021T000000Z
+DTSTART:20261104T130000Z
+DTEND:20261104T210000Z
+SUMMARY:3º Simpósio Brasileiro Território, Cidade e Arquitetura (dia 1)
+LOCATION:UNIVAG Centro Universitário, Várzea Grande, MT (híbrido)
+URL:https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/
+END:VEVENT
+BEGIN:VEVENT
+UID:simposio-tca-2026-5@ppgau-univag
+DTSTAMP:20261021T000000Z
+DTSTART:20261105T130000Z
+DTEND:20261105T210000Z
+SUMMARY:3º Simpósio Brasileiro Território, Cidade e Arquitetura (dia 2)
+LOCATION:UNIVAG Centro Universitário, Várzea Grande, MT (híbrido)
+URL:https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/
+END:VEVENT
+BEGIN:VEVENT
+UID:simposio-tca-2026-6@ppgau-univag
+DTSTAMP:20261021T000000Z
+DTSTART:20261106T130000Z
+DTEND:20261106T210000Z
+SUMMARY:3º Simpósio Brasileiro Território, Cidade e Arquitetura (dia 3)
+LOCATION:UNIVAG Centro Universitário, Várzea Grande, MT (híbrido)
+URL:https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/
+END:VEVENT
+END:VCALENDAR

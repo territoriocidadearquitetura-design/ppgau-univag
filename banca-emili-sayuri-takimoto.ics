@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//PPGAU UNIVAG//Site//PT
+BEGIN:VEVENT
+UID:banca-emili-sayuri-takimoto@ppgau-univag
+DTSTAMP:20261021T195754Z
+DTSTART:20261022T180000Z
+DTEND:20261022T200000Z
+SUMMARY:Defesa de dissertação: Emili Sayuri Takimoto
+DESCRIPTION:Vulnerabilidade climática: uma análise sobre o Córrego do Barbado em Cuiabá-MT
+LOCATION:Zoom https://us02web.zoom.us/j/84047081679
+URL:https://us02web.zoom.us/j/84047081679
+END:VEVENT
+END:VCALENDAR
