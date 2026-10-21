@@ -938,3 +938,9 @@ mark { background: rgba(254,191,1,.45); color: inherit; border-radius: 3px; padd
 .idiomas a.on { opacity: 1; background: var(--navy); color: #fff; }
 html.trad body { opacity: 0; } body { transition: opacity .15s; }
 @media print { .idiomas { display: none !important; } }
+/* Atlas: legenda numa faixa abaixo do mapa, sem cobrir a cidade */
+.atlas-map { --cap: 88px; }
+.atlas-map img { inset: 0 0 var(--cap) 0 !important; height: calc(100% - var(--cap)) !important; }
+.atlas-map figcaption { left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important; max-width: none !important; min-width: 0 !important; height: var(--cap); box-sizing: border-box; border-radius: 0 !important; box-shadow: none !important; background: #fff !important; border-top: 1px solid #dfe5ec; padding: 9px 16px !important; align-content: center; }
+.atlas-onde { top: 10px !important; right: auto !important; left: 10px; bottom: auto !important; font-size: 11px; }
+@media (max-width: 820px) { .atlas-map { min-height: 360px !important; } }
