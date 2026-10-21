@@ -196,3 +196,53 @@
   document.addEventListener("visibilitychange", liga);
   im.slice(1).forEach(x => { x.loading = "eager"; });
 })();
+
+// Idiomas: PT (original), EN, ES e FR. A escolha fica guardada no navegador (ou vem de ?lang=xx).
+// As traduções estão em i18n/<idioma>.json (gerado por gerador/i18n/gera.py): um dicionário de frases e regras
+// para textos com números e nomes. Títulos de obras, nomes e referências ficam no original.
+(() => {
+  const L = ["pt", "en", "es", "fr"], K = "ppgau-lang";
+  const le = () => { try { return localStorage.getItem(K); } catch (e) { return null; } };
+  const gr = v => { try { localStorage.setItem(K, v); return true; } catch (e) { return false; } };
+  const q = new URLSearchParams(location.search).get("lang");
+  if (q && L.includes(q)) gr(q);
+  const lg = L.includes(q) ? q : L.includes(le()) ? le() : "pt";
+  const html = document.documentElement;
+  document.querySelectorAll(".idiomas a").forEach(a => {
+    const on = a.dataset.lang === lg; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "true");
+    a.addEventListener("click", e => { e.preventDefault(); const u = new URL(location.href); if (gr(a.dataset.lang)) u.searchParams.delete("lang"); else u.searchParams.set("lang", a.dataset.lang); location.href = u.href; });
+  });
+  if (lg === "pt") { html.classList.remove("trad"); return; }
+  const mostra = () => html.classList.remove("trad");
+  setTimeout(mostra, 2500);
+  fetch("i18n/" + lg + ".json").then(r => r.json()).then(T => {
+    html.lang = lg;
+    const D = T.d, R = T.r.map(([p, t]) => [new RegExp(p), t]), memo = new Map();
+    const tr = s => {
+      if (memo.has(s)) return memo.get(s);
+      let o = D[s];
+      if (o === undefined) for (const [re, t] of R) { const m = s.match(re); if (!m) continue;
+        const g = (n, x) => { const v = m[+n] || ""; return x ? (tr(v) ?? v) : v; };
+        o = t.replace(/\{(\d+)\?((?:[^{}]|\{\d+\*?\})*)\}/g, (_, n, dentro) => m[+n] ? dentro.replace(/\{(\d+)(\*)?\}/g, (_, k, x) => g(k, x)) : "")
+             .replace(/\{(\d+)(\*)?\}/g, (_, k, x) => g(k, x));
+        break; }
+      memo.set(s, o ?? null); return o ?? null;
+    };
+    const traduz = txt => { const n = txt.replace(/\s+/g, " "), m = n.match(/^([\s/·←,]*)(.*?)([\s↗→·]*)$/); if (!m || !m[2]) return null; const o = tr(m[2]); return o == null ? null : m[1] + o + m[3]; };
+    const PULA = "script,style,textarea,code,[translate=no]", AT = ["placeholder", "aria-label", "title", "alt"];
+    const feito = new WeakMap();
+    const faz = raiz => {
+      const w = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT); let n; const ns = [];
+      while ((n = w.nextNode())) ns.push(n);
+      for (const t of ns) { if (feito.get(t) === t.nodeValue) continue; const el = t.parentElement; if (!el || el.closest(PULA)) continue; const o = traduz(t.nodeValue); if (o != null && o !== t.nodeValue) t.nodeValue = o; feito.set(t, t.nodeValue); }
+      const els = raiz.querySelectorAll ? [raiz, ...raiz.querySelectorAll("[placeholder],[aria-label],[title],img[alt]")] : [];
+      for (const e of els) { if (!e.getAttribute || e.closest(PULA)) continue; for (const a of AT) { const v = e.getAttribute(a); if (!v || feito.get(e) === a + v) continue; const o = traduz(v); if (o != null && o !== v) e.setAttribute(a, o); } }
+    };
+    const t0 = traduz(document.title); if (t0) document.title = t0;
+    faz(document.body); mostra();
+    let fila = new Set(), agendado = 0;
+    new MutationObserver(ms => { for (const m of ms) { if (m.type === "characterData") fila.add(m.target.parentElement || document.body); else m.addedNodes.forEach(x => fila.add(x.nodeType === 3 ? x.parentElement || document.body : x)); }
+      if (!agendado) agendado = requestAnimationFrame(() => { agendado = 0; const f = fila; fila = new Set(); f.forEach(x => x && x.isConnected && faz(x)); }); })
+      .observe(document.body, { childList: true, subtree: true, characterData: true });
+  }).catch(mostra);
+})();

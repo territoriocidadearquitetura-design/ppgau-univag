@@ -119,12 +119,37 @@ function anima(es) {
   svg.querySelectorAll(".no").forEach((g, k) => {
     const id = g.dataset.id, h = pos.get(id), d = id[0] === "d";
     const ini = entrou || calmo ? 1 : 0;
-    N.set(id, { g, hx: h.x, hy: h.y, x: ini ? h.x : cx + (h.x - cx) * .08, y: ini ? h.y : cy + (h.y - cy) * .08, vx: 0, vy: 0, ox: 0, oy: 0, d, f: (k * 2.39) % 6.28, amp: d ? 1.2 : 3.2, k: d ? .07 : .035, atraso: d ? 0 : 6 + (k % 40) });
+    N.set(id, { g, hx: h.x, hy: h.y, x: ini ? h.x : cx + (h.x - cx) * .08, y: ini ? h.y : cy + (h.y - cy) * .08, vx: 0, vy: 0, ox: 0, oy: 0, d, f: (k * 2.39) % 6.28, amp: d ? 2.6 : 7, k: d ? .07 : .035, atraso: d ? 0 : 6 + (k % 40) });
     viz.set(id, []);
   });
   const L = [...svg.querySelectorAll("line")].map(l => { const a = N.get(l.dataset.a), b = N.get(l.dataset.b); viz.get(l.dataset.a).push(l.dataset.b); viz.get(l.dataset.b).push(l.dataset.a); return { l, a, b }; });
   entrou = true;
   const st2 = { arr: null, t0: performance.now(), visivel: true, quadro: 0 };
+  // pulsos: só nas ligações do programa (sem colaboradores externos)
+  const LP = L.filter(e => !e.l.classList.contains("ex"));
+  let LT = LP;
+  const gq = document.createElementNS("http://www.w3.org/2000/svg", "g"); gq.setAttribute("class", "pulsos");
+  svg.children[1].after(gq);
+  const Q = calmo ? [] : Array.from({ length: Math.min(36, Math.max(10, LP.length)) }, () => { const c = document.createElementNS("http://www.w3.org/2000/svg", "circle"); gq.appendChild(c); return { c, e: null, t: 1 }; });
+  st2.anelG = document.createElementNS("http://www.w3.org/2000/svg", "g"); st2.anelG.setAttribute("class", "anel"); st2.anelG.innerHTML = `<circle r="30"/><circle r="30"/>`;
+  svg.lastElementChild.before(st2.anelG);
+  // passeio automático: a cada poucos segundos um docente e suas ligações se acendem
+  const docs = [...N.keys()].filter(id => id[0] === "d" && viz.get(id).length);
+  let iTour = 0;
+  const limpaTour = () => { svg.classList.remove("tour"); svg.querySelectorAll(".tv").forEach(x => x.classList.remove("tv")); st2.tour = null; st2.anel = null; st2.anelG.classList.remove("on"); LT = LP; };
+  const tour = () => {
+    if (anim !== st2) return clearInterval(st2.iv);
+    limpaTour();
+    if (calmo || st.sel || st2.hov || st2.arr || !docs.length || !st2.visivel) return;
+    const id = docs[iTour++ % docs.length], n = N.get(id);
+    st2.tour = id; svg.classList.add("tour"); n.g.classList.add("tv");
+    viz.get(id).forEach(v => N.get(v).g.classList.add("tv"));
+    LT = L.filter(e => e.a === n || e.b === n); LT.forEach(e => e.l.classList.add("tv"));
+    if (!LT.length) LT = LP;
+    Q.forEach(q => q.t = 1);
+    st2.anel = n; st2.anelG.classList.remove("on"); void st2.anelG.getBBox(); st2.anelG.classList.add("on");
+  };
+  st2.iv = setInterval(tour, 4200); setTimeout(tour, 1800);
   anim = st2;
   const pt = ev => { const m = svg.getScreenCTM().inverse(), p = svg.createSVGPoint(); p.x = ev.clientX; p.y = ev.clientY; return p.matrixTransform(m); };
   const passo = t => {
@@ -137,12 +162,21 @@ function anima(es) {
       let dx = 0, dy = 0, c = 0;
       if (st2.arr) for (const v of viz.get(id)) { const m = N.get(v); dx += m.x - m.hx; dy += m.y - m.hy; c++; }
       const pux = c ? (n.d ? .18 : .45) / Math.max(1, c * .6) : 0;
-      const tx = n.hx + dx * pux + (calmo ? 0 : Math.sin(s * .7 + n.f) * n.amp), ty = n.hy + dy * pux + (calmo ? 0 : Math.cos(s * .55 + n.f * 1.3) * n.amp);
+      const tx = n.hx + dx * pux + (calmo ? 0 : Math.sin(s * 1.1 + n.f) * n.amp), ty = n.hy + dy * pux + (calmo ? 0 : Math.cos(s * .85 + n.f * 1.3) * n.amp);
       n.vx = (n.vx + (tx - n.x) * n.k) * .86; n.vy = (n.vy + (ty - n.y) * n.k) * .86;
       n.x += n.vx; n.y += n.vy;
     }
     for (const n of N.values()) n.g.setAttribute("transform", `translate(${n.x.toFixed(1)},${n.y.toFixed(1)})`);
     for (const e of L) { e.l.setAttribute("x1", e.a.x.toFixed(1)); e.l.setAttribute("y1", e.a.y.toFixed(1)); e.l.setAttribute("x2", e.b.x.toFixed(1)); e.l.setAttribute("y2", e.b.y.toFixed(1)); }
+    // pulsos que correm pelas ligações, como produção circulando entre as pessoas
+    for (const q of Q) {
+      if (!q.e || q.t >= 1) { const ls = st2.tour ? LT : LP; q.e = ls.length ? ls[Math.floor(Math.random() * ls.length)] : null; q.t = -Math.random() * .6; q.v = .006 + Math.random() * .008; q.ida = Math.random() < .5; }
+      if (!q.e) { q.c.setAttribute("r", 0); continue; }
+      q.t += q.v; const u = Math.max(0, q.t), [a, b] = q.ida ? [q.e.a, q.e.b] : [q.e.b, q.e.a];
+      q.c.setAttribute("cx", (a.x + (b.x - a.x) * u).toFixed(1)); q.c.setAttribute("cy", (a.y + (b.y - a.y) * u).toFixed(1));
+      q.c.setAttribute("r", q.t < 0 ? 0 : (Math.sin(u * Math.PI) * 3.2 + .6).toFixed(2));
+    }
+    if (st2.anel) { const n = st2.anel; st2.anelG.setAttribute("transform", `translate(${n.x.toFixed(1)},${n.y.toFixed(1)})`); }
     st2.raf = st2.visivel && !document.hidden ? requestAnimationFrame(passo) : 0;
   };
   const retoma = () => { if (!st2.raf && st2.visivel && !document.hidden && anim === st2) st2.raf = requestAnimationFrame(passo); };
@@ -154,6 +188,7 @@ function anima(es) {
     const g = ev.target.closest(".no"); if (!g) return;
     ev.preventDefault();
     const n = N.get(g.dataset.id), p = pt(ev);
+    limpaTour();
     st2.arr = { n, dx: n.x - p.x, dy: n.y - p.y, x0: ev.clientX, y0: ev.clientY }; arrastou = false;
     svg.setPointerCapture(ev.pointerId); svg.classList.add("arrasta");
   });
@@ -166,6 +201,7 @@ function anima(es) {
     const g = ev.target.closest(".no"), id = g && g.dataset.id;
     if (id === st2.hov) return;
     st2.hov = id;
+    if (id) limpaTour();
     svg.querySelectorAll(".hv").forEach(x => x.classList.remove("hv"));
     svg.classList.toggle("hov", !!id);
     if (id) { g.classList.add("hv"); viz.get(id).forEach(v => N.get(v).g.classList.add("hv")); L.forEach(e => { if (e.a === N.get(id) || e.b === N.get(id)) e.l.classList.add("hv"); }); }

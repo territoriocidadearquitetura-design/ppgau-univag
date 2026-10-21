@@ -85,11 +85,12 @@ function pagina({ arq, titulo: t, desc, hero, corpo, js, scripts }) {
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="site.css">
+<script>try{var l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("ppgau-lang");if(l&&l!=="pt"&&/^(en|es|fr)$/.test(l))document.documentElement.classList.add("trad")}catch(e){}</script>
 </head>
 <body${arq === "relatorio.html" ? ' class="relatorio-pg"' : ""}>
 <a class="skip" href="#conteudo">Ir para o conteúdo</a>
 <div class="print-cab" aria-hidden="true"><img src="img/logo-ppgau.png" alt=""><div><b>${esc(t)}</b><span>PPGAU UNIVAG · Informações atualizadas em ${atzDe(arq)[0] || HOJE} (${atzDe(arq)[1]}) · <span class="pc-data"></span></span></div><img src="img/logo-univag.png" alt=""></div>
-<div class="topo-atz"><div class="wrap">Última atualização: ${atzDe(arq)[0] || HOJE}<span> · Fonte: ${atzDe(arq)[1]}</span></div></div>
+<div class="topo-atz"><div class="wrap"><nav class="idiomas" aria-label="Idioma" translate="no">${[["pt", "PT", "Português", "pt-BR"], ["en", "EN", "English", "en"], ["es", "ES", "Español", "es"], ["fr", "FR", "Français", "fr"]].map(([c, r, n, h]) => `<a href="?lang=${c}" data-lang="${c}" hreflang="${h}" lang="${h}" title="${n}">${r}</a>`).join("")}</nav><span class="atz-t">Última atualização: ${atzDe(arq)[0] || HOJE}<span> · Fonte: ${atzDe(arq)[1]}</span></span></div></div>
 <div class="brand"><div class="wrap"><a href="index.html"><img class="lg-ppgau" src="img/logo-ppgau.png" width="600" height="154" alt="PPGAU, Programa de Pós-Graduação Stricto Sensu em Arquitetura e Urbanismo"></a><div class="brand-dir"><nav class="restrito" aria-label="Acesso restrito"><span class="rs-t">Acesso restrito</span><a class="prof-btn" href="painel-coordenacao.html"${arq === "painel-coordenacao.html" ? ' aria-current="page"' : ""} title="Painel da coordenação (acesso restrito)">${ICO.prancheta}<span>Painel da coordenação</span></a><a class="prof-btn" href="area-professor.html"${arq === "area-professor.html" ? ' aria-current="page"' : ""} title="Painel dos professores (acesso restrito)">${ICO.cadeado}<span>Painel dos professores</span></a></nav><img class="lg-univag" src="img/logo-univag.png" width="327" height="169" alt="UNIVAG Centro Universitário"></div></div></div>
 <header class="top" id="top"><div class="wrap">
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Menu</button>
@@ -105,7 +106,7 @@ ${corpo}
 <div><h4>PPGAU UNIVAG</h4><p>Programa de Pós-Graduação <em>Stricto Sensu</em> em Arquitetura e Urbanismo</p><p>Mestrado acadêmico · Código CAPES 50014013001P9 · Nota 3</p></div>
 <div><h4>Endereço</h4><p>UNIVAG Centro Universitário<br>Av. Dom Orlando Chaves, 2.655<br>Cristo Rei, Várzea Grande, MT<br>CEP 78118-900</p></div>
 <div><h4>Contato</h4><ul class="rd-ct"><li><a href="tel:+556536886110">(65) 3688-6110</a></li><li><a href="mailto:jeane.godoy@univag.edu.br">jeane.godoy@univag.edu.br</a></li><li><a href="mailto:angelo.palmisano@univag.edu.br">angelo.palmisano@univag.edu.br</a></li></ul></div>
-<div class="rd-nav"><h4>Navegue</h4><ul><li><a href="disciplinas.html">Disciplinas e horários</a></li><li><a href="academico.html">Acadêmico</a></li><li><a href="dados/">PPGAU em dados</a></li><li><a href="dados/#/responder">Autoavaliação</a></li><li><a href="bancas.html">Bancas e defesas</a></li><li><a href="egressos.html">Egressos</a></li><li><a href="noticias.html">Notícias</a></li><li><a href="galeria.html">Galeria de fotos</a></li><li><a href="documentos.html">Documentos</a></li><li><a href="revista.html">Revista Vernácula</a></li><li>${ext("https://www.repositoriodigital.univag.com.br/index.php/mestradoarq/issue/archive", "Repositório de dissertações")}</li></ul></div>
+<div class="rd-nav"><h4>Navegue</h4><ul><li><a href="disciplinas.html">Disciplinas e horários</a></li><li><a href="academico.html">Acadêmico</a></li><li><a href="dados/">PPGAU em dados</a></li><li><a href="dados/#/responder">Autoavaliação</a></li><li><a href="bancas.html">Bancas e defesas</a></li><li><a href="egressos.html">Egressos</a></li><li><a href="noticias.html">Notícias</a></li><li><a href="premiacoes.html">Premiações</a></li><li><a href="galeria.html">Galeria de fotos</a></li><li><a href="documentos.html">Documentos</a></li><li><a href="revista.html">Revista Vernácula</a></li><li>${ext("https://www.repositoriodigital.univag.com.br/index.php/mestradoarq/issue/archive", "Repositório de dissertações")}</li></ul></div>
 </div>
 <div class="legal"><div class="wrap"><p>© 2026 PPGAU/UNIVAG · Coordenação: Profa. Dra. Jeane Aparecida Rombi de Godoy · Coordenação adjunta: Prof. Dr. Angelo Palmisano</p><p>Organização e diagramação do site: Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)</p></div></div>
 </footer>
@@ -197,6 +198,7 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
 <p class="lead">Coletâneas e anais organizados pelo programa e por seus docentes, com download gratuito.</p>
 <ul class="lv-rolo"><!--LIV_HOME--></ul></section>
 
+<!--PREMIO_HOME-->
 <!--BANCA_HOME-->
 <section class="blk" aria-labelledby="h-prox"><h2 id="h-prox">Próximo evento</h2>
 <div class="evd"><div class="evd-data" aria-hidden="true"><span>nov</span><b>4–6</b><span>2026</span></div>
@@ -1129,6 +1131,39 @@ d.addEventListener("click",e=>{if(e.target===d)d.close()});d.addEventListener("k
   });
 }
 
+// ---------- Premiações ----------
+// Prêmios, menções e homenagens de docentes e discentes no período em que estão no PPGAU UNIVAG, em gerador/premios.json.
+// Fotos: um álbum de galeria.json (campo "fotos"). O item com "destaque" aparece na Início.
+{
+  const PR = JSON.parse(fs.readFileSync(path.join(__dirname, "premios.json"), "utf8")).sort((a, b) => b.ano - a.ano);
+  const GAL = JSON.parse(fs.readFileSync(path.join(__dirname, "galeria.json"), "utf8"));
+  const fotosDe = p => (GAL.find(g => g.k === p.fotos) || { f: [] }).f.map(f => `img/galeria/${p.fotos}/${f[0]}`);
+  const docLink = n => corpo.find(d => d.n === n) ? `<a href="docente-${slugN(n)}.html">${esc(n)}</a>` : esc(n);
+  const ICO_TROFEU = svg('<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a4 4 0 0 1-4 4M7 5H4v2a4 4 0 0 0 4 4"/>', 26);
+  const cartao = p => { const fs_ = fotosDe(p); return `<article class="card pr-card" id="${p.k}">
+  <div class="pr-fotos">${fs_.map((f, i) => `<a class="gl-f" href="${f}.jpg" data-gal="${p.k}" data-i="${i}"><img src="${f}-p.jpg" loading="lazy" alt="${esc(p.tit)}: foto ${i + 1}"></a>`).join("")}</div>
+  <div class="pr-txt"><p class="pr-selo">${ICO_TROFEU}<span>${esc(p.tipo)} · ${p.ano}</span></p><h3>${esc(p.tit)}</h3>
+  <p class="pr-quem">${p.quem.map(docLink).join(" e ")}${p.outros ? `, com ${esc(p.outros)}` : ""}</p>
+  ${p.obra ? `<p class="pr-obra">Trabalho premiado: <i>${esc(p.obra)}</i></p>` : ""}
+  <p>${esc(p.desc)}</p><p class="meta">${esc(p.orgao)} · ${esc(p.data)}</p>
+  <p class="links">${p.links.map(([l, h]) => ext(h, esc(l))).join("")}</p></div></article>`; };
+  const dest = PR.find(p => p.destaque);
+  if (dest) { const f = fotosDe(dest)[1] || fotosDe(dest)[0];
+    globalThis.__PREMIO_HOME = `<section class="blk pr-home" aria-labelledby="h-prh"><a class="pr-banner" href="premiacoes.html#${dest.k}">${f ? `<img src="${f}-p.jpg" alt="" loading="lazy">` : ""}<span class="pr-b-txt"><span class="eyebrow">${ICO_TROFEU} Premiação · ${dest.ano}</span><b id="h-prh">${esc(dest.tit)}</b><span>${dest.quem.map(esc).join(" e ")}${dest.outros ? `, com ${esc(dest.outros)}` : ""}</span><span class="pr-b-mais">Ver premiações ${ICO.seta}</span></span></a></section>`; }
+  P.push({
+    arq: "premiacoes.html", titulo: "Premiações", desc: "Prêmios, menções honrosas e reconhecimentos recebidos por docentes e discentes do PPGAU UNIVAG.",
+    hero: { crumb: true, eyebrow: "Reconhecimento", p: "Prêmios, menções honrosas e homenagens recebidos por docentes e discentes do programa, no período em que fazem parte do PPGAU UNIVAG.", kpis: [[PR.length, PR.length > 1 ? "premiações" : "premiação"]] },
+    corpo: `<section class="blk pr-lista">${PR.map(cartao).join("\n")}</section>
+<p class="meta pr-nota">Lista em atualização a partir dos currículos Lattes dos docentes. Recebeu um prêmio ou menção? Envie para a coordenação.</p>
+<dialog class="gl-dlg" id="gl-dlg" aria-label="Foto ampliada"><img alt=""><p class="gl-leg"></p><button type="button" class="gl-x" aria-label="Fechar">×</button><button type="button" class="gl-ant" aria-label="Foto anterior">‹</button><button type="button" class="gl-prox" aria-label="Próxima foto">›</button></dialog>`,
+    js: `(()=>{const d=document.getElementById("gl-dlg"),im=d.querySelector("img"),lg=d.querySelector(".gl-leg");let l=[],i=0;
+const mostra=()=>{const a=l[i];im.src=a.getAttribute("href");im.alt=a.querySelector("img").alt;lg.textContent=a.querySelector("img").alt};
+document.addEventListener("click",e=>{const a=e.target.closest(".gl-f");if(!a)return;e.preventDefault();l=[...document.querySelectorAll('.gl-f[data-gal="'+a.dataset.gal+'"]')];i=+a.dataset.i;mostra();d.showModal()});
+const vai=n=>{i=(i+n+l.length)%l.length;mostra()};d.querySelector(".gl-ant").onclick=()=>vai(-1);d.querySelector(".gl-prox").onclick=()=>vai(1);d.querySelector(".gl-x").onclick=()=>d.close();
+d.addEventListener("click",e=>{if(e.target===d)d.close()});d.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")vai(-1);if(e.key==="ArrowRight")vai(1)});})();`
+  });
+}
+
 // ---------- Documentos ----------
 // Editais, resultados, regulamentos e relatórios do site antigo, servidos de docs/ (cópias em gerador/docs).
 {
@@ -1172,8 +1207,10 @@ f.querySelectorAll(".bv-dicas button").forEach(b=>b.addEventListener("click",()=
 inp.value=new URLSearchParams(location.search).get("q")||"";roda();if(!inp.value)inp.focus();});`
 });
 
-for (const p of P) fs.writeFileSync(path.join(OUT, p.arq), pagina(p).replace("<!--GAL_HOME-->", globalThis.__GAL_HOME || "").replace("<!--LIV_HOME-->", globalThis.__LIV_HOME.map(l => `<li><a href="livros.html" title="${esc(l.t + (l.v ? " · " + l.v : ""))}">${capaLivro(l)}<span>${esc(l.t)}${l.v ? " · " + esc(l.v) : ""}</span></a></li>`).join("")).replace("<!--BANCA_HOME-->", globalThis.__BANCA_HOME).replace("<!--NOT_HOME-->", globalThis.__NOT_HOME).replace("<!--VERN_CAPAS-->", globalThis.__VERN_CAPAS.replace(/<a /g, "<span ").replace(/<\/a>/g, "</span>").replace(/ href="[^"]*" target="_blank" rel="noopener"/g, "")));
+for (const p of P) fs.writeFileSync(path.join(OUT, p.arq), pagina(p).replace("<!--GAL_HOME-->", globalThis.__GAL_HOME || "").replace("<!--LIV_HOME-->", globalThis.__LIV_HOME.map(l => `<li><a href="livros.html" title="${esc(l.t + (l.v ? " · " + l.v : ""))}">${capaLivro(l)}<span>${esc(l.t)}${l.v ? " · " + esc(l.v) : ""}</span></a></li>`).join("")).replace("<!--BANCA_HOME-->", globalThis.__BANCA_HOME).replace("<!--PREMIO_HOME-->", globalThis.__PREMIO_HOME || "").replace("<!--NOT_HOME-->", globalThis.__NOT_HOME).replace("<!--VERN_CAPAS-->", globalThis.__VERN_CAPAS.replace(/<a /g, "<span ").replace(/<\/a>/g, "</span>").replace(/ href="[^"]*" target="_blank" rel="noopener"/g, "")));
 fs.copyFileSync(path.join(__dirname, "site.css"), path.join(OUT, "site.css"));
+fs.mkdirSync(path.join(OUT, "i18n"), { recursive: true });
+for (const l of ["en", "es", "fr"]) fs.copyFileSync(path.join(__dirname, "i18n", l + ".json"), path.join(OUT, "i18n", l + ".json"));
 fs.copyFileSync(path.join(__dirname, "mapa.js"), path.join(OUT, "mapa.js"));
 fs.copyFileSync(path.join(__dirname, "disciplinas.js"), path.join(OUT, "disciplinas.js"));
 fs.copyFileSync(path.join(__dirname, "ui.js"), path.join(OUT, "ui.js"));
@@ -1183,7 +1220,7 @@ for (const b of proxBancas) fs.writeFileSync(path.join(OUT, `banca-${slugN(b.al)
 {
   const B = [], slugD = n => n.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/\W+/g, "-");
   // Palavras que as pessoas costumam digitar e não aparecem no título da página.
-  const KW = { "galeria.html": "fotos imagens álbum seminário aula evento premiação CAU campus", "documentos.html": "edital resultado aprovados regulamento calendário pdf baixar download ficha inscrição pós-doutorado bolsa", "ingresso.html": "processo seletivo edital inscrição vagas seleção bolsa bolsista proficiência pós-doutorado", "contato.html": "telefone email e-mail endereço secretaria coordenação", "academico.html": "créditos trancamento matrícula qualificação defesa aproveitamento regulamento", "disciplinas.html": "horário aula calendário turma agenda semestre professor", "programa.html": "histórico missão objetivos linhas área de concentração grupos parcerias", "index.html": "início home como chegar mapa localização onde fica univag", "producao.html": "dissertações projetos pesquisa extensão iniciação científica ic periódicos", "livros.html": "livros anais e-book ebook download pdf isbn coletânea", "revista.html": "periódico qualis issn artigo submissão vernácula", "mapa.html": "rede coautoria colaboração", "eventos.html": "simpósio congresso seminário prêmio mídia", "bancas.html": "defesa banca qualificação zoom transmissão agenda", "egressos.html": "ex-alunos mestres formados trajetória onde atuam território", "noticias.html": "novidades avisos lançamento", "painel-coordenacao.html": "coordenação coordenador capes avaliação 2021 2024 quadrienal ficha apontamentos restrito senha", "relatorio.html": "relatório pdf imprimir documento resumo geral", "area-professor.html": "professor docente metas quadrienal 2025 2028 doutorado apcn restrito senha painel" };
+  const KW = { "premiacoes.html": "prêmio premiação menção honrosa homenagem reconhecimento CAU concurso artigo 2º lugar Jessica Seabra", "galeria.html": "fotos imagens álbum seminário aula evento premiação CAU campus", "documentos.html": "edital resultado aprovados regulamento calendário pdf baixar download ficha inscrição pós-doutorado bolsa", "ingresso.html": "processo seletivo edital inscrição vagas seleção bolsa bolsista proficiência pós-doutorado", "contato.html": "telefone email e-mail endereço secretaria coordenação", "academico.html": "créditos trancamento matrícula qualificação defesa aproveitamento regulamento", "disciplinas.html": "horário aula calendário turma agenda semestre professor", "programa.html": "histórico missão objetivos linhas área de concentração grupos parcerias", "index.html": "início home como chegar mapa localização onde fica univag", "producao.html": "dissertações projetos pesquisa extensão iniciação científica ic periódicos", "livros.html": "livros anais e-book ebook download pdf isbn coletânea", "revista.html": "periódico qualis issn artigo submissão vernácula", "mapa.html": "rede coautoria colaboração", "eventos.html": "simpósio congresso seminário prêmio mídia", "bancas.html": "defesa banca qualificação zoom transmissão agenda", "egressos.html": "ex-alunos mestres formados trajetória onde atuam território", "noticias.html": "novidades avisos lançamento", "painel-coordenacao.html": "coordenação coordenador capes avaliação 2021 2024 quadrienal ficha apontamentos restrito senha", "relatorio.html": "relatório pdf imprimir documento resumo geral", "area-professor.html": "professor docente metas quadrienal 2025 2028 doutorado apcn restrito senha painel" };
   for (const p of P) B.push(["Página", p.titulo, p.desc, p.arq, KW[p.arq] || ""]);
   for (const d of corpo) B.push(["Docente", d.n, d.tit, `docente-${slugN(d.n)}.html`, (d.f.form || []).join(" ")]);
   const GR = { discente: ["Discente", "discentes"], egresso: ["Egresso", "egressos"], "pos-doc": ["Pós-doutorado", "posdoc"] };
