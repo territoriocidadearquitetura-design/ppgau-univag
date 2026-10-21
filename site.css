@@ -954,3 +954,7 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .rd-volta { margin: 10px auto 0; display: flex; }
 .rd-volta[hidden] { display: none; }
 .rd .no.doc { touch-action: none; cursor: grab; }
+
+/* listas dentro de cartão: respiro nas laterais (.lista zerava o padding do .card) */
+.card.lista { padding: 4px 18px; }
+@media (max-width: 600px) { .card.lista { padding: 2px 14px; } }
