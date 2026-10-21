@@ -533,9 +533,12 @@ ${anos.map(a => { const l = ev.filter(e => e.ano === a); return `<section class=
   const chaveDoc = new Map(); PLAT.nomes.forEach((n, i) => chavesNome(n).forEach(k => chaveDoc.set(k, i)));
   const ehDoc = (x, ini) => { if (!chaveDoc.has(x.k)) return -1; const i = chaveDoc.get(x.k), m = iniNome(PLAT.nomes[i]); return ini.length > 1 && m.length > 1 && ini[1] !== m[1] && !alias.has(x.k) ? -1 : i; };
   const alias = new Set();
+  // prenomes invertidos no próprio Lattes: "RAVACHE, LIA ROSANA" é a Profa. Rosana Lia Ravache
+  [["RAVACHE L", "Rosana Lia Ravache"]].forEach(([k, n]) => { const i = PLAT.nomes.indexOf(n); if (i >= 0) { chaveDoc.set(k, i); alias.add(k); } });
   const k2 = (k, ini) => ini.length > 1 ? k + " " + ini[1] : k;
   const tit = s => s.toLowerCase().replace(/(^|[\s-])(\p{L})/gu, (m, a, b) => a + b.toUpperCase());
-  const fixa = ref => ref.replace(/^([A-ZÀ-Ý]+)\. (?=[A-ZÀ-Ý]\.)/, "$1, ");
+  // "ROSIN, P. D. J. A. R. G." é a Profa. Dra. Jeane (Godoy Rosin) com o título antes das iniciais
+  const fixa = ref => ref.replace(/^([A-ZÀ-Ý]+)\. (?=[A-ZÀ-Ý]\.)/, "$1, ").replace(/ROSIN, P\. ?D\. ?(?=J\.)/g, "ROSIN, ");
   // Grafias do próprio docente que não batem com o nome (ex.: sobrenome de solteira): a chave externa
   // mais frequente nas obras do docente em que ele não foi reconhecido pelo nome.
   {
@@ -566,12 +569,34 @@ ${anos.map(a => { const l = ev.filter(e => e.ano === a); return `<section class=
   brutos.forEach(w => w[6].forEach(([k]) => { const b = k.split(" ").length; if (/ [A-Z] [A-Z]$/.test(k)) { const base = k.slice(0, -2); if (!completas.has(base)) completas.set(base, new Set()); completas.get(base).add(k); } }));
   const TIPO_AL = { discente: "dis", egresso: "egr", "pos-doc": "pos" };
   const alunos = new Map(); PESSOAS.forEach(p => { const w = p.n.split(" "), k = chave(w[w.length - 1], w[0]); if (k) alunos.set(k2(k, iniNome(p.n)), [p.n, TIPO_AL[p.c] || "dis"]); });
+  // Confere o nome da referência com o nome completo do discente/egresso/pós-doc: o sobrenome precisa estar no nome,
+  // os prenomes ou iniciais precisam aparecer na ordem, e em sobrenomes comuns (SILVA, SOUZA...) a referência
+  // precisa trazer todas as iniciais da pessoa, para não juntar homônimos ("SILVA, M. S." ≠ Marcos de Sá Fernandes da Silva).
+  const COMUNS = /^(SILVA|SANTOS|OLIVEIRA|SOUZA|SOUSA|LIMA|PEREIRA|COSTA|RODRIGUES|ALMEIDA|FERREIRA|ALVES|CARVALHO|GOMES|MARTINS|ARAUJO|RIBEIRO|BARBOSA|ROCHA|DIAS|NASCIMENTO|PAULA|MOURA|MACHADO|MARQUES|LOPES|MENDES|CASTRO|BARROS|FREITAS|CARDOSO|TEIXEIRA|CORREA|NUNES|SOARES|VIEIRA|MONTEIRO|MOREIRA|CAVALCANTI|ARRUDA|DUARTE|FERNANDES|JESUS|PINTO|REIS|ANDRADE)$/;
+  const pal = x => semAcento(x).toUpperCase().replace(/[^A-Z.\s]/g, " ").replace(/\./g, ". ").split(/\s+/).filter(t => t && !/^(DE|DA|DO|DAS|DOS|E)$/.test(t)).map(t => t.replace(/(.)\1/g, "$1"));
+  // diferença de no máximo uma letra (erro de digitação: "Sayouri" = "Sayuri")
+  const lev1 = (a, b) => { if (Math.abs(a.length - b.length) > 1) return false; let i = 0; while (i < a.length && a[i] === b[i]) i++; return a.slice(i + 1) === b.slice(i + 1) || a.slice(i) === b.slice(i + 1) || a.slice(i + 1) === b.slice(i); };
+  const confere = (cheio, ref) => {
+    let sob, pre; if (ref.includes(",")) [sob, pre] = ref.split(/,\s*/); else { const w = ref.trim().split(/\s+/); sob = w.pop(); pre = w.join(" "); }
+    const w = pal(cheio).map(t => t.replace(".", "")), sw = pal(sob).map(t => t.replace(".", "")).filter(t => !/^(FILHO|JUNIOR|NETO)$/.test(t));
+    const js = w.indexOf(sw[sw.length - 1]); if (js < 0) return false;
+    const antes = w.slice(0, js).filter(t => !sw.includes(t)), p = pal(pre || "");
+    if (!p.length) return false;
+    let j = 0;
+    for (const t of p) { const ini = t.endsWith(".") || t.length === 1, c = t.replace(".", ""); let ok = false;
+      while (j < antes.length) { const x = antes[j++]; if (ini ? x[0] === c[0] : x === c || (c.length > 4 && x[0] === c[0] && lev1(x, c))) { ok = true; break; } }
+      if (!ok) return false; }
+    return !COMUNS.test(sw[sw.length - 1]) || p.length >= antes.length;
+  };
+  const recusados = new Map();
   const resolve = k => { if (/ [A-Z] [A-Z]$/.test(k)) return k; const c = completas.get(k); return c && c.size === 1 ? [...c][0] : k; };
   const pes = {}, W = [];
   brutos.forEach(w => {
     const ks = new Set();
     w[6].forEach(([k, nome]) => {
-      const r = resolve(k); ks.add(r);
+      let r = resolve(k);
+      if (alunos.has(r) && !confere(alunos.get(r)[0], nome)) { recusados.set(alunos.get(r)[0] + " ≠ " + nome, (recusados.get(alunos.get(r)[0] + " ≠ " + nome) || 0) + 1); r = k + " ~" + semAcento(nome).toUpperCase().replace(/[^A-Z ]/g, ""); }
+      ks.add(r);
       if (alunos.has(r)) pes[r] = [...alunos.get(r)];
       else if (!pes[r] || (pes[r][1] === "ext" && nome.length > pes[r][0].length)) pes[r] = [nome, "ext"];
       pes[r].bruto = 1;
@@ -587,6 +612,7 @@ ${anos.map(a => { const l = ev.filter(e => e.ano === a); return `<section class=
   }
   globalThis.__MAPA = "const MAPA = " + JSON.stringify({ doc, pes, W }) + ";\n";
   globalThis.__REDE = { doc, pes, W };
+  if (recusados.size) console.log("homônimos separados de discentes/egressos:", [...recusados].map(([k, n]) => k + (n > 1 ? " (" + n + ")" : "")).join("; "));
   if (process.env.AUDIT) fs.writeFileSync(process.env.AUDIT, JSON.stringify({ AUD, doc, pes, W, alunos: [...alunos], completas: [...completas].map(([k, v]) => [k, [...v]]), alias: [...alias], nomes: PLAT.nomes }));
   const nPes = Object.keys(pes).length;
   P.push({

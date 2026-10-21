@@ -24,8 +24,14 @@ function chavesNome(nome) {
 }
 function autores(ref) {
   const segs = ref.split(";"), out = [];
-  for (const seg of segs) {
-    const m = /^\s*([^,.;]{2,60}),\s*(.*)$/s.exec(seg);
+  for (let si = 0; si < segs.length; si++) {
+    // "(Org.)" e "JR." não encerram o nome; "GODOY. J. A. R." é "GODOY, J. A. R." com ponto no lugar da vírgula
+    const seg = segs[si].replace(/\s*\((?:Orgs?|Ed|Eds|Coord)\.?\)/gi, "").replace(/\b(JR|Jr)\.(?=\s*,)/, "JUNIOR").replace(/^(\s*[A-ZÀ-Ý][A-ZÀ-Ý' -]+)\. (?=[A-ZÀ-Ý]\.)/, "$1, ");
+    let m = /^\s*([^,.;]{2,60}),\s*(.*)$/s.exec(seg);
+    // nome por extenso sem vírgula ("Fabio Friol Guedes de Paiva"), só no meio da lista de autores
+    if (!m && si < segs.length - 1 && /^\s*[A-ZÀ-Ý][\p{L}]+(\s+(de|da|do|dos|das|e|[A-ZÀ-Ý][\p{L}]+)){1,5}\s*$/u.test(seg)) {
+      const w = seg.trim().split(/\s+/); m = [null, w[w.length - 1], w.slice(0, -1).join(" ")];
+    }
     if (!m) break;
     const tok = m[2].trim().split(/\s+/);
     const pre = []; let fim = false;
