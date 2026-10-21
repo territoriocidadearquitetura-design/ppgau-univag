@@ -43,7 +43,7 @@ const atzDe = arq => ATZ[arq] || (/^docente-/.test(arq) ? [AZ.docentes, "Curríc
 // ---------- layout ----------
 const NAV = [
   ["index.html", "Início"], ["programa.html", "O programa"], ["pessoas.html", "Pessoas"], ["disciplinas.html", "Disciplinas"], ["producao.html", "Produção"], ["revista.html", "Revista"], ["livros.html", "Livros"], ["mapa.html", "Mapa da produção"], ["linha-do-tempo.html", "Linha do tempo"],
-  ["eventos.html", "Eventos"], ["bancas.html", "Bancas"], ["ingresso.html", "Ingresso"], ["contato.html", "Contato"]
+  ["eventos.html", "Eventos"], ["bancas.html", "Bancas"], ["premiacoes.html", "Premiações"], ["ingresso.html", "Ingresso"], ["contato.html", "Contato"]
 ];
 const svg = (d, w = 20) => `<svg width="${w}" height="${w}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 const ICO = {
@@ -72,7 +72,7 @@ const BUSCA_VIVA = (dicas = []) => `<form class="busca-viva" action="busca.html"
 // Linhas de nível (curvas topográficas) que se movem devagar no fundo das faixas de título.
 const DECO = `<svg class="hero-deco" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2">${Array.from({ length: 9 }, (_, i) => { const r = 60 + i * 46; return `<path d="M${900 - r} 200 C ${900 - r} ${200 - r * 1.1}, ${900 + r * 1.2} ${200 - r * .9}, ${900 + r} 200 S ${900 - r * .7} ${200 + r * 1.15}, ${900 - r} 200 Z"/>`; }).join("")}${Array.from({ length: 6 }, (_, i) => { const r = 40 + i * 38; return `<path d="M${180 - r} 330 C ${180 - r} ${330 - r}, ${180 + r * 1.3} ${330 - r * .8}, ${180 + r} 330 S ${180 - r * .6} ${330 + r}, ${180 - r} 330 Z"/>`; }).join("")}</g></svg>`;
 function pagina({ arq, titulo: t, desc, hero, corpo, js, scripts }) {
-  const nav = NAV.map(([h, l]) => `<li><a href="${h}"${h === arq ? ' aria-current="page"' : ""}>${l}</a></li>`).join("");
+  const nav = NAV.map(([h, l]) => `<li><a href="${h}"${h === arq ? ' aria-current="page"' : ""}${h === "premiacoes.html" ? ' class="nav-pr"' : ""}>${h === "premiacoes.html" ? svg('<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a4 4 0 0 1-4 4M7 5H4v2a4 4 0 0 0 4 4"/>', 15) : ""}${l}</a></li>`).join("");
   return `<!doctype html>
 <html lang="pt-BR">
 <head>

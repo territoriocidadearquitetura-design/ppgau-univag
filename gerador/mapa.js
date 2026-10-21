@@ -119,12 +119,16 @@ function anima(es) {
   svg.querySelectorAll(".no").forEach((g, k) => {
     const id = g.dataset.id, h = pos.get(id), d = id[0] === "d";
     const ini = entrou || calmo ? 1 : 0;
-    N.set(id, { g, hx: h.x, hy: h.y, x: ini ? h.x : cx + (h.x - cx) * .08, y: ini ? h.y : cy + (h.y - cy) * .08, vx: 0, vy: 0, ox: 0, oy: 0, d, f: (k * 2.39) % 6.28, amp: d ? 2.6 : 7, k: d ? .07 : .035, atraso: d ? 0 : 6 + (k % 40) });
+    N.set(id, { g, hx: h.x, hy: h.y, x: ini ? h.x : cx + (h.x - cx) * .08, y: ini ? h.y : cy + (h.y - cy) * .08, vx: 0, vy: 0, ox: 0, oy: 0, d, f: (k * 2.39) % 6.28, amp: d ? 5 : 8, k: d ? .07 : .035, atraso: d ? 0 : 6 + (k % 40) });
     viz.set(id, []);
   });
   const L = [...svg.querySelectorAll("line")].map(l => { const a = N.get(l.dataset.a), b = N.get(l.dataset.b); viz.get(l.dataset.a).push(l.dataset.b); viz.get(l.dataset.b).push(l.dataset.a); return { l, a, b }; });
   entrou = true;
   const st2 = { arr: null, t0: performance.now(), visivel: true, quadro: 0 };
+  let mexeu = false;
+  let btVolta = $("rd-volta");
+  if (!btVolta) { btVolta = document.createElement("button"); btVolta.type = "button"; btVolta.id = "rd-volta"; btVolta.className = "btn sec rd-volta"; btVolta.textContent = "Voltar ao círculo"; $("rd-box").after(btVolta); btVolta.addEventListener("click", () => desenhar()); }
+  btVolta.hidden = true;
   // pulsos: só nas ligações do programa (sem colaboradores externos)
   const LP = L.filter(e => !e.l.classList.contains("ex"));
   let LT = LP;
@@ -189,7 +193,7 @@ function anima(es) {
     ev.preventDefault();
     const n = N.get(g.dataset.id), p = pt(ev);
     limpaTour();
-    st2.arr = { n, dx: n.x - p.x, dy: n.y - p.y, x0: ev.clientX, y0: ev.clientY }; arrastou = false;
+    st2.arr = { n, id: g.dataset.id, dx: n.x - p.x, dy: n.y - p.y, x0: ev.clientX, y0: ev.clientY, hx0: n.hx, hy0: n.hy }; arrastou = false;
     svg.setPointerCapture(ev.pointerId); svg.classList.add("arrasta");
   });
   svg.addEventListener("pointermove", ev => {
@@ -206,7 +210,16 @@ function anima(es) {
     svg.classList.toggle("hov", !!id);
     if (id) { g.classList.add("hv"); viz.get(id).forEach(v => N.get(v).g.classList.add("hv")); L.forEach(e => { if (e.a === N.get(id) || e.b === N.get(id)) e.l.classList.add("hv"); }); }
   });
-  const solta = () => { if (st2.arr) { st2.arr = null; svg.classList.remove("arrasta"); } };
+  // Ao soltar, a pessoa fica onde foi deixada (o círculo se deforma) e quem produz só com ela vai junto, em parte.
+  const solta = () => {
+    const a = st2.arr; if (!a) return;
+    st2.arr = null; svg.classList.remove("arrasta");
+    if (!arrastou) return;
+    const n = a.n, dx = n.x - a.hx0, dy = n.y - a.hy0;
+    n.hx = n.x; n.hy = n.y;
+    for (const v of viz.get(a.id)) { if (v[0] === "d") continue; const m = N.get(v), docs = viz.get(v).filter(x => x[0] === "d").length || 1; m.hx += dx * .7 / docs; m.hy += dy * .7 / docs; }
+    mexeu = true; btVolta.hidden = false;
+  };
   svg.addEventListener("pointerup", solta); svg.addEventListener("pointercancel", solta);
   svg.addEventListener("pointerleave", () => { if (!st2.arr && st2.hov) { st2.hov = null; svg.classList.remove("hov"); svg.querySelectorAll(".hv").forEach(x => x.classList.remove("hv")); } });
 }
