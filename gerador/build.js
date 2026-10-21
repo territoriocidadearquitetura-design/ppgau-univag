@@ -182,7 +182,7 @@ ${k.map(x => `<div class="kpi"><span>${esc(x[0])}</span><b>${esc(x[1])}</b><smal
 <a class="atlas" href="https://editoraanap-tupa.github.io/atlas/" target="_blank" rel="noopener">
 ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-mapas.json"), "utf8")); return `<figure class="atlas-map" data-atlas-roda>${AM.leg.map((l, i) => `<img class="${i ? "" : "on"}" src="img/atlas-mapa-${l.k}.svg" width="${AM.W}" height="${AM.H}" ${i ? 'loading="lazy" ' : ""}alt="Mapa dos setores urbanos da conurbação Cuiabá–Várzea Grande: ${esc(l.t)}, com o Rio Cuiabá e o Rio Coxipó em azul">`).join("")}
 <span class="atlas-onde">Conurbação Cuiabá–Várzea Grande</span>
-<figcaption>${AM.leg.map((l, i) => `<span class="atlas-cap${i ? "" : " on"}"><span>${esc(l.t)}</span><span class="atlas-leg">${l.cor.map(c => `<i style="background:${c}"></i>`).join("")}</span><span class="atlas-leg-t"><small>${esc(l.ini)}</small><small>${esc(l.fim)}</small></span></span>`).join("")}<span class="atlas-pts" aria-hidden="true">${AM.leg.map((_, i) => `<i class="${i ? "" : "on"}"></i>`).join("")}</span></figcaption></figure>`; })()}
+<figcaption>${AM.leg.map((l, i) => `<span class="atlas-cap${i ? "" : " on"}"><span>${esc(l.t)}</span>${l.itens ? `<span class="atlas-leg-i">${l.itens.map(([c, t, f]) => `<small><i class="${f}" style="--c:${c}"></i>${esc(t)}</small>`).join("")}</span>` : `<span class="atlas-leg">${l.cor.map(c => `<i style="background:${c}"></i>`).join("")}</span><span class="atlas-leg-t"><small>${esc(l.ini)}</small><small>${esc(l.fim)}</small></span>`}</span>`).join("")}<span class="atlas-pts" aria-hidden="true">${AM.leg.map((_, i) => `<i class="${i ? "" : "on"}"></i>`).join("")}</span></figcaption></figure>`; })()}
 <div class="atlas-t"><span class="eyebrow">Novo · Atlas digital interativo</span><h3>Atlas Socioambiental da Região Metropolitana do Vale do Rio Cuiabá</h3>
 <p>Indicadores socioambientais dos 1.940 setores censitários dos sete municípios da RMVRC: Censo 2022, vegetação, temperatura de superfície, inundação, APP, saúde ambiental e ODS. Com metodologia, fontes e dados abertos.</p>
 <dl class="atlas-n"><div><dt>Setores censitários</dt><dd>1.940</dd></div><div><dt>Municípios</dt><dd>7</dd></div><div><dt>Indicadores do Censo auditados</dt><dd>24</dd></div></dl>
@@ -546,11 +546,14 @@ ${anos.map(a => { const l = ev.filter(e => e.ano === a); return `<section class=
     });
     cont.forEach((m, i) => [...m].filter(([k, n]) => n >= 3 && n >= falta[i] * .3 && k.slice(-1) === semAcento(PLAT.nomes[i])[0].toUpperCase()).forEach(([k]) => { chaveDoc.set(k, i); alias.add(k); console.log("grafia de", PLAT.nomes[i], "→", k); }));
   }
+  const AUD = []; globalThis.__AUD = AUD;
   const MAX_AUT = 12; // listas maiores são comissões e pareceres coletivos, não coautoria
   const brutos = [];
   PLAT.itens.forEach(([cat, ano, ref, ds, q]) => {
     const d = new Set(ds), a = [], xs = autores(fixa(ref));
-    xs.forEach(x => { const ini = iniDe(x.pre), i = ehDoc(x, ini); if (i >= 0) d.add(i); else if (xs.length <= MAX_AUT) a.push([k2(x.k, ini), tit(x.sob) + ", " + x.pre]); });
+    const au = [];
+    xs.forEach(x => { const ini = iniDe(x.pre), i = ehDoc(x, ini); au.push([x.sob, x.pre, i >= 0 ? "D" + i : k2(x.k, ini)]); if (i >= 0) d.add(i); else if (xs.length <= MAX_AUT) a.push([k2(x.k, ini), tit(x.sob) + ", " + x.pre]); });
+    AUD.push({ ref, ds, au });
     brutos.push([TEC.has(cat) ? "tec" : "pub", cat, ano, ref, q || "", [...d].sort((x, y) => x - y), a]);
   });
   PROJ.forEach(p => {
@@ -584,6 +587,7 @@ ${anos.map(a => { const l = ev.filter(e => e.ano === a); return `<section class=
   }
   globalThis.__MAPA = "const MAPA = " + JSON.stringify({ doc, pes, W }) + ";\n";
   globalThis.__REDE = { doc, pes, W };
+  if (process.env.AUDIT) fs.writeFileSync(process.env.AUDIT, JSON.stringify({ AUD, doc, pes, W, alunos: [...alunos], completas: [...completas].map(([k, v]) => [k, [...v]]), alias: [...alias], nomes: PLAT.nomes }));
   const nPes = Object.keys(pes).length;
   P.push({
     arq: "mapa.html", titulo: "Mapa da produção", desc: "Rede de coautoria e de equipes de projeto dos docentes do PPGAU UNIVAG, com a lista da produção registrada no Lattes.",

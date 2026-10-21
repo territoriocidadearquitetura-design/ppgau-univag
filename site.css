@@ -958,3 +958,8 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 /* listas dentro de cartão: respiro nas laterais (.lista zerava o padding do .card) */
 .card.lista { padding: 4px 18px; }
 @media (max-width: 600px) { .card.lista { padding: 2px 14px; } }
+.atlas-leg-i { display: flex; flex-wrap: wrap; gap: 4px 14px; color: #485664; }
+.atlas-leg-i small { display: inline-flex; align-items: center; gap: 6px; }
+.atlas-leg-i i { display: inline-block; width: 18px; height: 3px; background: var(--c); border-radius: 2px; }
+.atlas-leg-i i.f { height: 9px; }
+.atlas-leg-i i.n { width: 9px; height: 9px; border-radius: 50%; background: #fff; border: 2px solid var(--c); box-sizing: border-box; }

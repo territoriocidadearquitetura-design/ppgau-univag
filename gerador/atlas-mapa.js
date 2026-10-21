@@ -1,5 +1,5 @@
 // Gera os mapas da chamada do Atlas na Início: setores urbanos da conurbação Cuiabá–Várzea Grande coloridos por
-// quatro indicadores (IVSA, APP, adensamento e renda) (dados abertos do Atlas Socioambiental da RMVRC). Uso: node atlas-mapa.js <pasta dados do atlas> <pasta de saída>
+// três indicadores (IVSA, adensamento e renda), mais um mapa da rede hídrica com as faixas de APP e as nascentes (dados abertos do Atlas Socioambiental da RMVRC). Uso: node atlas-mapa.js <pasta dados do atlas> <pasta de saída>
 // Grava atlas-mapa-<chave>.svg e atlas-mapas.json (legendas) na pasta de saída.
 "use strict";
 const fs = require("fs");
@@ -9,7 +9,6 @@ const hid = JSON.parse(fs.readFileSync(DIR + "/hidro.geojson"));
 const fs_ = set.features.filter(f => f.properties.sit === "Urbana" && /^(Cuiabá|Várzea Grande)$/.test(f.properties.mun) && f.properties.ivsa != null);
 const IND = [
   { k: "ivsa", t: "Vulnerabilidade socioambiental (IVSA) por setor censitário", cor: ["#f1eef8", "#cbc3e3", "#9e8fcb", "#7151ad", "#46207f"], ini: "muito baixa", fim: "muito alta" },
-  { k: "app_pct", t: "Área do setor em APP (faixas de proteção de rios e nascentes)", cor: ["#f2f6fb", "#c6e4e1", "#7fc4bb", "#2f9488", "#0d5e57"], cortes: [0.5, 5, 20, 50], un: "%" },
   { k: "dens", t: "Adensamento: densidade demográfica (hab./km², Censo 2022)", cor: ["#fdf1e4", "#f9cf9f", "#f0a35e", "#d4682b", "#97380f"], ini: "menos denso", fim: "mais denso" },
   { k: "renda", t: "Rendimento médio do responsável pelo domicílio (Censo 2022)", cor: ["#fbf6dc", "#e8dc97", "#bfbd5c", "#7f9a3b", "#3f6a26"], ini: "menor renda", fim: "maior renda" }];
 const rings = g => g.type === "Polygon" ? g.coordinates : g.type === "MultiPolygon" ? g.coordinates.flat() : [];
@@ -57,4 +56,29 @@ ${topo}
   leg.push({ k: I.k, t: I.t, cor: I.cor, ini: I.ini || (I.cortes ? "0" + I.un : fmt(vals[0])), fim: I.fim || (I.cortes ? "mais de " + fmt(I.cortes[3]) : fmt(vals[vals.length - 1])) });
   console.log(I.k, Math.round(svg.length / 1024) + " KB", cortes.map(fmt).join(" | "));
 });
+// Mapa de APP: só a malha dos setores (contorno), a rede hídrica, as faixas de APP e as nascentes, sem colorir setores.
+{
+  const mpx = 1 / (s / 111320); // metros por unidade do desenho
+  // Na escala da chamada (~50 m por ponto) a faixa real teria 1 ponto; amplia-se mantendo a proporção entre 30, 50, 100 e 200 m.
+  const larg = m => Math.max(2 * m / mpx, 3 * Math.sqrt(m / 30)).toFixed(2);
+  const linhas = hid.features.filter(f => f.geometry.type === "LineString" && f.geometry.coordinates.some(dentro));
+  const porFaixa = {}; linhas.forEach(f => { const a = f.properties.app || 30; (porFaixa[a] = porFaixa[a] || []).push(traco(f.geometry.coordinates)); });
+  const poligs = hid.features.filter(f => f.geometry.type === "Polygon" && f.properties.ap > 0 && rings(f.geometry).flat().some(dentro));
+  const polPorFaixa = {}; poligs.forEach(f => { (polPorFaixa[f.properties.ap] = polPorFaixa[f.properties.ap] || []).push(caminho(rings(f.geometry))); });
+  const nasc = hid.features.filter(f => f.geometry.type === "Point" && f.properties.t === "n" && dentro(f.geometry.coordinates));
+  const VERDE = "#2f9e6e";
+  const faixas = Object.entries(porFaixa).map(([a, ds]) => `<path d="${ds.join("")}" stroke-width="${larg(+a)}"/>`).join("")
+    + Object.entries(polPorFaixa).map(([a, ds]) => `<path d="${ds.join("")}" stroke-width="${larg(+a)}" fill="${VERDE}"/>`).join("");
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa da conurbação Cuiabá–Várzea Grande: rede hídrica, faixas de APP e nascentes">
+<rect width="100%" height="100%" fill="#eef3fa"/>
+<path fill="none" stroke="#b9c4d0" stroke-width=".35" d="${fs_.map(f => caminho(rings(f.geometry))).join("")}"/>
+<g fill="none" stroke="${VERDE}" stroke-opacity=".55" stroke-linecap="round" stroke-linejoin="round">${faixas}</g>
+<path fill="none" stroke="#3d86cf" stroke-width=".8" d="${linhas.map(f => traco(f.geometry.coordinates)).join("")}"/>
+<g fill="#fff" stroke="#0d5e57" stroke-width="1.3">${nasc.map(f => { const [x, y] = P(f.geometry.coordinates); return `<circle cx="${x}" cy="${y}" r="2.6"/>`; }).join("")}</g>
+${topo}
+</svg>`;
+  fs.writeFileSync(`${OUT}/atlas-mapa-app.svg`, svg);
+  console.log("app", Math.round(svg.length / 1024) + " KB", linhas.length, "cursos d'água,", nasc.length, "nascentes, m/px", mpx.toFixed(1));
+  leg.splice(1, 0, { k: "app", t: "Rede hídrica, faixas de APP e nascentes", itens: [["#3d86cf", "Rios e córregos", "l"], ["rgba(47,158,110,.55)", "Faixa de APP (largura ampliada)", "f"], ["#0d5e57", "Nascente", "n"]] });
+}
 fs.writeFileSync(`${OUT}/atlas-mapas.json`, JSON.stringify({ W, H, leg }));
