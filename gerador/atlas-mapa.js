@@ -1,5 +1,5 @@
 // Gera os mapas da chamada do Atlas na Início: setores urbanos da conurbação Cuiabá–Várzea Grande coloridos por
-// quatro indicadores (dados abertos do Atlas Socioambiental da RMVRC). Uso: node atlas-mapa.js <pasta dados do atlas> <pasta de saída>
+// quatro indicadores (IVSA, APP, adensamento e renda) (dados abertos do Atlas Socioambiental da RMVRC). Uso: node atlas-mapa.js <pasta dados do atlas> <pasta de saída>
 // Grava atlas-mapa-<chave>.svg e atlas-mapas.json (legendas) na pasta de saída.
 "use strict";
 const fs = require("fs");
@@ -9,9 +9,9 @@ const hid = JSON.parse(fs.readFileSync(DIR + "/hidro.geojson"));
 const fs_ = set.features.filter(f => f.properties.sit === "Urbana" && /^(Cuiabá|Várzea Grande)$/.test(f.properties.mun) && f.properties.ivsa != null);
 const IND = [
   { k: "ivsa", t: "Vulnerabilidade socioambiental (IVSA) por setor censitário", cor: ["#f1eef8", "#cbc3e3", "#9e8fcb", "#7151ad", "#46207f"], ini: "muito baixa", fim: "muito alta" },
-  { k: "lst", t: "Temperatura de superfície (satélite Landsat, agosto de 2026)", cor: ["#fff3cf", "#fdd08a", "#f99d59", "#e2563a", "#a51f2d"], un: " °C" },
-  { k: "verde", t: "Cobertura vegetal do setor (Sentinel-2)", cor: ["#f3f8ec", "#cbe6ae", "#8fcb7c", "#47a052", "#16683a"], un: "%" },
-  { k: "inund", t: "Área do setor sujeita a inundação", cor: ["#f2f6fb", "#c8dcef", "#8db9df", "#4a8cc6", "#17589a"], cortes: [0.5, 5, 20, 50], un: "%" }];
+  { k: "app_pct", t: "Área do setor em APP (faixas de proteção de rios e nascentes)", cor: ["#f2f6fb", "#c6e4e1", "#7fc4bb", "#2f9488", "#0d5e57"], cortes: [0.5, 5, 20, 50], un: "%" },
+  { k: "dens", t: "Adensamento: densidade demográfica (hab./km², Censo 2022)", cor: ["#fdf1e4", "#f9cf9f", "#f0a35e", "#d4682b", "#97380f"], ini: "menos denso", fim: "mais denso" },
+  { k: "renda", t: "Rendimento médio do responsável pelo domicílio (Censo 2022)", cor: ["#fbf6dc", "#e8dc97", "#bfbd5c", "#7f9a3b", "#3f6a26"], ini: "menor renda", fim: "maior renda" }];
 const rings = g => g.type === "Polygon" ? g.coordinates : g.type === "MultiPolygon" ? g.coordinates.flat() : [];
 // Recorte: a mancha urbana inteira de Cuiabá e Várzea Grande (percentis 0,5–99,5 dos centros dos setores), com folga,
 // ajustado a um quadro quase quadrado como o da chamada na Início.
