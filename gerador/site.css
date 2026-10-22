@@ -1216,3 +1216,8 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .gl-ficha .btn+.btn{margin-top:8px}
 .ev-links{margin:0;flex-direction:column;gap:2px;font-size:14px;white-space:nowrap}
 .ev-banner img{width:100%;height:auto;border-radius:14px;display:block}.ev-b-txt{margin-top:12px}.ev-b-txt h2{margin:8px 0 4px}.ev-b-txt .btn{margin-top:8px}
+.ev-banners{display:grid;grid-template-columns:1fr 1fr;gap:24px}@media (max-width:860px){.ev-banners{grid-template-columns:1fr}}
+.ev-b-txt h2{font-size:1.25rem}
+.ev-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}@media (max-width:860px){.ev-cards{grid-template-columns:1fr}}
+.ev-card{padding:18px 20px}.ev-card h3{margin:2px 0 10px;font-size:1.05rem}.ev-sup{margin:0;font-size:.82rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.03em}
+.ev-card dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:.9rem}.ev-card dt{font-weight:700;color:var(--navy)}.ev-card dd{margin:0}.ev-card .links:empty{display:none}
