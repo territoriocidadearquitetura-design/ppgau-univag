@@ -117,4 +117,5 @@ IT4 = {
 947: "PPGAU su Instagram", 948: "TV UNIVAG su YouTube", 949: "UNIVAG su LinkedIn", 950: "Lingua / Language",
 951: "Apri tramite DOI", 952: "Trova su Google Scholar", 953: "Nessun articolo registrato quest'anno.", 954: "Articoli per anno",
 955: "Leggi l'articolo",
+956: "Co-supervisioni", 957: "co-supervisione in corso", 958: "co-supervisioni in corso", 959: "co-supervisione conclusa", 960: "co-supervisioni concluse",
 }

@@ -25,4 +25,5 @@ RIT = [
   "Rete di collaborazione: {1} persone e {2} collegamenti", "Opere di {1} sulla mappa", "Opere in comune: {1}",
   "{1} ha discusso la tesi",
   "{1*} · {2}:00–{3}:00 · domani", "{1*} · {2}:00–{3}:00 · oggi",
+  "discussione nel {1} · relatore: {2}", "coorte {1} · relatore: {2}", "post-dottorato dal {1} · relatore: {2}",
 ]

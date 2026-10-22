@@ -947,4 +947,9 @@ D = [
 ('Nenhum artigo registrado neste ano.', 'No articles recorded this year.', 'Ningún artículo registrado este año.', 'Aucun article enregistré cette année.'),
 ('Artigos por ano', 'Articles by year', 'Artículos por año', 'Articles par année'),
 ('Ler o artigo', 'Read the article', 'Leer el artículo', "Lire l'article"),
+('Coorientações', 'Co-supervisions', 'Coorientaciones', 'Co-encadrements'),
+('coorientação em curso', 'ongoing co-supervision', 'coorientación en curso', 'co-encadrement en cours'),
+('coorientações em curso', 'ongoing co-supervisions', 'coorientaciones en curso', 'co-encadrements en cours'),
+('coorientação concluída', 'completed co-supervision', 'coorientación concluida', 'co-encadrement terminé'),
+('coorientações concluídas', 'completed co-supervisions', 'coorientaciones concluidas', 'co-encadrements terminés'),
 ]

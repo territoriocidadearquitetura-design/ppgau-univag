@@ -86,4 +86,7 @@ R = [
   (r"^(\S+ \S+) defendeu a dissertação$", "{1} defended their dissertation", "{1} defendió su disertación", "{1} a soutenu son mémoire"),
   (r"^(sex|sáb|seg|ter|qua|qui|dom) · (\d+)h–(\d+)h · amanhã$", "{1*} · {2}:00–{3}:00 · tomorrow", "{1*} · {2}–{3} h · mañana", "{1*} · {2} h–{3} h · demain"),
   (r"^(sex|sáb|seg|ter|qua|qui|dom) · (\d+)h–(\d+)h · hoje$", "{1*} · {2}:00–{3}:00 · today", "{1*} · {2}–{3} h · hoy", "{1*} · {2} h–{3} h · aujourd'hui"),
+  (r"^defesa em (\d{4}) · orientação de (.+)$", "defended in {1} · supervised by {2}", "defensa en {1} · orientación de {2}", "soutenance en {1} · direction de {2}"),
+  (r"^turma (\d{4}/\d) · orientação de (.+)$", "class of {1} · supervised by {2}", "cohorte {1} · orientación de {2}", "promotion {1} · direction de {2}"),
+  (r"^pós-doutorado desde (\d{4}) · orientação de (.+)$", "postdoc since {1} · supervised by {2}", "posdoctorado desde {1} · orientación de {2}", "postdoctorat depuis {1} · direction de {2}"),
 ]
