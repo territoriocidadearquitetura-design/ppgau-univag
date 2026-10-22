@@ -170,6 +170,7 @@ const AJUSTE = { "1º Seminário Nacional sobre a Educação Ambiental": { pagin
     organizacao: ["ANAP; PPGARQ, FAAC e UNESP; PPGAU UNIVAG"], apoio: "cerca de 30 instituições, entre elas ABAP, UFC, FAU-USP, UFBA, UFMG, UnB, UFSCar, IFSP, UNILINS, Mackenzie, PUC-Campinas, UFRJ, Uninove, São Judas, UFPR, Universidade do Porto, UEMA, Universidad Nacional de La Plata, Universidad Central e Universidad Politécnica de Madrid",
     abrangencia: "nacional e internacional, com comissão de Brasil, Espanha, Argentina, Portugal e Guatemala", parcerias: ["img/eventos/paisagem-2025-parcerias.jpg", 743, 832] },
   "1st International Congress Landscape": { oculto: true },
+  "2º Simpósio Brasileiro \"Território": { pagina: "https://www.even3.com.br/e/simposio-territorio-2024-446534", banner: ["img/eventos/territorio-2024.jpg", 1100, 440] },
   "II Latin American Symposium": { pagina: "https://www.even3.com.br/e/city-architecture-and-sustainability-2024-427680", banner: ["img/eventos/latin-american-2024.jpg", 1100, 440] },
   "II Congresso Brasileiro \"Mudanças": { pagina: "https://www.even3.com.br/e/congresso-resilienciaurbana2025", banner: ["img/eventos/resiliencia-2025.jpg", 1100, 440] },
   "I Congresso Brasileiro \"Mudanças": { banner: ["img/eventos/resiliencia-2024.jpg", 1100, 440] } };
