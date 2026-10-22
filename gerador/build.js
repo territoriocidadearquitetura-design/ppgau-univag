@@ -79,7 +79,7 @@ const redesHtml = cls => `<ul class="redes ${cls}" aria-label="Redes sociais">${
 // Faixa institucional do UNIVAG, como no site antigo
 const UNIVAG_MENU = [["Graduação", "https://www.univag.com.br/cursos/1/graduacao/areas/"], ["Pós-Graduação", "https://www.univag.com.br/cursos/2/pos-graduacao/areas/"], ["Extensão", "https://portalmatricula.univag.edu.br/cursos.aspx?portal=extensao"], ["Pesquisa", "https://www.univag.com.br/pesquisa-e-extensao/4/pesquisa-cientifica-e-producao-de-conhecimento/"], ["Publicações", "https://periodicos.univag.com.br/index.php/index/index"], ["Avaliação Institucional", "https://www.univag.com.br/sobre-o-univag/20/avaliacao-institucional/"], ["Univag EAD", "https://univagead.com.br/"], ["Univag Idiomas", "https://univagidiomas.com.br/"], ["Estrutura", "https://www.univag.com.br/sobre-o-univag/19/conheca-o-campus/"], ["Ouvidoria", "https://portalouvidoria.univag.edu.br"]];
 function pagina({ arq, titulo: t, desc, hero, corpo, js, scripts }) {
-  const nav = NAV.map(([h, l]) => `<li><a href="${h}"${h === arq ? ' aria-current="page"' : ""}${h === "premiacoes.html" ? ' class="nav-pr"' : ""}>${h === "premiacoes.html" ? svg('<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a4 4 0 0 1-4 4M7 5H4v2a4 4 0 0 0 4 4"/>', 15) : ""}${l}</a></li>`).join("");
+  const nav = NAV.map(([h, l]) => `${h === "bancas.html" ? '<li class="nav-quebra" aria-hidden="true"></li>' : ""}<li><a href="${h}"${h === arq ? ' aria-current="page"' : ""}>${l}</a></li>`).join("");
   return `<!doctype html>
 <html lang="pt-BR">
 <head>

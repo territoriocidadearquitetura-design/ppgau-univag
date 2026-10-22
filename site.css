@@ -1065,3 +1065,10 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .art-lista li { line-height: 1.5; } .art-lista .art-t { color: var(--ink); text-decoration: none; font-weight: 600; } .art-lista .art-t:hover { text-decoration: underline; color: var(--accent); }
 .art-lista .art-lk { display: inline-block; font-size: 13px; font-weight: 700; color: var(--accent); margin-left: 4px; white-space: nowrap; }
 .art-vazio { color: var(--muted); }
+/* Menu (22/10/2026): 1ª linha até Eventos, Bancas abre a 2ª; Premiações sem destaque; idioma, lupa e tema na altura da 1ª linha */
+.nav-quebra { display: none; }
+@media (min-width: 1081px) {
+  .nav-quebra { display: block; flex-basis: 100%; height: 0; }
+  .top .wrap { align-items: flex-start !important; }
+  .top .acoes { align-self: flex-start; margin-top: 4px; }
+}
