@@ -245,20 +245,6 @@ ${SIMP_DEST("h-prox")}
 <!--GAL_HOME-->
 <section hidden></section>
 
-<section class="blk" aria-labelledby="h-acesso"><h2 id="h-acesso">Acesso rápido</h2>
-<div class="grid">
-<a class="card ac" href="programa.html"><span class="ac-ic">${ICO.programa}</span><h3>O programa</h3><p>Histórico, missão, área de concentração, linhas e grupos de pesquisa.</p></a>
-<a class="card ac" href="pessoas.html"><span class="ac-ic">${ICO.pessoas}</span><h3>Pessoas</h3><p>Coordenação, conselho, ${corpo.length} docentes, discentes, pós-doutorandos e egressos.</p></a>
-<a class="card ac" href="livros.html"><span class="ac-ic">${ICO.livros}</span><h3>Livros e anais</h3><p>Coletâneas e anais do programa com capa, referência e download gratuito.</p></a>
-<a class="card ac" href="producao.html"><span class="ac-ic">${ICO.producao}</span><h3>Produção</h3><p>${BASE.dissertacoes.length} dissertações defendidas, projetos de pesquisa e extensão.</p></a>
-<a class="card ac" href="linha-do-tempo.html"><span class="ac-ic">${ICO.tempo}</span><h3>Linha do tempo</h3><p>As ações do programa desde 2018: marcos, eventos, defesas, turmas e projetos.</p></a>
-<a class="card ac" href="mapa.html"><span class="ac-ic">${ICO.rede}</span><h3>Mapa da produção</h3><p>Rede de produção dos docentes com discentes, egressos e pós-doutorandos.</p></a>
-<a class="card ac" href="eventos.html"><span class="ac-ic">${ICO.eventos}</span><h3>Eventos</h3><p>Congressos, simpósios e seminários organizados pelo programa.</p></a>
-<a class="card ac" href="disciplinas.html"><span class="ac-ic">${ICO.agenda}</span><h3>Disciplinas e horários</h3><p>Próxima aula, agenda e calendário do semestre para a sua turma, com os professores.</p></a>
-<a class="card ac" href="academico.html"><span class="ac-ic">${ICO.academico}</span><h3>Vida acadêmica</h3><p>Calendário, disciplinas, créditos, qualificação, defesa e bolsas.</p></a>
-<a class="card ac" href="dados/"><span class="ac-ic">${ICO.dados}</span><h3>PPGAU em dados</h3><p>Indicadores, avaliação CAPES, produção do Lattes e autoavaliação, com as fontes citadas.</p></a>
-</div></section>
-
 <section class="blk" aria-labelledby="h-linhas"><h2 id="h-linhas">Linhas de pesquisa</h2>
 <div class="grid">${linhas.map((l, i) => `<div class="card"><span class="tag${i === 2 ? " gold" : ""}">Linha ${i + 1}</span><h3>${esc(l.replace(/ \(a partir de 2026\)$/, ""))}</h3>${/2026/.test(l) ? `<p class="meta">A partir de 2026</p>` : ""}</div>`).join("")}</div>
 </section>
