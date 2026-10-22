@@ -168,7 +168,7 @@ const AJUSTE = { "1º Seminário Nacional sobre a Educação Ambiental": { pagin
   "3º Simpósio Brasileiro \"Território": { nome: "3º Simpósio Brasileiro \"Arquitetura, Cidade e Território\"", ano: 2026, datas: "04 a 06/11/2026", local_formato: "Várzea Grande-MT (cidade anfitriã)", ppgau_papel: "organizador", organizacao: ["PPGAU UNIVAG"], lema: "Territórios em transformação, cidades em construção.", pagina: "https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/", banner: ["img/eventos/territorio-2026.jpg", 1100, 440] },
   "IV Simpósio Brasileiro Cidade, Paisagem": { nome: "IV Simpósio Brasileiro Cidade, Paisagem e a Natureza e 1st International Congress Landscape, Urban Space and Sustainability", pagina: "https://www.even3.com.br/e/congress-landscape-568015", banner: ["img/eventos/paisagem-2025.jpg", 1100, 440],
     organizacao: ["ANAP; PPGARQ, FAAC e UNESP; PPGAU UNIVAG"], apoio: "cerca de 30 instituições, entre elas ABAP, UFC, FAU-USP, UFBA, UFMG, UnB, UFSCar, IFSP, UNILINS, Mackenzie, PUC-Campinas, UFRJ, Uninove, São Judas, UFPR, Universidade do Porto, UEMA, Universidad Nacional de La Plata, Universidad Central e Universidad Politécnica de Madrid",
-    abrangencia: "nacional e internacional, com comissão de Brasil, Espanha, Argentina, Portugal e Guatemala", parcerias: ["img/eventos/paisagem-2025-parcerias.jpg", 743, 832] },
+    abrangencia: "nacional e internacional, com comissão de Brasil, Espanha, Argentina, Portugal e Guatemala", paises: REDE.congresso.paises.map(([p, n]) => `${p} (${n})`).join(", "), coord: REDE.congresso.coord, parcerias: ["img/eventos/paisagem-2025-parcerias.jpg", 743, 832] },
   "1st International Congress Landscape": { oculto: true },
   "2º Simpósio Brasileiro \"Território": { pagina: "https://www.even3.com.br/e/simposio-territorio-2024-446534", banner: ["img/eventos/territorio-2024.jpg", 1100, 440] },
   "IV Encontro Técnico e Científico": { pagina: "https://www.even3.com.br/e/cidadesverdes2024-412828", banner: ["img/eventos/cidades-verdes-2024.jpg", 1100, 440] },
@@ -413,7 +413,8 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
   // Ficha curta de cada evento, sem as notas de apuração ("inferido", "não verificado"...).
   const limpa = t => String(t || "").replace(/\s*\((?:[^()]*(?:inferid|verificad|conhecimento geral|pelo nome|logo em)[^()]*)\)/gi, "").replace(/\s*\((?:[^()]*\([^()]*\))*[^()]*(?:inferid|verificad|pelo nome)[^()]*\)/gi, "").trim();
   const util = t => t && !/^(não verificado|não informad)/i.test(t) && !/^—$/.test(t);
-  const fichaEv = e => { const lin = [["Datas", limpa(String(e.datas || "").replace(/\s*\(.*\)$/, ""))], ["Formato", limpa(e.local_formato)], ["Realização", (e.organizacao || []).map(limpa).filter(util).join("; ")], ["Apoio", e.apoio || ""], ["Abrangência", limpa(e.abrangencia)], ["Números", limpa(e.numeros)], ["Equipe do PPGAU", [...(e.docentes_ppgau || []), ...(e.discentes_ppgau || [])].map(limpa).filter(util).join("; ")]].filter(([, v]) => util(v));
+  const orgEv = e => e.ppgau_papel === "organizador" || e.ppgau_papel === "coorganizador";
+  const fichaEv = e => { const lin = [["Datas", limpa(String(e.datas || "").replace(/\s*\(.*\)$/, ""))], ["Formato", limpa(e.local_formato)], ["Realização", (e.organizacao || []).map(limpa).filter(util).join("; ")], ["Coordenação", e.coord || ""], ["Apoio", e.apoio || ""], ["Países participantes", e.paises || ""], ["Abrangência", limpa(e.abrangencia)], ["Números", limpa(e.numeros)], ["Equipe do PPGAU", [...(e.docentes_ppgau || []), ...(e.discentes_ppgau || [])].map(limpa).filter(util).join("; ")]].filter(([, v]) => util(v));
     return `<article class="card ev-card">${e.banner ? `<a class="ev-c-ban" href="${pagEv(e)}" target="_blank" rel="noopener"><img src="${e.banner[0]}" width="${e.banner[1]}" height="${e.banner[2]}" loading="lazy" alt="${esc(e.nome)}"></a>` : `<div class="ev-c-ban ev-c-sem" aria-hidden="true"><span>${e.ano}</span><b>${esc(e.nome)}</b></div>`}<div class="ev-c-info"><p class="ev-sup">${e.ano} · ${esc(papel[e.ppgau_papel] || "Participação")}</p><h3>${esc(e.nome)}</h3><dl>${lin.map(([a, b]) => `<dt>${a}</dt><dd>${esc(b)}</dd>`).join("")}</dl>${e.parcerias ? `<details class="ev-parc"><summary>Ver as parcerias institucionais</summary><img src="${e.parcerias[0]}" width="${e.parcerias[1]}" height="${e.parcerias[2]}" loading="lazy" alt="Logos da organização e do apoio institucional do evento"></details>` : ""}<p class="links">${linksEv(e).replace(/^—$/, "")}</p></div></article>`; };
   const mesEv = e => { const d = String(e.datas || ""), m = d.match(/\/(\d{2})\/\d{4}/); if (m) return +m[1]; const i = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"].findIndex(x => d.toLowerCase().includes(x + ".")); return i + 1; };
   const ev = [...EVENTOS, ...EXTRA].filter(e => !e.oculto).sort((a, b) => b.ano - a.ano || mesEv(b) - mesEv(a));
@@ -427,16 +428,18 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
     arq: "eventos.html", titulo: "Eventos e destaques", desc: "Eventos organizados pelo PPGAU UNIVAG, prêmios, financiamentos e o programa na mídia.",
     hero: { crumb: true, p: "Congressos, simpósios e seminários organizados ou coorganizados pelo programa, e os destaques recentes." },
     corpo: `
-<ul class="sub"><li><a href="#destaques">Destaques</a></li><li><a href="#eventos">Eventos</a></li><li><a href="#congresso">Congresso internacional 2025</a></li></ul>
+<ul class="sub"><li><a href="#destaques">Destaques</a></li><li><a href="#eventos">Eventos organizados</a></li><li><a href="#participacao">Participação em eventos</a></li></ul>
 
 <section class="blk" id="destaques"><h2>Destaques</h2>
 <div class="grid g2">${dest.map(x => `<div class="card"><span class="tag gold">${esc(x.tipo)}</span>${x.ano ? `<span class="tag">${x.ano}</span>` : ""}<h3>${esc(x.titulo)}</h3><p>${esc(x.descricao)}</p>${(x.links || []).length ? `<p class="links">${x.links.slice(0, 3).map((l, i) => ext(l, i ? "Fonte " + (i + 1) : "Saiba mais")).join("")}</p>` : ""}</div>`).join("")}</div></section>
-<section class="blk" id="eventos"><h2>Eventos</h2>
-<p class="meta">Do mais recente para o mais antigo. Clique em "Página do evento" para ver a programação no Even3 e em "Anais" para ler os trabalhos publicados.</p>
-<div class="ev-cards">${ev.map(fichaEv).join("")}</div></section>
-<section class="blk" id="congresso"><h2>${esc(REDE.congresso.nome)}</h2>
-<div class="card"><p class="meta">${esc(REDE.congresso.quando)}</p><p><b>Coordenação:</b> ${esc(REDE.congresso.coord)}</p><p><b>Realização:</b> ${esc(REDE.congresso.realiz.join(", "))}</p>
-<p><b>Países participantes:</b> ${esc(REDE.congresso.paises.map(([p, n]) => `${p} (${n})`).join(", "))}</p><p class="links">${ext(REDE.congresso.link, "Página do evento")}${ext(REDE.congresso.anais, "Anais")}</p></div></section>`
+<section class="blk" id="eventos"><h2>Eventos organizados pelo programa</h2>
+<p class="meta">Eventos que o PPGAU UNIVAG organiza ou coorganiza, do mais recente para o mais antigo. Clique em "Página do evento" para ver a programação no Even3 e em "Anais" para ler os trabalhos publicados.</p>
+<div class="ev-cards">${ev.filter(orgEv).map(fichaEv).join("")}</div></section>
+<section class="blk" id="participacao"><h2>Participação em eventos</h2>
+<p class="meta">Eventos externos com participação de docentes e discentes do programa.</p>
+<div class="tbl-wrap"><table class="tbl ev-part"><thead><tr><th>Ano</th><th>Evento</th><th>Datas e local</th><th>Participação do PPGAU</th><th>Link</th></tr></thead><tbody>
+${ev.filter(e => !orgEv(e)).map(e => { const p = pagEv(e), q = [...(e.docentes_ppgau || []), ...(e.discentes_ppgau || [])].map(limpa).filter(util).join("; "); return `<tr><td data-l="Ano">${e.ano}</td><td><b>${esc(e.nome)}</b></td><td data-l="Datas e local">${esc([limpa(String(e.datas || "").replace(/\s*\(.*\)$/, "")), limpa(e.local_formato)].filter(util).join(" · ") || "—")}</td><td data-l="Participação">${esc(q || "—")}</td><td data-l="Link">${p ? ext(p, "Página do evento") : "—"}</td></tr>`; }).join("")}
+</tbody></table></div></section>`
   });
 }
 
