@@ -197,11 +197,11 @@
   im.slice(1).forEach(x => { x.loading = "eager"; });
 })();
 
-// Idiomas: PT (original), EN, ES e FR. A escolha fica guardada no navegador (ou vem de ?lang=xx).
+// Idiomas: PT (original), EN, ES, FR e IT. A escolha fica guardada no navegador (ou vem de ?lang=xx).
 // As traduções estão em i18n/<idioma>.json (gerado por gerador/i18n/gera.py): um dicionário de frases e regras
 // para textos com números e nomes. Títulos de obras, nomes e referências ficam no original.
 (() => {
-  const L = ["pt", "en", "es", "fr"], K = "ppgau-lang";
+  const L = ["pt", "en", "es", "fr", "it"], K = "ppgau-lang";
   const le = () => { try { return localStorage.getItem(K); } catch (e) { return null; } };
   const gr = v => { try { localStorage.setItem(K, v); return true; } catch (e) { return false; } };
   const q = new URLSearchParams(location.search).get("lang");
