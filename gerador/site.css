@@ -1222,3 +1222,4 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .ev-card{padding:18px 20px}.ev-card h3{margin:2px 0 10px;font-size:1.05rem}.ev-sup{margin:0;font-size:.82rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.03em}
 .ev-card dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:.9rem}.ev-card dt{font-weight:700;color:var(--navy)}.ev-card dd{margin:0}.ev-card .links:empty{display:none}
 .ev-c-ban{display:block;margin:-18px -20px 14px}.ev-c-ban img{width:100%;height:auto;display:block;border-radius:12px 12px 0 0}
+.ev-parc{margin-top:12px;font-size:.9rem}.ev-parc summary{cursor:pointer;font-weight:700;color:var(--navy)}.ev-parc img{width:100%;height:auto;margin-top:10px;border-radius:8px;background:#fff}
