@@ -756,16 +756,16 @@ document.addEventListener("pointerout",ev=>{const c=ev.target.closest&&ev.target
   const ED = [[199, 3, 11, 2025, "01/11/2025"], [193, 3, 10, 2025], [183, 3, 9, 2025], [169, 2, 8, 2024], [151, 2, 7, 2024], [150, 2, 6, 2024], [149, 2, 5, 2024], [127, 1, 4, 2023], [126, 1, 3, 2023], [125, 1, 2, 2023], [124, 1, 1, 2023]];
   const capa = ([id, v, n, a], cls = "") => `<a class="vn-capa${cls}" href="${VB}/issue/view/${id}" target="_blank" rel="noopener" aria-label="Vernácula v. ${v}, n. ${n} (${a})"><span class="vn-fb" aria-hidden="true"><b>VERNÁCULA</b><small>Territórios Contemporâneos</small><i>v. ${v} · n. ${n}</i><em>${a}</em></span><img src="${fs.existsSync(path.join(__dirname, "midia/vernacula", `v${n}.jpg`)) ? `img/vernacula/v${n}.jpg` : `https://periodicos.univag.com.br/public/journals/16/cover_issue_${id}_pt_BR.jpg`}" alt="" loading="lazy" onerror="this.remove()"></a>`;
   const ULT = [
-    ["Análise das contribuições do conceito de mobilidade urbana como serviço (MaaS) no planejamento e gestão", "Diego Vieira Ramos, Tais Muller"],
-    ["Análise geoespacial e térmica das áreas de preservação permanente na Mata do Buraquinho: impactos ambientais e urbanos", "Ellen Priscila Nunes de Souza, Rani Karine Rodrigues Silva"],
-    ["Construção civil sustentável como resposta à emergência climática: práticas e desafios", "Marcos de Oliveira Valin Jr, Joelson Viana Sodré"],
-    ["Emergência climática e a construção de cidades resilientes: o caso da cidade de Petrópolis, RJ", "Ronaldo Raemy Rangel, Alessandro Marco Rosini"],
-    ["Entre a vaga ofertada e a atuação efetiva: a participação social no Comitê de Bacia Hidrográfica do Alto Rio Cuiabá após 2020", "Douglas Bezerra Gonçalves, Leonardo Gomes de Vasconcelos"],
-    ["Leitura urbana e diagnóstico participativo em Barra do Bugres: aplicação da metodologia CPE no ensino", "Caio Cesar Tomaz de Oliveira, Bruna Eduarda Isidorio Rosa, Esther Debora Fioresi Cardoso, Jeziane Aragão Ponte, Nivalda da Costa Nunes"],
-    ["Um estudo acerca do programa Minha Casa, Minha Vida (MCMV): o desenho universal como “palco” de uma experiência inclusiva", "Ana Caroline Gonçalves de Moura, Ellen Priscila Nunes de Souza, Janille Valentim de Andrade, Thifany Lima da Silva, Renata Rocha Quaresma"],
-    ["Análise de práticas de desenho universal no projeto padrão de casa popular da Caixa Econômica Federal", "Ellen Priscila Nunes de Souza, Luana Deográcia do Nascimento Fernandes, Maysa Rodrigues Gonçalves, Stephany Hannele Morais Magalhães"],
-    ["O planejamento da mobilidade urbana e a gestão territorial: o conceito TOD (transit-oriented development)", "Diego Vieira Ramos, Tais Muller"],
-    ["Caracterização da ventilação natural para planejamento em projetos sustentáveis: o caso de Tangará da Serra, MT", "João Carlos Machado Sanches, Alynne Cristina Sacoman, Emeli Aparecida Lalesca da Guarda, Renata Mansuelo Alves Domingos"]];
+    ["Análise das contribuições do conceito de mobilidade urbana como serviço (MaaS) no planejamento e gestão", "Diego Vieira Ramos, Tais Muller", 3295],
+    ["Análise geoespacial e térmica das áreas de preservação permanente na Mata do Buraquinho: impactos ambientais e urbanos", "Ellen Priscila Nunes de Souza, Rani Karine Rodrigues Silva", 3296],
+    ["Construção civil sustentável como resposta à emergência climática: práticas e desafios", "Marcos de Oliveira Valin Jr, Joelson Viana Sodré", 3297],
+    ["Emergência climática e a construção de cidades resilientes: o caso da cidade de Petrópolis, RJ", "Ronaldo Raemy Rangel, Alessandro Marco Rosini", 3298],
+    ["Entre a vaga ofertada e a atuação efetiva: a participação social no Comitê de Bacia Hidrográfica do Alto Rio Cuiabá após 2020", "Douglas Bezerra Gonçalves, Leonardo Gomes de Vasconcelos", 3301],
+    ["Leitura urbana e diagnóstico participativo em Barra do Bugres: aplicação da metodologia CPE no ensino", "Caio Cesar Tomaz de Oliveira, Bruna Eduarda Isidorio Rosa, Esther Debora Fioresi Cardoso, Jeziane Aragão Ponte, Nivalda da Costa Nunes", 3302],
+    ["Um estudo acerca do programa Minha Casa, Minha Vida (MCMV): o desenho universal como “palco” de uma experiência inclusiva", "Ana Caroline Gonçalves de Moura, Ellen Priscila Nunes de Souza, Janille Valentim de Andrade, Thifany Lima da Silva, Renata Rocha Quaresma", 3303],
+    ["Análise de práticas de desenho universal no projeto padrão de casa popular da Caixa Econômica Federal", "Ellen Priscila Nunes de Souza, Luana Deográcia do Nascimento Fernandes, Maysa Rodrigues Gonçalves, Stephany Hannele Morais Magalhães", 3304],
+    ["O planejamento da mobilidade urbana e a gestão territorial: o conceito TOD (transit-oriented development)", "Diego Vieira Ramos, Tais Muller", 3305],
+    ["Caracterização da ventilação natural para planejamento em projetos sustentáveis: o caso de Tangará da Serra, MT", "João Carlos Machado Sanches, Alynne Cristina Sacoman, Emeli Aparecida Lalesca da Guarda, Renata Mansuelo Alves Domingos", 3306]];
   const EQ = [["Jeane Aparecida Rombi de Godoy", "Editora-chefe"], ["Sandra Medina Benini", "Editora associada"], ["Angelo Palmisano", "Conselho editorial"], ["Lucia Helena Gaeta Aleixo", "Conselho editorial"], ["Rosana Lia Ravache", "Conselho editorial"]];
   const COM = [["Ana Luiza Carvalho da Rocha", "UFRGS"], ["Angélica Benatti Alvim", "Mackenzie"], ["Beatriz Mugayar Kühl", "FAU-USP"], ["Betânia Brendle", "UFS"], ["Caio Boucinhas", "FAU-USP"], ["Eunice Helena Sguizzardi Abascal", "Mackenzie"], ["Helena Napoleon Degreas", "USCS"], ["Jane Victal Ferreira", "PUC-Campinas"], ["Jeferson Tavares", ""], ["Jonathas Magalhães Pereira da Silva", "PUC-Campinas"], ["Laura Machado de Mello Bueno", "PUC-Campinas"], ["Lucia Helena Gaeta Aleixo", "UNIVAG"], ["Luciane Cleonice Durante", "UFMT"], ["Lucília Siqueira", "UNIFESP"], ["Luiz Augusto Maia Costa", "PUC-Campinas"], ["Luiz Carlos de Laurentiz", "UFU"], ["Manoel Lemes da Silva Neto", "PUC-Campinas"], ["Maria Lucia Bressan Pinheiro", "FAU-USP"], ["Nelson Pôrto Ribeiro", "UFES"], ["Paulo César Garcez Marins", "Museu Paulista, USP"], ["Paulo Sergio Scarazzato", "FAU-USP"], ["Raquel da Silva Pereira", "USCS"], ["Sylvia Adriana Dobry Pronsato", "FAU-USP"], ["Tania da Rocha Pitta", "UFPE e CeaQ/Sorbonne"], ["Tomás Antonio Moreira", "IAU-USP"], ["Vitale Joanoni Neto", "UFMT"]];
   const nInst = new Set(COM.map(c => c[1].split(/[ ,]/)[0].replace(/^FAU-|^IAU-/, "")).filter(Boolean)).size;
@@ -774,7 +774,7 @@ document.addEventListener("pointerout",ev=>{const c=ev.target.closest&&ev.target
   const anos = [...new Set(ED.map(e => e[3]))];
   globalThis.__VERN_CAPAS = ED.slice(0, 5).reverse().map(e => capa(e)).join("");
   globalThis.__VERN_RES = { ed: ED.length, idx: IDX.map(x => x[0]) };
-  globalThis.__VERN_IDX = [...ED.map(([id, v, n, a]) => ["Revista", `Vernácula v. ${v}, n. ${n} (${a})`, "Número da Revista Vernácula", `${VB}/issue/view/${id}`]), ...ULT.map(([t, a]) => ["Artigo", t, a + " · Vernácula v. 3, n. 11", `${VB}/issue/view/199`])];
+  globalThis.__VERN_IDX = [...ED.map(([id, v, n, a]) => ["Revista", `Vernácula v. ${v}, n. ${n} (${a})`, "Número da Revista Vernácula", `${VB}/issue/view/${id}`]), ...ULT.map(([t, a, id]) => ["Artigo", t, a + " · Vernácula v. 3, n. 11", `${VB}/article/view/${id}`])];
   P.push({
     arq: "revista.html", titulo: "Revista Vernácula", desc: "Vernácula · Territórios Contemporâneos, periódico trimestral do PPGAU UNIVAG. ISSN 2965-6125, Qualis B2, 11 números publicados desde 2023.",
     hero: { crumb: true, kpis: true, eyebrow: "Periódico científico do PPGAU UNIVAG · ISSN 2965-6125", h1: "Vernácula · Territórios Contemporâneos",
@@ -804,7 +804,7 @@ ${anos.map(a => `<div class="vn-ano"><h3>${a}<small>Volume ${ED.find(e => e[3] =
 <section class="blk vn-ult" aria-labelledby="h-vu">
 <div class="vn-ult-c">${capa(ED[0], " grande")}<p class="meta">Publicado em 01/11/2025<br>DOI ${ext("https://doi.org/10.18312/verncula.v3i11", "10.18312/verncula.v3i11")}</p></div>
 <div><span class="eyebrow">Último número</span><h2 id="h-vu">v. 3, n. 11 (2025)</h2>
-<ol class="vn-art">${ULT.map(([t, a]) => `<li><b>${esc(t)}</b><span>${esc(a)}</span></li>`).join("")}</ol>
+<ol class="vn-art">${ULT.map(([t, a, id]) => `<li><a class="vn-art-t" href="${VB}/article/view/${id}" target="_blank" rel="noopener"><b>${esc(t)}</b></a><span>${esc(a)}</span><a class="vn-art-lk" href="${VB}/article/view/${id}" target="_blank" rel="noopener">Ler o artigo ↗</a></li>`).join("")}</ol>
 <a class="btn" href="${VB}/issue/view/199" target="_blank" rel="noopener">Ler o número completo ↗</a></div>
 </section>
 
