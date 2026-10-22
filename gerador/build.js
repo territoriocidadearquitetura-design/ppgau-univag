@@ -245,15 +245,6 @@ ${SIMP_DEST("h-prox")}
 <!--GAL_HOME-->
 <section hidden></section>
 
-<section class="blk" aria-labelledby="h-linhas"><h2 id="h-linhas">Linhas de pesquisa</h2>
-<div class="grid">${linhas.map((l, i) => `<div class="card"><span class="tag${i === 2 ? " gold" : ""}">Linha ${i + 1}</span><h3>${esc(l.replace(/ \(a partir de 2026\)$/, ""))}</h3>${/2026/.test(l) ? `<p class="meta">A partir de 2026</p>` : ""}</div>`).join("")}</div>
-</section>
-
-<section class="blk" aria-labelledby="h-eventos"><h2 id="h-eventos">Eventos recentes</h2>
-<div class="grid">${ev.map(e => `<div class="card"><span class="tag">${e.ano}</span><h3>${esc(e.nome)}</h3><p class="meta">${esc(String(e.datas || "").replace(/\s*\(.*\)$/, ""))}</p></div>`).join("")}</div>
-<p style="margin-top:14px"><a href="eventos.html">Todos os eventos e destaques →</a></p>
-</section>
-
 <section class="blk" aria-labelledby="h-local"><h2 id="h-local">Como chegar</h2>${LOCAL}</section>
 
 <section class="blk" aria-labelledby="h-fale"><h2 id="h-fale">Fale com a coordenação</h2>
