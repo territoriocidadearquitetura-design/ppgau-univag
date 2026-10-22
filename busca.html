@@ -9,7 +9,7 @@
 <link rel="icon" href="img/logo-ppgau.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="site.css?v=mvixelns">
+<link rel="stylesheet" href="site.css?v=mvixpjsy">
 <script>try{var l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("ppgau-lang");if(l&&l!=="pt"&&/^(en|es|fr|it)$/.test(l))document.documentElement.classList.add("trad")}catch(e){}</script>
 </head>
 <body>
@@ -38,7 +38,7 @@
 <div><h4>Contato</h4><ul class="rd-ct"><li><a href="tel:+556536886110">(65) 3688-6110</a></li><li><a href="mailto:jeane.godoy@univag.edu.br">jeane.godoy@univag.edu.br</a></li><li><a href="mailto:angelo.palmisano@univag.edu.br">angelo.palmisano@univag.edu.br</a></li></ul></div>
 <div class="rd-nav"><h4>Navegue</h4><ul><li><a href="disciplinas.html">Disciplinas e horários</a></li><li><a href="academico.html">Acadêmico</a></li><li><a href="dados/">PPGAU em dados</a></li><li><a href="dados/#/responder">Autoavaliação</a></li><li><a href="bancas.html">Bancas e defesas</a></li><li><a href="egressos.html">Egressos</a></li><li><a href="noticias.html">Notícias</a></li><li><a href="premiacoes.html">Premiações</a></li><li><a href="galeria.html">Galeria de fotos</a></li><li><a href="documentos.html">Documentos</a></li><li><a href="revista.html">Revista Vernácula</a></li><li><a href="https://www.repositoriodigital.univag.com.br/index.php/mestradoarq/issue/archive" target="_blank" rel="noopener">Repositório de dissertações</a></li></ul></div>
 </div>
-<div class="legal"><div class="wrap"><p>© 2026 PPGAU/UNIVAG · Coordenação: Profa. Dra. Jeane Aparecida Rombi de Godoy · Coordenação adjunta: Prof. Dr. Angelo Palmisano</p><p>Organização e diagramação do site: Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)</p></div></div>
+<div class="legal"><div class="wrap"><p>© 2026 PPGAU/UNIVAG · Coordenação: Profa. Dra. Jeane Aparecida Rombi de Godoy · Coordenação adjunta: Prof. Dr. Angelo Palmisano</p><p>Desenvolvimento, programação e implementação do website institucional: Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)</p></div></div>
 </footer>
 <button class="subir" type="button" aria-label="Voltar ao topo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <dialog id="busca" aria-label="Buscar no site"><div class="busca-box"><div class="busca-topo"><label class="busca-campo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="busca-q" type="search" placeholder="Buscar pessoas, disciplinas, dissertações, páginas…" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="busca-res"></label><button class="busca-fechar" type="button" aria-label="Fechar a busca"><kbd>Esc</kbd></button></div><ul id="busca-res" role="listbox"></ul><p class="busca-dica"><kbd>↑</kbd><kbd>↓</kbd> navegar · <kbd>Enter</kbd> abrir · <kbd>Ctrl</kbd>+<kbd>K</kbd> ou <kbd>/</kbd> para buscar de qualquer página</p></div></dialog>
@@ -55,6 +55,6 @@ let t;inp.addEventListener("input",()=>{clearTimeout(t);t=setTimeout(roda,180);}
 f.querySelectorAll(".bv-dicas button").forEach(b=>b.addEventListener("click",()=>{inp.value=b.textContent;roda();}));
 inp.value=new URLSearchParams(location.search).get("q")||"";roda();if(!inp.value)inp.focus();});</script>
 
-<script src="busca-dados.js" defer></script><script src="ui.js?v=mvixelns" defer></script>
+<script src="busca-dados.js" defer></script><script src="ui.js?v=mvixpjsy" defer></script>
 </body>
 </html>

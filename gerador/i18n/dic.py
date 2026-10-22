@@ -44,7 +44,7 @@ D = [
 ("Revista Vernácula", "Vernácula Journal", "Revista Vernácula", "Revue Vernácula"),
 ("Repositório de dissertações", "Dissertation repository", "Repositorio de disertaciones", "Dépôt des mémoires"),
 ("© 2026 PPGAU/UNIVAG · Coordenação: Profa. Dra. Jeane Aparecida Rombi de Godoy · Coordenação adjunta: Prof. Dr. Angelo Palmisano", "© 2026 PPGAU/UNIVAG · Coordinator: Prof. Dr. Jeane Aparecida Rombi de Godoy · Deputy coordinator: Prof. Dr. Angelo Palmisano", "© 2026 PPGAU/UNIVAG · Coordinación: Profa. Dra. Jeane Aparecida Rombi de Godoy · Coordinación adjunta: Prof. Dr. Angelo Palmisano", "© 2026 PPGAU/UNIVAG · Coordination : Pr Jeane Aparecida Rombi de Godoy · Coordination adjointe : Pr Angelo Palmisano"),
-("Organização e diagramação do site: Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)", "Website organization and layout: Prof. Dr. Sandra Medina Benini (PPGAU/UNIVAG, 2026)", "Organización y diagramación del sitio: Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)", "Organisation et mise en page du site : Pr Sandra Medina Benini (PPGAU/UNIVAG, 2026)"),
+("Desenvolvimento, programação e implementação do website institucional: Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)", "Institutional website development, programming and implementation: Prof. Dr. Sandra Medina Benini (PPGAU/UNIVAG, 2026)", "Desarrollo, programación e implementación del sitio web institucional: Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)", "Développement, programmation et mise en œuvre du site web institutionnel : Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)"),
 ("navegar", "navigate", "navegar", "naviguer"),
 ("abrir", "open", "abrir", "ouvrir"),
 ("ou", "or", "o", "ou"),

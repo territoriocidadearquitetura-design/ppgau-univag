@@ -8,7 +8,7 @@ IT1 = {
 30: "Insegnamenti e orari", 31: "Autovalutazione", 32: "Commissioni e discussioni", 33: "Ex studenti", 34: "ex studenti",
 35: "Notizie", 36: "Premi", 37: "Galleria fotografica", 38: "Documenti", 39: "Rivista Vernácula", 40: "Archivio delle tesi",
 41: "© 2026 PPGAU/UNIVAG · Coordinamento: Prof.ssa Dott.ssa Jeane Aparecida Rombi de Godoy · Coordinamento aggiunto: Prof. Dott. Angelo Palmisano",
-42: "Organizzazione e impaginazione del sito: Prof.ssa Dott.ssa Sandra Medina Benini (PPGAU/UNIVAG, 2026)",
+42: "Sviluppo, programmazione e implementazione del sito web istituzionale: Prof.ssa Dott.ssa Sandra Medina Benini (PPGAU/UNIVAG, 2026)",
 43: "navigare", 44: "aprire", 45: "o", 46: "per cercare da qualsiasi pagina",
 47: "PPGAU, Programma di Post-Laurea Stricto Sensu in Architettura e Urbanistica",
 48: "Pannello del coordinamento (accesso riservato)", 49: "Pannello dei docenti (accesso riservato)", 50: "Principale",
