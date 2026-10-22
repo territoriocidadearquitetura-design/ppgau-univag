@@ -171,6 +171,7 @@ const AJUSTE = { "1º Seminário Nacional sobre a Educação Ambiental": { pagin
     abrangencia: "nacional e internacional, com comissão de Brasil, Espanha, Argentina, Portugal e Guatemala", parcerias: ["img/eventos/paisagem-2025-parcerias.jpg", 743, 832] },
   "1st International Congress Landscape": { oculto: true },
   "2º Simpósio Brasileiro \"Território": { pagina: "https://www.even3.com.br/e/simposio-territorio-2024-446534", banner: ["img/eventos/territorio-2024.jpg", 1100, 440] },
+  "Tchá Pesquisa": { pagina: "https://www.even3.com.br/e/tcha-pesquisa-431418", banner: ["img/eventos/tcha-2024.jpg", 1100, 440], anais: { link: "docs/anais-tcha-pesquisa.pdf" } },
   "II Latin American Symposium": { pagina: "https://www.even3.com.br/e/city-architecture-and-sustainability-2024-427680", banner: ["img/eventos/latin-american-2024.jpg", 1100, 440] },
   "II Congresso Brasileiro \"Mudanças": { pagina: "https://www.even3.com.br/e/congresso-resilienciaurbana2025", banner: ["img/eventos/resiliencia-2025.jpg", 1100, 440] },
   "I Congresso Brasileiro \"Mudanças": { banner: ["img/eventos/resiliencia-2024.jpg", 1100, 440] } };
@@ -417,7 +418,7 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
   const ev = [...EVENTOS, ...EXTRA].filter(e => !e.oculto).sort((a, b) => b.ano - a.ano || mesEv(b) - mesEv(a));
   // Página oficial: o primeiro link do Even3 nas fontes. Anais: só os endereços completos.
   const pagEv = e => e.pagina || (e.fontes || []).find(u => /even3\.com\.br/.test(u) && !/618697/.test(u));
-  const anaisEv = e => String((e.anais || {}).link || "").split(/\s*;\s*/).filter(u => /^https?:\/\//.test(u));
+  const anaisEv = e => String((e.anais || {}).link || "").split(/\s*;\s*/).filter(u => /^(https?:\/\/|docs\/)/.test(u));
   const linksEv = e => { const a = anaisEv(e), p = pagEv(e); return [p ? ext(p, "Página do evento") : "", ...a.map((u, i) => ext(u, a.length > 1 ? `Anais ${["vol. I", "vol. II", "3", "4"][i]}` : "Anais"))].filter(Boolean).join("") || "—"; };
   const dest = IMPACTO.impacto.filter(x => x.tipo !== "evento");
   const papel = { organizador: "Organização", coorganizador: "Coorganização", participante: "Participação" };
