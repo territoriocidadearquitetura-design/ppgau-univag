@@ -43,7 +43,7 @@ function proxima() {
   <p>${localTag(s)} ${turmasTag(s)}</p>
   <div class="dc-prof">${fotos(d)}<span>${esc(d.prof.map(p => p.n).join(", "))}</span></div>
   ${d.ch ? `<div class="dc-barra" title="${realizadas} de ${d.ch} horas realizadas"><i style="width:${Math.min(100, 100 * realizadas / d.ch)}%"></i></div><p class="meta">${realizadas} de ${d.ch} horas realizadas</p>` : ""}
-  <p class="dc-acoes"><button type="button" class="btn" data-ics="${s.d}">Adicionar a disciplina ao meu calendário</button></p></div>`;
+  </div>`;
 }
 
 // ---------- agenda ----------
@@ -100,7 +100,7 @@ function disciplinas() {
     <dl class="dc-num"><div><dt>Carga horária</dt><dd>${d.ch ? d.ch + " h" : "—"}</dd></div><div><dt>Encontros</dt><dd>${dias}</dd></div><div><dt>Presenciais no campus</dt><dd>${pres}</dd></div></dl>
     ${datas.length ? `<p class="meta">De ${dataLonga(dt(datas[0]))} a ${dataLonga(dt(datas[datas.length - 1]))}. ${ss.some(s => !s.data) ? "Há encontros com data a definir." : ""}</p>` : ""}
     ${d.ch ? `<div class="dc-barra"><i style="width:${Math.min(100, 100 * feitas / d.ch)}%"></i></div><p class="meta">${feitas} de ${d.ch} horas realizadas até hoje</p>` : ""}
-    <p class="dc-acoes"><button type="button" class="btn ghost2" data-ics="${k}">Adicionar ao calendário</button><button type="button" class="lnk" data-ver="${k}">Ver as datas</button></p></article>`;
+    <p class="dc-acoes"><button type="button" class="lnk" data-ver="${k}">Ver as datas</button></p></article>`;
   }).join("")}</div>`;
 }
 
