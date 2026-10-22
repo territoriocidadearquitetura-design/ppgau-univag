@@ -1032,7 +1032,9 @@ const ENTRADA = { "Jeane Aparecida Rombi de Godoy": 2019 }, FICHA_2025 = D("FICH
 <p class="meta">Desde ${entrada}, ano de entrada no programa. 2021–2024: Coleta CAPES; desde 2025: OpenAlex pelo ORCID, com DOI. Quando não há DOI, o link procura o título no Google Acadêmico.</p>`;
     const bks = BANCAS.filter(b => b.banca.some(m => mesmo(m[0])) || mesmo(b.or) || mesmo(b.co));
     const links = [["Lattes", d.lat], ["ORCID", d.orc], ...(d.f.links || []).filter(l => !/lattes|orcid/i.test(l[0]))].filter(l => l[1]);
-    const oriLi = p => `<li><b>${esc(p.n)}</b> <span class="meta">${p.c === "egresso" ? "defesa em " + esc(p.de) : p.c === "pos-doc" ? "pós-doutorado desde " + esc(p.in) : "turma " + esc(p.in)}${mesmo(p.co) ? " · coorientação" : ""}</span>${p.ti ? `<div>${p.re ? ext(p.re, esc(titulo(p.ti))) : esc(titulo(p.ti))}</div>` : ""}</li>`;
+    const oE = egr.filter(p => mesmo(p.or)), oD = dis.filter(p => mesmo(p.or)), cE = egr.filter(p => !mesmo(p.or) && mesmo(p.co)), cD = dis.filter(p => !mesmo(p.or) && mesmo(p.co));
+    const oriBloco = (E, Dm) => `<div class="grid g2">${E.length ? `<div class="card"><h3>Concluídas</h3><ul class="lista">${E.map(oriLi).join("")}</ul></div>` : ""}${Dm.length ? `<div class="card"><h3>Em curso</h3><ul class="lista">${Dm.map(oriLi).join("")}</ul></div>` : ""}</div>`;
+    const oriLi = p => `<li><b>${esc(p.n)}</b> <span class="meta">${p.c === "egresso" ? "defesa em " + esc(p.de) : p.c === "pos-doc" ? "pós-doutorado desde " + esc(p.in) : "turma " + esc(p.in)}${mesmo(p.co) && !mesmo(p.or) && p.or ? " · orientação de " + esc(p.or) : ""}</span>${p.ti ? `<div>${p.re ? ext(p.re, esc(titulo(p.ti))) : esc(titulo(p.ti))}</div>` : ""}</li>`;
     const sec = (id, t, n, html) => n ? `<section class="blk" id="${id}" aria-labelledby="h-${id}"><h2 id="h-${id}">${t} <span class="dc-n">${n}</span></h2>${html}</section>` : "";
     const mais = (L, n, f) => L.slice(0, n).map(f).join("") + (L.length > n ? `</ul><details class="mais"><summary>Ver mais ${L.length - n}</summary><ul class="lista">${L.slice(n).map(f).join("")}</ul></details><ul hidden>` : "");
     P.push({
@@ -1042,14 +1044,15 @@ const ENTRADA = { "Jeane Aparecida Rombi de Godoy": 2019 }, FICHA_2025 = D("FICH
         lado: `<div class="dc-foto">${d.foto ? `<img src="img/${esc(d.foto)}" width="220" height="220" alt="Foto de ${esc(d.n)}">` : `<span class="ini">${iniciais(d.n)}</span>`}</div>` },
       corpo: `
 <div class="kpis">
-<div class="kpi gold"><b>${egr.filter(p => mesmo(p.or)).length}</b><span>orientações concluídas</span><small>${egr.filter(p => mesmo(p.co)).length} coorientações</small></div>
-<div class="kpi"><b>${dis.length}</b><span>orientações em curso</span><small>mestrado e pós-doutorado</small></div>
+<div class="kpi gold"><b>${egr.filter(p => mesmo(p.or)).length}</b><span>orientações concluídas</span><small>${cE.length} ${cE.length === 1 ? "coorientação concluída" : "coorientações concluídas"}</small></div>
+<div class="kpi"><b>${oD.length}</b><span>orientações em curso</span><small>${cD.length} ${cD.length === 1 ? "coorientação" : "coorientações"} em curso</small></div>
 <div class="kpi"><b>${obras.length}</b><span>produções no Lattes</span><small>2021 a 2026</small></div>
 <div class="kpi"><b>${prj.length}</b><span>projetos</span><small>${prj.filter(p => p.sit === "Em andamento").length} em andamento</small></div>
 </div>
-<ul class="sub">${[["formacao", "Formação", 1], ["orientacoes", "Orientações", egr.length + dis.length], ["projetos", "Projetos", prj.length], ["livros", "Livros", liv.length], ["artigos", "Artigos", arts.length], ["producao", "Produção", obras.length], ["rede", "Rede", topD.length + topA.length], ["bancas", "Bancas", bks.length]].filter(x => x[2]).map(([h, l]) => `<li><a href="#${h}">${l}</a></li>`).join("")}</ul>
+<ul class="sub">${[["formacao", "Formação", 1], ["orientacoes", "Orientações", oE.length + oD.length], ["coorientacoes", "Coorientações", cE.length + cD.length], ["projetos", "Projetos", prj.length], ["livros", "Livros", liv.length], ["artigos", "Artigos", arts.length], ["producao", "Produção", obras.length], ["rede", "Rede", topD.length + topA.length], ["bancas", "Bancas", bks.length]].filter(x => x[2]).map(([h, l]) => `<li><a href="#${h}">${l}</a></li>`).join("")}</ul>
 ${d.f.form && d.f.form.length ? `<section class="blk" id="formacao" aria-labelledby="h-formacao"><h2 id="h-formacao">Formação</h2><ol class="dc-form">${d.f.form.map(f => `<li>${esc(f)}</li>`).join("")}</ol></section>` : ""}
-${sec("orientacoes", "Orientações", egr.length + dis.length, `<div class="grid g2">${egr.length ? `<div class="card"><h3>Concluídas</h3><ul class="lista">${egr.map(oriLi).join("")}</ul></div>` : ""}${dis.length ? `<div class="card"><h3>Em curso</h3><ul class="lista">${dis.map(oriLi).join("")}</ul></div>` : ""}</div>`)}
+${sec("orientacoes", "Orientações", oE.length + oD.length, oriBloco(oE, oD))}
+${sec("coorientacoes", "Coorientações", cE.length + cD.length, oriBloco(cE, cD))}
 ${sec("projetos", "Projetos", prj.length, `<ul class="lista card">${mais(prj, 6, p => `<li><span class="tag${p.sit === "Em andamento" ? " ok" : ""}">${esc(p.sit)}</span><span class="tag">${esc(p.t)}</span> <b>${esc(p.tit)}</b><div class="meta">${p.ini}${p.fim === "Atual" ? " – atual" : p.fim ? "–" + esc(p.fim) : ""} · Coordenação: ${nomeLink(p.coord || "não informada")}</div></li>`)}</ul>`)}
 ${sec("livros", "Livros e anais", liv.length, `<ul class="lv-rolo">${liv.map(l => `<li><a href="livros.html" title="${esc(l.t + (l.v ? " · " + l.v : ""))}">${capaLivro(l)}<span>${esc(l.t)}${l.v ? " · " + esc(l.v) : ""}</span></a></li>`).join("")}</ul>`)}
 ${sec("artigos", "Artigos em periódicos", arts.length, artHtml)}
