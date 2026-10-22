@@ -84,4 +84,6 @@ R = [
   (r"^Obras de (.+) no mapa$", "Works by {1} on the map", "Obras de {1} en el mapa", "Travaux de {1} sur la carte"),
   (r"^Obras em comum: (.+)$", "Works in common: {1}", "Obras en común: {1}", "Travaux en commun : {1}"),
   (r"^(\S+ \S+) defendeu a dissertação$", "{1} defended their dissertation", "{1} defendió su disertación", "{1} a soutenu son mémoire"),
+  (r"^(sex|sáb|seg|ter|qua|qui|dom) · (\d+)h–(\d+)h · amanhã$", "{1*} · {2}:00–{3}:00 · tomorrow", "{1*} · {2}–{3} h · mañana", "{1*} · {2} h–{3} h · demain"),
+  (r"^(sex|sáb|seg|ter|qua|qui|dom) · (\d+)h–(\d+)h · hoje$", "{1*} · {2}:00–{3}:00 · today", "{1*} · {2}–{3} h · hoy", "{1*} · {2} h–{3} h · aujourd'hui"),
 ]
