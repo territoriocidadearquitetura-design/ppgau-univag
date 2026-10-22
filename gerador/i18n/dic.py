@@ -942,4 +942,8 @@ D = [
 ('YouTube da TV UNIVAG', 'TV UNIVAG on YouTube', 'YouTube de TV UNIVAG', 'YouTube de TV UNIVAG'),
 ('LinkedIn do UNIVAG', 'UNIVAG on LinkedIn', 'LinkedIn de UNIVAG', "LinkedIn de l'UNIVAG"),
 ('Idioma / Language', 'Language', 'Idioma', 'Langue'),
+('Abrir pelo DOI', 'Open via DOI', 'Abrir por el DOI', 'Ouvrir via le DOI'),
+('Localizar no Google Acadêmico', 'Find on Google Scholar', 'Buscar en Google Académico', 'Trouver sur Google Scholar'),
+('Nenhum artigo registrado neste ano.', 'No articles recorded this year.', 'Ningún artículo registrado este año.', 'Aucun article enregistré cette année.'),
+('Artigos por ano', 'Articles by year', 'Artículos por año', 'Articles par année'),
 ]

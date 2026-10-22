@@ -115,4 +115,5 @@ IT4 = {
 936: "Laurea", 937: "Post-laurea", 938: "Terza missione", 939: "Ricerca", 940: "Pubblicazioni", 941: "Valutazione istituzionale",
 942: "Struttura", 943: "Difensore civico", 944: "Univag Lingue", 945: "Social network", 946: "UNIVAG su Facebook",
 947: "PPGAU su Instagram", 948: "TV UNIVAG su YouTube", 949: "UNIVAG su LinkedIn", 950: "Lingua / Language",
+951: "Apri tramite DOI", 952: "Trova su Google Scholar", 953: "Nessun articolo registrato quest'anno.", 954: "Articoli per anno",
 }
