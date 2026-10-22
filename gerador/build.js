@@ -395,7 +395,8 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
   EXTRA[0].organizacao = ["PPGAU UNIVAG"];
   // Banners e páginas do Even3 enviados pela coordenação para eventos que já estão no portal (chave: início do nome).
   const AJUSTE = { "1º Seminário Nacional sobre a Educação Ambiental": { pagina: "https://www.even3.com.br/e/ea_cidadeverde-322673", banner: ["img/eventos/cidade-verde-2023.jpg", 1100, 440] },
-    "1º Simpósio Brasileiro \"Território": { pagina: "https://www.even3.com.br/e/1-simposio-brasileiro-de-territorio-cidade-e-arquitetura-351668", banner: ["img/eventos/territorio-2023.jpg", 1100, 440] } };
+    "1º Simpósio Brasileiro \"Território": { pagina: "https://www.even3.com.br/e/1-simposio-brasileiro-de-territorio-cidade-e-arquitetura-351668", banner: ["img/eventos/territorio-2023.jpg", 1100, 440] },
+    "I Congresso Brasileiro \"Mudanças": { banner: ["img/eventos/resiliencia-2024.jpg", 1100, 440] } };
   const ajusta = e => { const k = Object.keys(AJUSTE).find(k => e.nome.startsWith(k)); return k ? { ...e, ...AJUSTE[k] } : e; };
   // Ficha curta de cada evento, sem as notas de apuração ("inferido", "não verificado"...).
   const limpa = t => String(t || "").replace(/\s*\((?:[^()]*(?:inferid|verificad|conhecimento geral|pelo nome|logo em)[^()]*)\)/gi, "").replace(/\s*\((?:[^()]*\([^()]*\))*[^()]*(?:inferid|verificad|pelo nome)[^()]*\)/gi, "").trim();
