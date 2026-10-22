@@ -1086,3 +1086,5 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .ac-g .docs a { font-weight: 600; } .ac-g .docs .meta { display: block; font-size: 13.5px; margin-top: 1px; }
 @media (max-width: 900px) { .ac-grupos { grid-template-columns: 1fr; } }
 .ac-grupos { margin-bottom: 30px; }
+/* Menu alinhado à esquerda, sem justificar (pedido 22/10/2026) */
+@media (min-width: 1081px) { .nav, html:not([lang="pt-BR"]) .nav { justify-content: flex-start !important; column-gap: 22px; } .nav::after { display: none; } }

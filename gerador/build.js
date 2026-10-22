@@ -260,7 +260,7 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
     arq: "programa.html", titulo: "O programa", desc: "Histórico, área de concentração, linhas e grupos de pesquisa do PPGAU UNIVAG.",
     hero: { crumb: true, p: "Mestrado acadêmico recomendado pela CAPES em 2018, em funcionamento desde 2019 no UNIVAG Centro Universitário." },
     corpo: `
-<ul class="sub"><li><a href="#historico">Histórico</a></li><li><a href="#missao">Missão e objetivos</a></li><li><a href="#area">Área e linhas</a></li><li><a href="#grupos">Grupos de pesquisa</a></li><li><a href="#parcerias">Parcerias</a></li><li><a href="#linha-do-tempo">Linha do tempo</a></li><li><a href="#documentos">Documentos</a></li></ul>
+<ul class="sub"><li><a href="#historico">Histórico</a></li><li><a href="#missao">Missão e objetivos</a></li><li><a href="#area">Área e linhas</a></li><li><a href="#grupos">Grupos de pesquisa</a></li><li><a href="#parcerias">Parcerias</a></li><li><a href="#linha-do-tempo">Linha do tempo</a></li></ul>
 <section class="blk" id="historico"><h2>Histórico</h2>
 <dl class="ficha">${PG_INFO.filter(x => !/Contato|Conselho|Coordenação/.test(x[0])).map(([a, b]) => `<dt>${esc(a)}</dt><dd>${b}</dd>`).join("")}</dl></section>
 <section class="blk" id="missao"><h2>Missão e objetivos</h2>
@@ -275,9 +275,7 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
 <div class="grid g2">${REDE.parceiros.map(([n, onde, , o]) => `<div class="card"><h3>${esc(n)}</h3><p class="meta">${esc(onde)}</p><p>${esc(o)}</p></div>`).join("")}</div></section>
 <section class="blk" id="linha-do-tempo"><h2>Linha do tempo</h2>
 <ol class="tl">${HIST.map(h => `<li><span class="ano">${esc(h.ano)}</span><span class="tag" style="background:none;border:1px solid currentColor;color:${HIST_CAT[h.cat] ? HIST_CAT[h.cat][1] : "inherit"}">${esc((HIST_CAT[h.cat] || [""])[0])}</span><h3 style="margin:.2em 0">${esc(h.t)}</h3><p>${esc(h.d)}</p></li>`).join("")}</ol>
-<p><a href="linha-do-tempo.html">Linha do tempo detalhada, com eventos, defesas, turmas e projetos →</a></p></section>
-<section class="blk" id="documentos"><h2>Documentos institucionais</h2>
-<ul class="docs">${docsInst.map(([t, h]) => docCard(h, t, "", true)).join("")}</ul></section>`
+<p><a href="linha-do-tempo.html">Linha do tempo detalhada, com eventos, defesas, turmas e projetos →</a></p></section>`
   });
 }
 
@@ -1278,7 +1276,7 @@ const WIX_MAP = { "/hist%C3%B3rico": "programa.html#historico", "/histórico": "
 const semWix = h => h.replace(/<a [^>]*href="https?:\/\/(?:www\.)?univag-ppgau\.com([^"]*)"[^>]*>([\s\S]*?)<\/a>/g, (m, cam, txt) => {
   const c = decodeURI(cam.replace(/\/$/, "")), alvo = WIX_MAP[cam] || WIX_MAP[c];
   return alvo ? `<a href="${alvo}">${txt.replace(/\s*↗\s*$/, "")}</a>` : "";
-});
+}).replace(/<li>\s*<\/li>/g, ""); // item que ficou sem link some da lista
 for (const p of P) fs.writeFileSync(path.join(OUT, p.arq), semWix(pagina(p).replace("<!--GAL_HOME-->", globalThis.__GAL_HOME || "").replace("<!--LIV_HOME-->", globalThis.__LIV_HOME.map(l => `<li><a href="livros.html" title="${esc(l.t + (l.v ? " · " + l.v : ""))}">${capaLivro(l)}<span>${esc(l.t)}${l.v ? " · " + esc(l.v) : ""}</span></a></li>`).join("")).replace("<!--BANCA_HOME-->", globalThis.__BANCA_HOME).replace("<!--PREMIO_HOME-->", globalThis.__PREMIO_HOME || "").replace("<!--NOT_HOME-->", globalThis.__NOT_HOME).replace("<!--VERN_CAPAS-->", globalThis.__VERN_CAPAS.replace(/<a /g, "<span ").replace(/<\/a>/g, "</span>").replace(/ href="[^"]*" target="_blank" rel="noopener"/g, ""))));
 fs.copyFileSync(path.join(__dirname, "site.css"), path.join(OUT, "site.css"));
 fs.mkdirSync(path.join(OUT, "i18n"), { recursive: true });
