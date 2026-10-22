@@ -81,6 +81,181 @@
   ]
  },
  {
+  "k": "cidade-verde-escola-5ano",
+  "t": "Projeto Cidade + Verde na escola: 5º ano, 36 alunos",
+  "d": "19 fev. 2025",
+  "f": [
+   [
+    "01",
+    520,
+    243
+   ],
+   [
+    "02",
+    520,
+    243
+   ],
+   [
+    "03",
+    520,
+    243
+   ],
+   [
+    "04",
+    520,
+    243
+   ],
+   [
+    "05",
+    243,
+    520
+   ],
+   [
+    "06",
+    243,
+    520
+   ],
+   [
+    "07",
+    520,
+    243
+   ],
+   [
+    "08",
+    520,
+    243
+   ],
+   [
+    "09",
+    243,
+    520
+   ],
+   [
+    "10",
+    520,
+    243
+   ],
+   [
+    "11",
+    520,
+    243
+   ],
+   [
+    "12",
+    520,
+    243
+   ],
+   [
+    "13",
+    520,
+    243
+   ],
+   [
+    "14",
+    243,
+    520
+   ],
+   [
+    "15",
+    243,
+    520
+   ],
+   [
+    "16",
+    520,
+    243
+   ],
+   [
+    "17",
+    520,
+    243
+   ],
+   [
+    "18",
+    520,
+    243
+   ],
+   [
+    "19",
+    520,
+    243
+   ]
+  ],
+  "txt": [
+   "A ONG ANAP (Associação Amigos da Natureza da Alta Paulista) e o PPGAU UNIVAG firmaram uma parceria no âmbito dos Objetivos de Desenvolvimento Sustentável (ODS) da ONU, que destacam as colaborações institucionais como caminho para o desenvolvimento sustentável. Dessa cooperação nasceu o Jornal Educativo Socioambiental ECO LEGAL, um periódico didático de educação ambiental para as escolas.",
+   "O projeto integra a extensão do PPGAU UNIVAG e o Grupo de Pesquisa Cidade, Sociedade e Paisagem, com docentes e discentes dedicados a cidades mais sustentáveis. O grupo é coordenado pela Profa. Dra. Jeane Aparecida Rombi de Godoy, com a Profa. Dra. Sandra Medina Benini na vice-coordenação.",
+   "O ECO LEGAL se destina a alunos do 1º ciclo do ensino fundamental e leva às crianças conceitos de sustentabilidade urbana, como reciclagem, arborização e uso racional da água, em linha com os estudos do grupo sobre cidades mais resilientes e equilibradas."
+  ],
+  "dl": [
+   "Baixar o Jornal ECO LEGAL (PDF)",
+   "docs/jornalzinho-ppgau.pdf"
+  ]
+ },
+ {
+  "k": "cidade-verde-escola-4ano",
+  "t": "Projeto Cidade + Verde na escola: 4º ano, 28 alunos",
+  "d": "19 fev. 2025",
+  "f": [
+   [
+    "01",
+    520,
+    243
+   ],
+   [
+    "02",
+    520,
+    243
+   ],
+   [
+    "03",
+    520,
+    243
+   ],
+   [
+    "04",
+    243,
+    520
+   ],
+   [
+    "05",
+    520,
+    243
+   ],
+   [
+    "06",
+    520,
+    243
+   ],
+   [
+    "07",
+    520,
+    243
+   ],
+   [
+    "08",
+    243,
+    520
+   ],
+   [
+    "09",
+    243,
+    520
+   ],
+   [
+    "10",
+    243,
+    520
+   ]
+  ],
+  "txt": [
+   "Segunda turma atendida no mesmo dia pelo Projeto de Extensão Cidade + Verde, com a apresentação e a distribuição do Jornal ECO LEGAL."
+  ],
+  "dl": [
+   "Baixar o Jornal ECO LEGAL (PDF)",
+   "docs/jornalzinho-ppgau.pdf"
+  ]
+ },
+ {
   "k": "aulas-2025-06",
   "t": "Aulas e seminários",
   "d": "jun. 2025",

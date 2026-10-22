@@ -1202,3 +1202,5 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .dd-cols { gap: 8px; } .dd-col b { font-size: 14px; } .dd-col span { font-size: 12px; }
 
 .dd-grid{align-items:start}
+
+.gl-txt{max-width:72ch}.gl-txt p{margin:0 0 .7em}
