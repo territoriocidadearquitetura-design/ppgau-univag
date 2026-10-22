@@ -1214,3 +1214,5 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 #campus .gl-grade::after{display:none}#campus .gl-f{height:300px;flex-basis:calc(var(--r) * 300px)}@media (max-width:560px){#campus .gl-f{height:200px;flex-basis:calc(var(--r) * 200px)}}
 .gl-m.inteira{background:#1c2b4a}.gl-m.inteira::before{content:"";position:absolute;inset:-20px;background:var(--fundo) center/cover;filter:blur(18px) brightness(.75)}.gl-m.inteira img{position:relative;object-fit:contain}
 .gl-ficha .btn+.btn{margin-top:8px}
+.ev-links{margin:0;flex-direction:column;gap:2px;font-size:14px;white-space:nowrap}
+.ev-banner img{width:100%;height:auto;border-radius:14px;display:block}.ev-b-txt{margin-top:12px}.ev-b-txt h2{margin:8px 0 4px}.ev-b-txt .btn{margin-top:8px}

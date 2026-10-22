@@ -385,7 +385,16 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
 
 // Eventos e destaques
 {
-  const ev = [...EVENTOS].sort((a, b) => b.ano - a.ano);
+  // Eventos do programa que ainda não estão no portal "em dados".
+  const EXTRA = [{ nome: "V Seminário de Pesquisa em Arquitetura e Urbanismo do PPGAU UNIVAG", ano: 2026, datas: "out. 2026", ppgau_papel: "organizador", fontes: ["https://www.even3.com.br/v-seminario-de-pesquisa-em-arquitetura-e-urbanismo-do-ppgau-univag-764604/"], anais: {} },
+    { nome: "III Congresso Brasileiro \"Mudanças Climáticas e a Resiliência Urbana\"", ano: 2026, datas: "23 a 25/09/2026", ppgau_papel: "coorganizador", fontes: ["https://www.even3.com.br/iii-congresso-brasileiro-mudancas-climaticas-e-a-resiliencia-urbana-741291/"], anais: {},
+      banner: ["img/eventos/resiliencia-2026.jpg", 1100, 440], lema: "Ciência, políticas e ação por cidades preparadas para os desafios climáticos." }];
+  const mesEv = e => { const d = String(e.datas || ""), m = d.match(/\/(\d{2})\/\d{4}/); if (m) return +m[1]; const i = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"].findIndex(x => d.toLowerCase().includes(x + ".")); return i + 1; };
+  const ev = [...EVENTOS, ...EXTRA].sort((a, b) => b.ano - a.ano || mesEv(b) - mesEv(a));
+  // Página oficial: o primeiro link do Even3 nas fontes. Anais: só os endereços completos.
+  const pagEv = e => (e.fontes || []).find(u => /even3\.com\.br/.test(u) && !/618697/.test(u));
+  const anaisEv = e => String((e.anais || {}).link || "").split(/\s*;\s*/).filter(u => /^https?:\/\//.test(u));
+  const linksEv = e => { const a = anaisEv(e), p = pagEv(e); return [p ? ext(p, "Página do evento") : "", ...a.map((u, i) => ext(u, a.length > 1 ? `Anais ${["vol. I", "vol. II", "3", "4"][i]}` : "Anais"))].filter(Boolean).join("") || "—"; };
   const dest = IMPACTO.impacto.filter(x => x.tipo !== "evento");
   const papel = { organizador: "Organização", coorganizador: "Coorganização", participante: "Participação" };
   P.push({
@@ -393,11 +402,12 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
     hero: { crumb: true, p: "Congressos, simpósios e seminários organizados ou coorganizados pelo programa, e os destaques recentes." },
     corpo: `
 <ul class="sub"><li><a href="#destaques">Destaques</a></li><li><a href="#eventos">Eventos</a></li><li><a href="#congresso">Congresso internacional 2025</a></li></ul>
+${ev.filter(e => e.banner).map(e => `<section class="blk ev-banner"><a href="${pagEv(e)}" target="_blank" rel="noopener"><img src="${e.banner[0]}" width="${e.banner[1]}" height="${e.banner[2]}" alt="${esc(e.nome)}, ${esc(e.datas)}"></a><div class="ev-b-txt"><span class="tag">${esc(papel[e.ppgau_papel])} do PPGAU</span><h2>${esc(e.nome)}</h2><p class="meta">${esc(e.datas)}${e.lema ? ` · ${esc(e.lema)}` : ""}</p><a class="btn" href="${pagEv(e)}" target="_blank" rel="noopener">Página do evento no Even3 ${ICO.seta}</a></div></section>`).join("")}
 <section class="blk" id="destaques"><h2>Destaques</h2>
 <div class="grid g2">${dest.map(x => `<div class="card"><span class="tag gold">${esc(x.tipo)}</span>${x.ano ? `<span class="tag">${x.ano}</span>` : ""}<h3>${esc(x.titulo)}</h3><p>${esc(x.descricao)}</p>${(x.links || []).length ? `<p class="links">${x.links.slice(0, 3).map((l, i) => ext(l, i ? "Fonte " + (i + 1) : "Saiba mais")).join("")}</p>` : ""}</div>`).join("")}</div></section>
 <section class="blk" id="eventos"><h2>Eventos</h2>
-<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Ano</th><th>Evento</th><th>Datas</th><th>Papel do PPGAU</th></tr></thead><tbody>
-${ev.map(e => `<tr><td data-l="Ano">${e.ano}</td><td><b>${esc(e.nome)}</b></td><td data-l="Datas">${esc(String(e.datas || "").replace(/\s*\(.*\)$/, ""))}</td><td data-l="Papel">${esc(papel[e.ppgau_papel] || "—")}</td></tr>`).join("")}
+<div class="tbl-wrap"><table class="tbl"><thead><tr><th>Ano</th><th>Evento</th><th>Datas</th><th>Papel do PPGAU</th><th>Links</th></tr></thead><tbody>
+${ev.map(e => `<tr><td data-l="Ano">${e.ano}</td><td><b>${esc(e.nome)}</b></td><td data-l="Datas">${esc(String(e.datas || "").replace(/\s*\(.*\)$/, ""))}</td><td data-l="Papel">${esc(papel[e.ppgau_papel] || "—")}</td><td data-l="Links"><span class="links ev-links">${linksEv(e)}</span></td></tr>`).join("")}
 </tbody></table></div></section>
 <section class="blk" id="congresso"><h2>${esc(REDE.congresso.nome)}</h2>
 <div class="card"><p class="meta">${esc(REDE.congresso.quando)}</p><p><b>Coordenação:</b> ${esc(REDE.congresso.coord)}</p><p><b>Realização:</b> ${esc(REDE.congresso.realiz.join(", "))}</p>
