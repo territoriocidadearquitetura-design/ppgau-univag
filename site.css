@@ -1072,3 +1072,4 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
   .top .wrap { align-items: flex-start !important; }
   .top .acoes { align-self: flex-start; margin-top: 4px; }
 }
+.pr-fotos:has(> a:nth-child(5):last-child) { grid-template-columns: repeat(4, 1fr); } .pr-fotos:has(> a:nth-child(5):last-child) a:not(:first-child) img { aspect-ratio: 3/4; }
