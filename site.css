@@ -1245,3 +1245,14 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 @media (max-width:960px){.sd-t{grid-template-columns:1fr}}
 .sel-2026{align-items:start}.sel-c h3{margin:8px 0 4px}.sel-nomes{margin:10px 0;padding-left:22px;display:grid;gap:4px;font-weight:600}
 .sel-dl{margin:10px 0;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:.92rem}.sel-dl dt{font-weight:700;color:var(--navy)}.sel-dl dd{margin:0}
+/* Filtros por botões, barra de progresso e detalhes interativos */
+.chips{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 16px}
+.chips button{font:inherit;font-size:14px;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.chips button:hover{border-color:var(--gold)}.chips button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.chips-n{margin-left:auto;font-size:13px;color:var(--ink-2)}
+.progresso{position:fixed;top:0;left:0;right:0;height:3px;background:var(--gold);transform-origin:0 50%;transform:scaleX(0);z-index:200;pointer-events:none}
+.ev-c-ban{overflow:hidden}.ev-c-ban img{transition:transform .6s ease}.ev-card:hover .ev-c-ban img{transform:scale(1.04)}
+.ev-card{transition:box-shadow .25s,transform .25s}.ev-card:hover{box-shadow:0 14px 34px rgba(2,32,95,.12)}
+.ev-mais summary{cursor:pointer;color:var(--navy);font-weight:600;list-style:none}.ev-mais summary::-webkit-details-marker{display:none}.ev-mais summary::after{content:" ▾";font-size:.8em}.ev-mais[open] summary{display:none}
+@media print{.progresso,.chips{display:none!important}}
+[data-v][hidden]{display:none!important}

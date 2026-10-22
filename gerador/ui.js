@@ -261,3 +261,21 @@ document.querySelectorAll("[data-filtro-ano]").forEach(box => {
   box.addEventListener("click", e => { const b = e.target.closest("button[data-ano]"); if (b) mostra(b.dataset.ano); });
   const ini = box.querySelector('button[aria-selected="true"]'); mostra(ini ? ini.dataset.ano : "todos");
 });
+
+// Filtros por botões: <div data-chips="id-da-lista"> com <button data-v="2026">; os itens da lista têm data-v="2026 org".
+document.querySelectorAll("[data-chips]").forEach(box => {
+  const alvo = document.getElementById(box.dataset.chips); if (!alvo) return;
+  const itens = [...alvo.querySelectorAll(":scope > [data-v]")], n = box.querySelector(".chips-n");
+  const mostra = v => { let k = 0; itens.forEach(x => { const ok = v === "*" || x.dataset.v.split(" ").includes(v); x.hidden = !ok; k += ok; if (ok) x.classList.add("in"); });
+    box.querySelectorAll("button[data-v]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === v)));
+    if (n) n.textContent = k + (k === 1 ? " " + (n.dataset.um || "item") : " " + (n.dataset.varios || "itens")); };
+  box.addEventListener("click", e => { const b = e.target.closest("button[data-v]"); if (b) mostra(b.dataset.v); });
+  mostra("*");
+});
+
+// Barra fina de progresso de leitura no topo da página.
+(() => {
+  const b = document.createElement("div"); b.className = "progresso"; b.setAttribute("aria-hidden", "true"); document.body.appendChild(b);
+  let ag = 0; const f = () => { ag = 0; const h = document.documentElement.scrollHeight - innerHeight; b.style.transform = `scaleX(${h > 0 ? Math.min(1, scrollY / h) : 0})`; };
+  addEventListener("scroll", () => { if (!ag) ag = requestAnimationFrame(f); }, { passive: true }); f();
+})();
