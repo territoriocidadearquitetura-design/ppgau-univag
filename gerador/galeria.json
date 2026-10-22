@@ -1,37 +1,5 @@
 [
  {
-  "k": "premiacao-cau",
-  "t": "CAU: Conferência Internacional e premiação",
-  "d": "2024",
-  "f": [
-   [
-    "01",
-    520,
-    347
-   ],
-   [
-    "02",
-    520,
-    347
-   ],
-   [
-    "03",
-    520,
-    347
-   ],
-   [
-    "04",
-    520,
-    347
-   ],
-   [
-    "05",
-    293,
-    520
-   ]
-  ]
- },
- {
   "k": "snct-2024",
   "t": "21ª Semana Nacional de Ciência e Tecnologia",
   "d": "out. 2024",
@@ -91,11 +59,6 @@
     243
    ],
    [
-    "02",
-    520,
-    243
-   ],
-   [
     "03",
     520,
     243
@@ -136,22 +99,12 @@
     243
    ],
    [
-    "11",
-    243,
-    520
-   ],
-   [
     "12",
     243,
     520
    ],
    [
     "13",
-    520,
-    243
-   ],
-   [
-    "14",
     520,
     243
    ],
@@ -418,6 +371,77 @@
     "38",
     520,
     390
+   ]
+  ]
+ },
+ {
+  "k": "premiacao-cau",
+  "t": "1ª Conferência Internacional do CAU/BR: 2º lugar no concurso de artigos",
+  "d": "set. 2025",
+  "f": [
+   [
+    "01",
+    520,
+    347
+   ],
+   [
+    "02",
+    520,
+    347
+   ],
+   [
+    "03",
+    520,
+    347
+   ],
+   [
+    "04",
+    520,
+    347
+   ],
+   [
+    "05",
+    293,
+    520
+   ]
+  ],
+  "txt": [
+   "A professora Jessica Seabra representou o Programa de Pós-Graduação em Arquitetura e Urbanismo do Centro Universitário de Várzea Grande (PPGAU-UNIVAG) na 1ª Conferência Internacional do Conselho de Arquitetura e Urbanismo do Brasil (CAU/BR), realizada nos dias 4, 5 e 6 de setembro de 2025, em Brasília. Na ocasião, a docente recebeu o 2º lugar no concurso nacional de artigos científicos promovido pela entidade.",
+   "O reconhecimento foi concedido ao artigo “A problemática contemporânea da Regularização Fundiária no Brasil”, de autoria de Jessica Seabra, da professora Jeane Aparecida Rombi de Godoy e da mestranda Taynara Barreto Macedo. O estudo, desenvolvido no contexto do Programa de Pós-Graduação em Arquitetura e Urbanismo do UNIVAG, analisa os desafios da regularização fundiária a partir do caso do núcleo urbano informal da Vila Gilda, em Santos (SP), evidenciando suas implicações sociais, urbanísticas e ambientais.",
+   "O trabalho foi selecionado no âmbito do concurso nacional de artigos científicos do CAU/BR, cujo tema foi “Arquitetura e urbanismo para todos”, com artigos organizados a partir dos eixos Urbanismo e os Extremos Climáticos; Habitação e Justiça; e Direito à Cidade. Ao todo, 62 artigos foram submetidos, todos avaliados como de elevada qualidade pela comissão julgadora.",
+   "O 1º lugar do concurso foi concedido ao arquiteto Felipe Bertuzzi, com o artigo “Mobilidade sustentável e o papel das cidades na integração territorial pelo corredor de desenvolvimento”, em coautoria com Cleonice Alexandre Le Bourlegat e Juliana de Mendonça Casadei. O 3º lugar ficou com o arquiteto Guilherme Lassance, diretor da UrCA – PROURB/FAU-UFRJ, autor do artigo “Da oferta de habitação e transporte ao imperativo de fazer cidade”.",
+   "Os três trabalhos vencedores foram apresentados na palestra “Pesquisa em Destaque: Artigos Científicos Publicados”, realizada durante a Conferência Internacional do CAU/BR. Segundo a conselheira federal Leila Marques (RJ), a iniciativa busca valorizar a produção científica de arquitetos e urbanistas e ampliar o alcance do conhecimento acadêmico para além do ambiente universitário."
+  ],
+  "ficha": [
+   [
+    "Evento",
+    "1ª Conferência Internacional do Conselho de Arquitetura e Urbanismo do Brasil (CAU/BR)"
+   ],
+   [
+    "Data",
+    "4, 5 e 6 de setembro de 2025"
+   ],
+   [
+    "Local",
+    "Brasília (DF)"
+   ],
+   [
+    "Prêmio",
+    "2º lugar no concurso nacional de artigos científicos"
+   ],
+   [
+    "Autoras",
+    "Jessica Seabra, Jeane Aparecida Rombi de Godoy e Taynara Barreto Macedo (mestranda)"
+   ]
+  ],
+  "links": [
+   [
+    "Ler a matéria completa do CAU/BR",
+    "https://caubr.gov.br/palestra-apresenta-debate-sobre-pesquisa-e-apresenta-os-vencedores-do-concurso-de-artigos-cientificos/"
+   ],
+   [
+    "Ler o artigo premiado",
+    "https://publicacoes.amigosdanatureza.org.br/index.php/forum_ambiental/pt_BR/article/view/5337"
    ]
   ]
  },
