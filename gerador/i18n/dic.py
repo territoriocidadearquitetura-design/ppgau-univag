@@ -1019,4 +1019,5 @@ D = [
 ('Bolsistas CAPES', 'CAPES scholarship holders', 'Becarios CAPES', 'Boursiers CAPES'),
 ('Iniciação científica nos projetos', 'Undergraduate research in projects', 'Iniciación científica en los proyectos', 'Initiation à la recherche dans les projets'),
 ('Defesas por orientador(a), 2021–2024', 'Defenses by advisor, 2021–2024', 'Defensas por orientador(a), 2021–2024', 'Soutenances par directeur(trice), 2021–2024'),
+('Acessar', 'Open', 'Acceder', 'Accéder'),
 ]

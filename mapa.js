@@ -236,7 +236,7 @@ function lista(par) {
   if (st.lbusca) { const q = norm(st.lbusca); ws = ws.filter(w => norm(w[3]).includes(q)); }
   ws = ws.slice().sort((a, b) => b[2] - a[2]);
   $("ls-n").textContent = `${ws.length} ${ws.length === 1 ? "obra" : "obras"}`;
-  $("ls").innerHTML = ws.slice(0, st.mostrar).map(w => `<li><div class="ls-t"><span class="tag">${w[2]}</span><span class="tag ${w[0]}">${GRP[w[0]]}</span>${w[4] ? `<span class="tag gold">Qualis ${esc(w[4])}</span>` : ""}</div><p>${esc(w[3])}</p><p class="meta">${w[5].map(d => esc(DOC[d].curto)).join(", ")}</p></li>`).join("") || `<li class="meta">Nenhuma obra com esses filtros.</li>`;
+  $("ls").innerHTML = ws.slice(0, st.mostrar).map(w => `<li><div class="ls-t"><span class="tag">${w[2]}</span><span class="tag ${w[0]}">${GRP[w[0]]}</span>${w[4] ? `<span class="tag gold">Qualis ${esc(w[4])}</span>` : ""}</div><p>${esc(w[3])}</p><p class="meta">${w[5].map(d => esc(DOC[d].curto)).join(", ")}${w[7] ? ` · <a class="ls-lk" href="${esc(w[7][0])}" target="_blank" rel="noopener">${w[7][1] === "doi" ? "Abrir pelo DOI" : w[7][1] === "link" ? "Acessar" : "Localizar no Google Acadêmico"} ↗</a>` : ""}</p></li>`).join("") || `<li class="meta">Nenhuma obra com esses filtros.</li>`;
   $("ls-mais").hidden = ws.length <= st.mostrar;
 }
 

@@ -604,6 +604,18 @@ ${anos.map(a => { const l = ev.filter(e => e.ano === a); return `<section class=
     });
     cont.forEach((m, i) => [...m].filter(([k, n]) => n >= 3 && n >= falta[i] * .3 && k.slice(-1) === semAcento(PLAT.nomes[i])[0].toUpperCase()).forEach(([k]) => { chaveDoc.set(k, i); alias.add(k); console.log("grafia de", PLAT.nomes[i], "→", k); }));
   }
+  // Link de acesso de cada obra: DOI ou endereço citado na referência; DOI do OpenAlex (FICHA_2025) pelo título;
+  // senão, busca do título no Google Acadêmico (só produção bibliográfica).
+  const nT = x => semAcento(String(x || "")).toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const OA = Object.values(D("FICHA_2025")).flat().filter(x => x.doi && nT(x.titulo).length >= 20).map(x => [nT(x.titulo), x.doi]);
+  const tituloRef = ref => { let r = ref.includes(" . ") ? ref.slice(ref.indexOf(" . ") + 3) : ref.replace(/^([^.;]*?[A-ZÀ-Ý]{2,}[^.;]*?(\.\s?[A-ZÀ-Ý]\.?)*\s*;\s*)*[^.]*?\.\s+/, ""); const m = r.match(/^(.{12,}?[^\s.]{2,})\.\s/); return (m ? m[1] : r.slice(0, 160)).trim(); };
+  const linkObra = (ref, tec) => {
+    const doi = ref.match(/\b(10\.\d{4,9}\/[^\s;,]+[^\s;,.)])/); if (doi) return ["https://doi.org/" + doi[1], "doi"];
+    const u = ref.match(/https?:\/\/[^\s;,]+[^\s;,.)]/); if (u) return [u[0], "link"];
+    const n = nT(ref), o = OA.find(([t]) => n.includes(t)); if (o) return [o[1], "doi"];
+    if (tec) return "";
+    const t = tituloRef(ref); return t.length >= 8 ? ["https://scholar.google.com/scholar?q=" + encodeURIComponent('"' + t + '"'), "busca"] : "";
+  };
   const AUD = []; globalThis.__AUD = AUD;
   const MAX_AUT = 12; // listas maiores são comissões e pareceres coletivos, não coautoria
   const brutos = [];
@@ -612,7 +624,7 @@ ${anos.map(a => { const l = ev.filter(e => e.ano === a); return `<section class=
     const au = [];
     xs.forEach(x => { const ini = iniDe(x.pre), i = ehDoc(x, ini); au.push([x.sob, x.pre, i >= 0 ? "D" + i : k2(x.k, ini)]); if (i >= 0) d.add(i); else if (xs.length <= MAX_AUT) a.push([k2(x.k, ini), tit(x.sob) + ", " + x.pre]); });
     AUD.push({ ref, ds, au });
-    brutos.push([TEC.has(cat) ? "tec" : "pub", cat, ano, ref, q || "", [...d].sort((x, y) => x - y), a]);
+    brutos.push([TEC.has(cat) ? "tec" : "pub", cat, ano, ref, q || "", [...d].sort((x, y) => x - y), a, linkObra(ref, TEC.has(cat))]);
   });
   PROJ.forEach(p => {
     const d = new Set((p.docs || []).map(n => PLAT.nomes.indexOf(n)).filter(i => i >= 0)), a = [];
@@ -656,7 +668,7 @@ ${anos.map(a => { const l = ev.filter(e => e.ano === a); return `<section class=
       else if (!pes[r] || (pes[r][1] === "ext" && nome.length > pes[r][0].length)) pes[r] = [nome, "ext"];
       pes[r].bruto = 1;
     });
-    W.push([...w.slice(0, 6), [...ks]]);
+    W.push([...w.slice(0, 6), [...ks], w[7] || ""]);
   });
   // Nome para exibir: "Sobrenome, Prenome Completo" vira "Prenome Completo Sobrenome"; com iniciais, fica como no Lattes.
   for (const v of Object.values(pes)) {
@@ -665,6 +677,7 @@ ${anos.map(a => { const l = ev.filter(e => e.ano === a); return `<section class=
     const [sob, pre] = v[0].split(/,\s*/);
     v[0] = /\b[A-ZÀ-Ý]\.(\s|$)/.test(pre) || !pre ? tit(sob) + ", " + pre.toUpperCase() : tit(pre.replace(/\.$/, "")).replace(/ (De|Da|Do|Dos|Das|E) /g, m => m.toLowerCase()) + " " + tit(sob).replace(/^(De|Da|Do) /, m => m.toLowerCase());
   }
+  { const L = W.map(w => w[7] && w[7][1] || "sem"); console.log("links do mapa:", ["doi", "link", "busca", "sem"].map(k => k + " " + L.filter(x => x === k).length).join(", ")); }
   globalThis.__MAPA = "const MAPA = " + JSON.stringify({ doc, pes, W }) + ";\n";
   globalThis.__REDE = { doc, pes, W };
   if (recusados.size) console.log("homônimos separados de discentes/egressos:", [...recusados].map(([k, n]) => k + (n > 1 ? " (" + n + ")" : "")).join("; "));

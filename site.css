@@ -1197,3 +1197,4 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 @media (max-width: 560px) { .ip-num, .ip-ver-n { grid-template-columns: 1fr; } .dd-tbl .num { text-align: left; } }
 @media (min-width: 761px) { .kpis.k3 { grid-template-columns: repeat(3, 1fr); } }
 .ip-res { grid-template-columns: repeat(auto-fit, minmax(min(100%, 135px), 1fr)); }
+.ls-lk { font-weight: 700; white-space: nowrap; }
