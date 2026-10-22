@@ -1221,3 +1221,4 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .ev-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}@media (max-width:860px){.ev-cards{grid-template-columns:1fr}}
 .ev-card{padding:18px 20px}.ev-card h3{margin:2px 0 10px;font-size:1.05rem}.ev-sup{margin:0;font-size:.82rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.03em}
 .ev-card dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:.9rem}.ev-card dt{font-weight:700;color:var(--navy)}.ev-card dd{margin:0}.ev-card .links:empty{display:none}
+.ev-c-ban{display:block;margin:-18px -20px 14px}.ev-c-ban img{width:100%;height:auto;display:block;border-radius:12px 12px 0 0}

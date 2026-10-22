@@ -385,6 +385,7 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
 
 // Eventos e destaques
 {
+  const ANO_ATUAL = new Date().getFullYear();
   // Eventos do programa que ainda não estão no portal "em dados".
   const EXTRA = [{ nome: "V Seminário de Pesquisa em Arquitetura e Urbanismo do PPGAU UNIVAG", ano: 2026, datas: "out. 2026", ppgau_papel: "organizador", fontes: ["https://www.even3.com.br/v-seminario-de-pesquisa-em-arquitetura-e-urbanismo-do-ppgau-univag-764604/"], anais: {} },
     { nome: "III Congresso Brasileiro \"Mudanças Climáticas e a Resiliência Urbana\"", ano: 2026, datas: "23 a 25/09/2026", ppgau_papel: "coorganizador", fontes: ["https://www.even3.com.br/iii-congresso-brasileiro-mudancas-climaticas-e-a-resiliencia-urbana-741291/"], anais: {},
@@ -392,15 +393,18 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
     { nome: "III Latin American Symposium \"City, Architecture and Sustainability\"", ano: 2026, datas: "26 a 28/08/2026", ppgau_papel: "coorganizador", fontes: ["https://www.even3.com.br/city-architecture-and-sustainability-2026-715004/"], anais: {},
       banner: ["img/eventos/latin-american-2026.jpg", 1100, 440], organizacao: ["ANAP", "PPGAU UNIVAG"], abrangencia: "latino-americana" }];
   EXTRA[0].organizacao = ["PPGAU UNIVAG"];
+  // Banners e páginas do Even3 enviados pela coordenação para eventos que já estão no portal (chave: início do nome).
+  const AJUSTE = { "1º Seminário Nacional sobre a Educação Ambiental": { pagina: "https://www.even3.com.br/e/ea_cidadeverde-322673", banner: ["img/eventos/cidade-verde-2023.jpg", 1100, 440] } };
+  const ajusta = e => { const k = Object.keys(AJUSTE).find(k => e.nome.startsWith(k)); return k ? { ...e, ...AJUSTE[k] } : e; };
   // Ficha curta de cada evento, sem as notas de apuração ("inferido", "não verificado"...).
   const limpa = t => String(t || "").replace(/\s*\((?:[^()]*(?:inferid|verificad|conhecimento geral|pelo nome|logo em)[^()]*)\)/gi, "").replace(/\s*\((?:[^()]*\([^()]*\))*[^()]*(?:inferid|verificad|pelo nome)[^()]*\)/gi, "").trim();
   const util = t => t && !/^(não verificado|não informad)/i.test(t) && !/^—$/.test(t);
   const fichaEv = e => { const lin = [["Datas", limpa(String(e.datas || "").replace(/\s*\(.*\)$/, ""))], ["Formato", limpa(e.local_formato)], ["Realização", (e.organizacao || []).map(limpa).filter(util).join("; ")], ["Abrangência", limpa(e.abrangencia)], ["Números", limpa(e.numeros)], ["Equipe do PPGAU", [...(e.docentes_ppgau || []), ...(e.discentes_ppgau || [])].map(limpa).filter(util).join("; ")]].filter(([, v]) => util(v));
-    return `<article class="card ev-card"><p class="ev-sup">${e.ano} · ${esc(papel[e.ppgau_papel] || "Participação")}</p><h3>${esc(e.nome)}</h3><dl>${lin.map(([a, b]) => `<dt>${a}</dt><dd>${esc(b)}</dd>`).join("")}</dl><p class="links">${linksEv(e).replace(/^—$/, "")}</p></article>`; };
+    return `<article class="card ev-card">${e.banner ? `<a class="ev-c-ban" href="${pagEv(e)}" target="_blank" rel="noopener"><img src="${e.banner[0]}" width="${e.banner[1]}" height="${e.banner[2]}" loading="lazy" alt="${esc(e.nome)}"></a>` : ""}<p class="ev-sup">${e.ano} · ${esc(papel[e.ppgau_papel] || "Participação")}</p><h3>${esc(e.nome)}</h3><dl>${lin.map(([a, b]) => `<dt>${a}</dt><dd>${esc(b)}</dd>`).join("")}</dl><p class="links">${linksEv(e).replace(/^—$/, "")}</p></article>`; };
   const mesEv = e => { const d = String(e.datas || ""), m = d.match(/\/(\d{2})\/\d{4}/); if (m) return +m[1]; const i = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"].findIndex(x => d.toLowerCase().includes(x + ".")); return i + 1; };
-  const ev = [...EVENTOS, ...EXTRA].sort((a, b) => b.ano - a.ano || mesEv(b) - mesEv(a));
+  const ev = [...EVENTOS, ...EXTRA].map(ajusta).sort((a, b) => b.ano - a.ano || mesEv(b) - mesEv(a));
   // Página oficial: o primeiro link do Even3 nas fontes. Anais: só os endereços completos.
-  const pagEv = e => (e.fontes || []).find(u => /even3\.com\.br/.test(u) && !/618697/.test(u));
+  const pagEv = e => e.pagina || (e.fontes || []).find(u => /even3\.com\.br/.test(u) && !/618697/.test(u));
   const anaisEv = e => String((e.anais || {}).link || "").split(/\s*;\s*/).filter(u => /^https?:\/\//.test(u));
   const linksEv = e => { const a = anaisEv(e), p = pagEv(e); return [p ? ext(p, "Página do evento") : "", ...a.map((u, i) => ext(u, a.length > 1 ? `Anais ${["vol. I", "vol. II", "3", "4"][i]}` : "Anais"))].filter(Boolean).join("") || "—"; };
   const dest = IMPACTO.impacto.filter(x => x.tipo !== "evento");
@@ -410,7 +414,7 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
     hero: { crumb: true, p: "Congressos, simpósios e seminários organizados ou coorganizados pelo programa, e os destaques recentes." },
     corpo: `
 <ul class="sub"><li><a href="#destaques">Destaques</a></li><li><a href="#eventos">Eventos</a></li><li><a href="#congresso">Congresso internacional 2025</a></li></ul>
-<section class="blk ev-banners">${ev.filter(e => e.banner).map(e => `<div class="ev-banner"><a href="${pagEv(e)}" target="_blank" rel="noopener"><img src="${e.banner[0]}" width="${e.banner[1]}" height="${e.banner[2]}" alt="${esc(e.nome)}, ${esc(e.datas)}"></a><div class="ev-b-txt"><span class="tag">${esc(papel[e.ppgau_papel])} do PPGAU</span><h2>${esc(e.nome)}</h2><p class="meta">${esc(e.datas)}${e.lema ? ` · ${esc(e.lema)}` : ""}</p><a class="btn" href="${pagEv(e)}" target="_blank" rel="noopener">Página do evento no Even3 ${ICO.seta}</a></div></div>`).join("")}</section>
+<section class="blk ev-banners">${ev.filter(e => e.banner && e.ano >= ANO_ATUAL).map(e => `<div class="ev-banner"><a href="${pagEv(e)}" target="_blank" rel="noopener"><img src="${e.banner[0]}" width="${e.banner[1]}" height="${e.banner[2]}" alt="${esc(e.nome)}, ${esc(e.datas)}"></a><div class="ev-b-txt"><span class="tag">${esc(papel[e.ppgau_papel])} do PPGAU</span><h2>${esc(e.nome)}</h2><p class="meta">${esc(e.datas)}${e.lema ? ` · ${esc(e.lema)}` : ""}</p><a class="btn" href="${pagEv(e)}" target="_blank" rel="noopener">Página do evento no Even3 ${ICO.seta}</a></div></div>`).join("")}</section>
 <section class="blk" id="destaques"><h2>Destaques</h2>
 <div class="grid g2">${dest.map(x => `<div class="card"><span class="tag gold">${esc(x.tipo)}</span>${x.ano ? `<span class="tag">${x.ano}</span>` : ""}<h3>${esc(x.titulo)}</h3><p>${esc(x.descricao)}</p>${(x.links || []).length ? `<p class="links">${x.links.slice(0, 3).map((l, i) => ext(l, i ? "Fonte " + (i + 1) : "Saiba mais")).join("")}</p>` : ""}</div>`).join("")}</div></section>
 <section class="blk" id="eventos"><h2>Eventos</h2>
