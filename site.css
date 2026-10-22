@@ -1223,3 +1223,11 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .ev-card dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:.9rem}.ev-card dt{font-weight:700;color:var(--navy)}.ev-card dd{margin:0}.ev-card .links:empty{display:none}
 .ev-c-ban{display:block;margin:-18px -20px 14px}.ev-c-ban img{width:100%;height:auto;display:block;border-radius:12px 12px 0 0}
 .ev-parc{margin-top:12px;font-size:.9rem}.ev-parc summary{cursor:pointer;font-weight:700;color:var(--navy)}.ev-parc img{width:100%;height:auto;margin-top:10px;border-radius:8px;background:#fff}
+/* Eventos: uma ficha por linha, banner à esquerda */
+.ev-cards{grid-template-columns:1fr;gap:20px}
+.ev-card{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:24px;padding:0;overflow:hidden;align-items:start}
+.ev-c-ban{margin:0}.ev-c-ban img{border-radius:0;aspect-ratio:5/2;object-fit:cover}
+.ev-c-sem{aspect-ratio:5/2;background:linear-gradient(135deg,var(--navy),#23407a);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 22px;gap:4px}
+.ev-c-sem span{color:#febf01;font-weight:700;font-size:1.4rem}.ev-c-sem b{font-size:1.05rem;line-height:1.3}
+.ev-c-info{padding:18px 22px 18px 0}
+@media (max-width:860px){.ev-card{grid-template-columns:1fr;gap:0}.ev-c-info{padding:16px 18px}}
