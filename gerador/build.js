@@ -43,7 +43,7 @@ const atzDe = arq => ATZ[arq] || (/^docente-/.test(arq) ? [AZ.docentes, "Curríc
 // ---------- layout ----------
 const NAV = [
   ["index.html", "Início"], ["programa.html", "O programa"], ["pessoas.html", "Pessoas"], ["disciplinas.html", "Disciplinas"], ["producao.html", "Produção"], ["revista.html", "Revista"], ["livros.html", "Livros"], ["mapa.html", "Mapa da produção"], ["linha-do-tempo.html", "Linha do tempo"],
-  ["eventos.html", "Eventos"], ["bancas.html", "Bancas"], ["premiacoes.html", "Premiações"], ["ingresso.html", "Ingresso"], ["contato.html", "Contato"]
+  ["eventos.html", "Eventos"], ["bancas.html", "Bancas"], ["premiacoes.html", "Premiações"], ["ingresso.html", "Ingresso"], ["academico.html", "Acadêmico"], ["contato.html", "Contato"]
 ];
 const svg = (d, w = 20) => `<svg width="${w}" height="${w}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 const ICO = {
@@ -80,7 +80,8 @@ const redesHtml = cls => `<ul class="redes ${cls}" aria-label="Redes sociais">${
 const UNIVAG_MENU = [["Graduação", "https://www.univag.com.br/cursos/1/graduacao/areas/"], ["Pós-Graduação", "https://www.univag.com.br/cursos/2/pos-graduacao/areas/"], ["Extensão", "https://portalmatricula.univag.edu.br/cursos.aspx?portal=extensao"], ["Pesquisa", "https://www.univag.com.br/pesquisa-e-extensao/4/pesquisa-cientifica-e-producao-de-conhecimento/"], ["Publicações", "https://periodicos.univag.com.br/index.php/index/index"], ["Avaliação Institucional", "https://www.univag.com.br/sobre-o-univag/20/avaliacao-institucional/"], ["Univag EAD", "https://univagead.com.br/"], ["Univag Idiomas", "https://univagidiomas.com.br/"], ["Estrutura", "https://www.univag.com.br/sobre-o-univag/19/conheca-o-campus/"], ["Ouvidoria", "https://portalouvidoria.univag.edu.br"]];
 function pagina({ arq, titulo: t, desc, hero, corpo, js, scripts }) {
   const navLi = ([h, l]) => `<li><a href="${h}"${h === arq ? ' aria-current="page"' : ""}>${l}</a></li>`;
-  const nav = NAV.filter(([h]) => h !== "contato.html").map(([h, l]) => `${h === "eventos.html" ? '<li class="nav-quebra" aria-hidden="true"></li>' : ""}<li><a href="${h}"${h === arq ? ' aria-current="page"' : ""}>${l}</a></li>`).join("");
+  const acadSub = () => `<div class="nav-sub" role="menu">${(globalThis.__ACAD || []).map(([g, L]) => `<div><b>${g}</b>${L.map(([t, h]) => `<a role="menuitem" href="${h}"${/^https?:/.test(h) ? ' target="_blank" rel="noopener"' : ""}>${t}${/^https?:/.test(h) ? " ↗" : ""}</a>`).join("")}</div>`).join("")}</div>`;
+  const nav = NAV.filter(([h]) => h !== "contato.html").map(([h, l]) => `${h === "eventos.html" ? '<li class="nav-quebra" aria-hidden="true"></li>' : ""}${h === "academico.html" ? `<li class="nav-dd"><a href="${h}"${h === arq ? ' aria-current="page"' : ""} aria-haspopup="true">${l} <i aria-hidden="true">▾</i></a>${acadSub()}</li>` : `<li><a href="${h}"${h === arq ? ' aria-current="page"' : ""}>${l}</a></li>`}`).join("");
   return `<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -426,9 +427,10 @@ ${ev.map(e => `<tr><td data-l="Ano">${e.ano}</td><td><b>${esc(e.nome)}</b></td><
   const dA = t => (docsAc.find(x => x[0] === t) || [])[1];
   // Mesmos itens do menu Acadêmico do site anterior, agrupados.
   const GR = [
-    ["Curso e calendário", [["Estrutura curricular", dA("Estrutura curricular"), "PDF no Google Drive"], ["Disciplinas", dA("Disciplinas"), "ementas, no Google Drive"], ["Disciplinas e horários do semestre", "disciplinas.html", "agenda e calendário das turmas"], ["Calendário do 1º semestre de 2025", PDF("5e7fb1b2d12c48ed8cfc1a8fdc623c1b"), "PDF"], ["Aulas remotas", "docs/memorando-aulas-remotas.pdf", "memorando de orientações de postura, PDF"], ["Guia de procedimentos acadêmicos", dA("Guia de procedimentos acadêmicos"), "PDF no Google Drive"]]],
+    ["Curso e calendário", [["Estrutura curricular", dA("Estrutura curricular"), "PDF no Google Drive"], ["Disciplinas", dA("Disciplinas"), "ementas, no Google Drive"], ["Disciplinas e horários do semestre", "disciplinas.html", "agenda e calendário das turmas"], ["Aulas remotas", "docs/memorando-aulas-remotas.pdf", "memorando de orientações de postura, PDF"], ["Guia de procedimentos acadêmicos", dA("Guia de procedimentos acadêmicos"), "PDF no Google Drive"]]],
     ["Créditos e matrícula", [["Atividades obrigatórias", "#atividades", "tabela de créditos"], ["Créditos", dA("Créditos"), "PDF no Google Drive"], ["Aproveitamento de créditos", "#aproveitamento", ""], ["Trancamento de matrícula", "#trancamento", ""]]],
     ["Qualificação e defesa", [["Orientações para qualificação", dA("Orientações para qualificação"), "PDF no Google Drive"], ["Ata de defesa de qualificação", "https://docs.google.com/document/d/1P2cF1bCRnl4EPFZbv9dVOJfLKFsnFXe5/edit?usp=sharing", "modelo no Google Docs"], ["Orientações para defesa", dA("Orientações para defesa"), "PDF no Google Drive"], ["Ata de exame de defesa", "https://docs.google.com/document/d/1WWps7_PwtWbx5-Klp-vdzmWZD2RReYpJ/edit?usp=sharing", "modelo no Google Docs"], ["Bancas e defesas", "bancas.html", "próximas e realizadas"]]]];
+  globalThis.__ACAD = GR.map(([g, L]) => [g, L.filter(x => x[1]).map(([t, h]) => [t, h.startsWith("#") ? "academico.html" + h : h])]);
   P.push({
     arq: "academico.html", titulo: "Acadêmico", desc: "Calendário, disciplinas, créditos, qualificação, defesa e procedimentos acadêmicos do PPGAU UNIVAG.",
     hero: { crumb: true, p: "Documentos e procedimentos para quem já é aluno do programa." },

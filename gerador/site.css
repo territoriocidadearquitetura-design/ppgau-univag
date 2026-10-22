@@ -1088,3 +1088,16 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .ac-grupos { margin-bottom: 30px; }
 /* Menu alinhado à esquerda, sem justificar (pedido 22/10/2026) */
 @media (min-width: 1081px) { .nav, html:not([lang="pt-BR"]) .nav { justify-content: flex-start !important; column-gap: 22px; } .nav::after { display: none; } }
+/* Menu: Acadêmico com a lista de links de acesso (como no site anterior) */
+.nav-dd { position: relative; } .nav-dd > a i { font-style: normal; font-size: 10px; opacity: .8; }
+.nav-sub { display: none; }
+@media (min-width: 1081px) {
+  .nav-sub { position: absolute; left: -14px; top: 100%; z-index: 80; min-width: 300px; padding: 12px 14px; display: none; gap: 12px; background: var(--surface, #fff); border: 1px solid var(--line, #dfe5ec); border-top: 3px solid var(--gold); border-radius: 0 0 12px 12px; box-shadow: 0 14px 32px rgba(0,0,0,.2); }
+  .nav-dd:hover .nav-sub, .nav-dd:focus-within .nav-sub { display: grid; }
+  .nav-sub div { display: grid; gap: 1px; } .nav-sub b { font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 2px 0 4px; }
+  .nav .nav-sub a { color: var(--ink) !important; font-size: 14.5px !important; font-weight: 500; padding: 5px 8px !important; border-radius: 6px; white-space: nowrap; }
+  .nav .nav-sub a::after { display: none !important; } .nav .nav-sub a:hover { background: var(--accent-soft); color: var(--accent) !important; }
+}
+@media (min-width: 1081px) { .nav-dd:hover .nav-sub, .nav-dd:focus-within .nav-sub { grid-template-columns: repeat(3, auto); column-gap: 18px; } .nav-sub { left: -120px; } }
+@media (max-width: 1080px) { .top nav[aria-label="Principal"] { flex: 0 0 100%; order: 3; } .nav-dd > a i { display: none; } }
+.nav-sub div { align-content: start; }
