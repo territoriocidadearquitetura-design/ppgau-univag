@@ -127,6 +127,10 @@ document.querySelector(".menu-btn").addEventListener("click",e=>{const t=documen
 ${js || ""}</script>
 ${(scripts || []).map(f => `<script src="${f}"></script>`).join("\n")}
 <script src="busca-dados.js" defer></script><script src="ui.js?v=${VER}" defer></script>
+<!-- VLibras: tradução para Libras (Governo Federal) -->
+<div vw class="enabled" translate="no"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>try { new window.VLibras.Widget("https://vlibras.gov.br/app"); } catch (e) {}</script>
 </body>
 </html>
 `;

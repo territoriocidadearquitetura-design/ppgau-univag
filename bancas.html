@@ -9,7 +9,7 @@
 <link rel="icon" href="img/logo-ppgau.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="site.css?v=mvixtx6m">
+<link rel="stylesheet" href="site.css?v=mviy5whn">
 <script>try{var l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("ppgau-lang");if(l&&l!=="pt"&&/^(en|es|fr|it)$/.test(l))document.documentElement.classList.add("trad")}catch(e){}</script>
 </head>
 <body>
@@ -81,6 +81,10 @@ const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 const ap=()=>{const q=norm(f.querySelector("input").value),s=[...f.querySelectorAll("select")];let n=0;itens.forEach(i=>{const ok=norm(i.dataset.busca).includes(q)&&s.every(x=>!x.value||(i.dataset[x.name]||"").split("|").includes(x.value));i.hidden=!ok;if(ok)n++});if(vz)vz.style.display=n?"none":"block"};
 f.addEventListener("input",ap)});</script>
 
-<script src="busca-dados.js" defer></script><script src="ui.js?v=mvixtx6m" defer></script>
+<script src="busca-dados.js" defer></script><script src="ui.js?v=mviy5whn" defer></script>
+<!-- VLibras: tradução para Libras (Governo Federal) -->
+<div vw class="enabled" translate="no"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>try { new window.VLibras.Widget("https://vlibras.gov.br/app"); } catch (e) {}</script>
 </body>
 </html>

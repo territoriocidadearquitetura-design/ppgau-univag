@@ -1153,3 +1153,4 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 @media (max-width: 560px) { .ac-barra span { justify-content: flex-start; } }
 @media (max-width: 700px) { .ac-tbl .num { text-align: left; } .ac-tbl tr.tot td:empty { display: none; } }
 @media (min-width: 1081px) { html[lang="fr"] .nav, html[lang="it"] .nav { column-gap: 15px !important; } }
+@media print { [vw] { display: none !important; } }
