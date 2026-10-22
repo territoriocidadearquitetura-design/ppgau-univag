@@ -1076,3 +1076,13 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .vn-art .vn-art-t { color: inherit; text-decoration: none; } .vn-art .vn-art-t:hover b { text-decoration: underline; color: var(--accent); }
 .vn-art .vn-art-lk { display: inline-block; font-size: 13px; font-weight: 700; color: var(--accent); margin-top: 2px; }
 .vn-art .vn-art-lk { display: table; margin-top: 3px; } .vn-art span { display: block; }
+/* Acadêmico: três grupos de documentos, como no menu do site anterior */
+.ac-grupos { margin: 22px 0 8px; align-items: stretch; }
+.ac-g h2 { font-size: 1.15rem; margin: 0 0 8px; }
+.ac-g .docs { margin: 0; }
+.ac-grupos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.ac-g .docs { list-style: none; padding: 0; display: grid; gap: 10px; }
+.ac-g .docs li { padding-left: 0; } .ac-g .docs li::before { display: none; }
+.ac-g .docs a { font-weight: 600; } .ac-g .docs .meta { display: block; font-size: 13.5px; margin-top: 1px; }
+@media (max-width: 900px) { .ac-grupos { grid-template-columns: 1fr; } }
+.ac-grupos { margin-bottom: 30px; }

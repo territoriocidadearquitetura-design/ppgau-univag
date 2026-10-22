@@ -425,14 +425,18 @@ ${ev.map(e => `<tr><td data-l="Ano">${e.ano}</td><td><b>${esc(e.nome)}</b></td><
 // Acadêmico
 {
   const docsAc = PG_DOCS.find(x => x[0] === "Acadêmico")[1];
-  const pags = [["Calendário do 1º semestre de 2025 (PDF)", PDF("5e7fb1b2d12c48ed8cfc1a8fdc623c1b")], ["Atividades obrigatórias", "#atividades"], ["Aproveitamento de créditos", "#aproveitamento"], ["Trancamento de matrícula", "#trancamento"], ["Bancas de dezembro de 2025", "bancas.html#h-real"]];
+  const dA = t => (docsAc.find(x => x[0] === t) || [])[1];
+  // Mesmos itens do menu Acadêmico do site anterior, agrupados.
+  const GR = [
+    ["Curso e calendário", [["Estrutura curricular", dA("Estrutura curricular"), "PDF no Google Drive"], ["Disciplinas", dA("Disciplinas"), "ementas, no Google Drive"], ["Disciplinas e horários do semestre", "disciplinas.html", "agenda e calendário das turmas"], ["Calendário do 1º semestre de 2025", PDF("5e7fb1b2d12c48ed8cfc1a8fdc623c1b"), "PDF"], ["Aulas remotas", "docs/memorando-aulas-remotas.pdf", "memorando de orientações de postura, PDF"], ["Guia de procedimentos acadêmicos", dA("Guia de procedimentos acadêmicos"), "PDF no Google Drive"]]],
+    ["Créditos e matrícula", [["Atividades obrigatórias", "#atividades", "tabela de créditos"], ["Créditos", dA("Créditos"), "PDF no Google Drive"], ["Aproveitamento de créditos", "#aproveitamento", ""], ["Trancamento de matrícula", "#trancamento", ""]]],
+    ["Qualificação e defesa", [["Orientações para qualificação", dA("Orientações para qualificação"), "PDF no Google Drive"], ["Ata de defesa de qualificação", "https://docs.google.com/document/d/1P2cF1bCRnl4EPFZbv9dVOJfLKFsnFXe5/edit?usp=sharing", "modelo no Google Docs"], ["Orientações para defesa", dA("Orientações para defesa"), "PDF no Google Drive"], ["Ata de exame de defesa", "https://docs.google.com/document/d/1WWps7_PwtWbx5-Klp-vdzmWZD2RReYpJ/edit?usp=sharing", "modelo no Google Docs"], ["Bancas e defesas", "bancas.html", "próximas e realizadas"]]]];
   P.push({
     arq: "academico.html", titulo: "Acadêmico", desc: "Calendário, disciplinas, créditos, qualificação, defesa e procedimentos acadêmicos do PPGAU UNIVAG.",
     hero: { crumb: true, p: "Documentos e procedimentos para quem já é aluno do programa." },
     corpo: `
 <div class="aviso info"><div><b>Disciplinas do 2º semestre de 2026</b> · Horários, professores e turmas, com a próxima aula da sua turma.</div><div><a href="disciplinas.html">Abrir</a></div></div>
-<section class="blk"><h2>Documentos acadêmicos</h2><ul class="docs">${docsAc.map(([t, h]) => docCard(h, t, "", true)).join("")}</ul></section>
-<section class="blk"><h2>Procedimentos e bancas</h2><ul class="docs">${pags.map(([t, h]) => docCard(h, t, "", /^https?:/.test(h))).join("")}</ul></section>
+<div class="grid g3 ac-grupos">${GR.map(([g, L]) => `<section class="card ac-g"><h2>${g}</h2><ul class="docs">${L.filter(x => x[1]).map(([t, h, d]) => docCard(h, t, d, /^https?:/.test(h))).join("")}</ul></section>`).join("")}</div>
 <section class="blk" id="atividades"><h2>Atividades obrigatórias</h2>
 <p>Produção científica que conta créditos no mestrado:</p>
 <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Atividade</th><th>Créditos</th></tr></thead><tbody>
