@@ -247,7 +247,7 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
 <section class="blk" aria-labelledby="h-local"><h2 id="h-local">Como chegar</h2>${LOCAL}</section>
 
 <section class="blk" aria-labelledby="h-fale"><h2 id="h-fale">Fale com a coordenação</h2>
-<div class="grid g2">${coord.map(d => `<div class="card pessoa"><img src="img/${esc(d.foto)}" width="84" height="84" alt="Foto de ${esc(d.n)}"><div><span class="tag">${/Jeane/.test(d.n) ? "Coordenadora" : "Coordenador adjunto"}</span><h3>${/Jeane/.test(d.n) ? "Profa. Dra. " : "Prof. Dr. "}${esc(d.n)}</h3><p class="links"><a href="mailto:${esc(d.f.email)}">${esc(d.f.email)}</a></p></div></div>`).join("")}</div>
+<div class="grid g2">${coord.map(d => `<div class="card pessoa ct-card"><img src="img/${esc(d.foto)}" width="84" height="84" alt="Foto de ${esc(d.n)}"><div><span class="tag">${/Jeane/.test(d.n) ? "Coordenadora" : "Coordenador adjunto"}</span><h3>${/Jeane/.test(d.n) ? "Profa. Dra. " : "Prof. Dr. "}${esc(d.n)}</h3><p class="links"><a href="mailto:${esc(d.f.email)}">${esc(d.f.email)}</a></p></div></div>`).join("")}</div>
 </section>`
   });
 }
@@ -297,7 +297,7 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
     corpo: `
 <ul class="sub"><li><a href="#coordenacao">Coordenação</a></li><li><a href="#conselho">Conselho</a></li><li><a href="#docentes">Corpo docente</a></li><li><a href="#discentes">Discentes</a></li><li><a href="#posdoc">Pós-doutorandos</a></li><li><a href="#egressos">Egressos</a></li></ul>
 <section class="blk" id="coordenacao"><h2>Coordenação</h2>
-<div class="grid g2">${coord.map(d => `<div class="card pessoa"><img src="img/${esc(d.foto)}" width="84" height="84" alt="Foto de ${esc(d.n)}"><div><span class="tag">${/Jeane/.test(d.n) ? "Coordenadora" : "Coordenador adjunto"}</span><h3>${esc(d.n)}</h3><p class="links"><a href="mailto:${esc(d.f.email)}">${esc(d.f.email)}</a></p></div></div>`).join("")}</div></section>
+<div class="grid g2">${coord.map(d => `<div class="card pessoa ct-card"><img src="img/${esc(d.foto)}" width="84" height="84" alt="Foto de ${esc(d.n)}"><div><span class="tag">${/Jeane/.test(d.n) ? "Coordenadora" : "Coordenador adjunto"}</span><h3>${esc(d.n)}</h3><p class="links"><a href="mailto:${esc(d.f.email)}">${esc(d.f.email)}</a></p></div></div>`).join("")}</div></section>
 <section class="blk" id="conselho"><h2>Conselho de Pós-Graduação</h2>
 <p>${esc(PG_INFO.find(x => x[0] === "Conselho de Pós-Graduação")[1])}.</p></section>
 <section class="blk" id="docentes"><h2>Corpo docente</h2>
@@ -413,8 +413,6 @@ ${ev.map(e => `<tr><td data-l="Ano">${e.ano}</td><td><b>${esc(e.nome)}</b></td><
     arq: "ingresso.html", titulo: "Ingresso", desc: "Processos seletivos do mestrado, pós-doutorado, proficiência e bolsas do PPGAU UNIVAG.",
     hero: { crumb: true, p: "Editais, resultados e seleções de bolsistas. O mestrado tem 24 meses, com aulas às sextas à noite e aos sábados." },
     corpo: `
-<a class="banner" href="${PDF("c32c56de7e2a4fdabd1ddb64cb534d62")}" target="_blank" rel="noopener"><img src="https://static.wixstatic.com/media/036f6f_45909d12ea9746388101384da6508420~mv2.png/v1/fill/w_1120,h_448,al_c,q_85,enc_auto/Banner%20do%20Site.png" width="1120" height="448" loading="lazy" alt="Banner do processo seletivo do Mestrado em Arquitetura e Urbanismo do UNIVAG" onerror="this.parentNode.remove()"></a>
-<div class="aviso"><div><b>Inscrições</b> · Edital nº 05/2026, vagas remanescentes para discentes.</div><div>${ext(PDF("c32c56de7e2a4fdabd1ddb64cb534d62"), "Ler o edital (PDF)")}</div></div>
 <section class="blk"><h2>Seleções</h2>
 <div class="grid g2">${sel.map(([t, p, dt, dh]) => `<div class="card"><h3>${esc(t)}</h3><p class="links">${dh ? ext(dh, esc(dt) + " (PDF)") : ""}</p></div>`).join("")}</div></section>
 <section class="blk" id="bolsas"><h2>Bolsas</h2>
@@ -452,9 +450,10 @@ P.push({
   hero: { crumb: true, p: "Fale com a coordenação do programa." },
   corpo: `
 <section class="blk">${LOCAL}</section>
-<div class="grid g2">
-<div class="card"><h3>Telefone</h3><p><a href="tel:+556536886110">(65) 3688-6110</a></p><p class="meta">Atendimento da secretaria do programa.</p></div>
-${coord.map(d => `<div class="card pessoa"><img src="img/${esc(d.foto)}" width="84" height="84" alt="Foto de ${esc(d.n)}"><div><span class="tag">${/Jeane/.test(d.n) ? "Coordenadora" : "Coordenador adjunto"}</span><h3>${esc(d.n)}</h3><p class="links"><a href="mailto:${esc(d.f.email)}">${esc(d.f.email)}</a></p></div></div>`).join("")}
+<h2 class="ct-tit">Fale com o programa</h2>
+<div class="ct-grid">
+<div class="card ct-card"><span class="tag">Secretaria</span><h3>Telefone</h3><p><a href="tel:+556536886110">(65) 3688-6110</a></p><p class="meta">Atendimento da secretaria do programa.</p></div>
+${coord.map(d => `<div class="card pessoa ct-card"><img src="img/${esc(d.foto)}" width="84" height="84" alt="Foto de ${esc(d.n)}"><div><span class="tag">${/Jeane/.test(d.n) ? "Coordenadora" : "Coordenador adjunto"}</span><h3>${esc(d.n)}</h3><p class="links"><a href="mailto:${esc(d.f.email)}">${esc(d.f.email)}</a></p></div></div>`).join("")}
 </div>`
 });
 

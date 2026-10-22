@@ -55,7 +55,7 @@ function agenda() {
   const agora = new Date();
   $("dc-agenda").innerHTML = meses.map(m => `<section class="dc-mes"><h3>${cap(MES[+m.slice(5) - 1])} de ${m.slice(0, 4)}</h3><ol class="dc-dias">
   ${[...porDia].filter(([k]) => k.startsWith(m)).map(([k, ss]) => { const d = dt(k), passou = ss.every(s => fim(s) <= agora), eh = +d === +hoje;
-    return `<li class="${passou ? "passou" : ""}${eh ? " hoje" : ""}" id="dia-${k}"><div class="dc-data"><b>${d.getDate()}</b><span>${SEM[d.getDay()].slice(0, 3)}</span></div><div class="dc-sess">${ss.map(s => `<div class="dc-s" style="--dc:${disc(s).cor}"><span class="dc-hr">${horaCurta(s.h)}</span><span class="dc-n"><b>${esc(disc(s).nome)}</b><small>${esc(disc(s).prof.map(p => p.n).join(", "))}</small></span><span class="dc-tg">${localTag(s)}${st.turma === "todas" ? turmasTag(s) : ""}</span></div>`).join("")}</div></li>`; }).join("")}</ol></section>`).join("")
+    return `<li class="${passou ? "passou" : ""}${eh ? " hoje" : ""}" id="dia-${k}"><div class="dc-data"><b>${d.getDate()}</b><span>${SEM[d.getDay()].slice(0, 3)}</span></div><div class="dc-sess">${ss.map(s => `<div class="dc-s" style="--dc:${disc(s).cor}"><span class="dc-hr">${horaCurta(s.h)}</span><div class="dc-nm"><b>${esc(disc(s).nome)}</b><small>${esc(disc(s).prof.map(p => p.n).join(", "))}</small><span class="dc-tg">${localTag(s)}${st.turma === "todas" ? turmasTag(s) : ""}</span></div></div>`).join("")}</div></li>`; }).join("")}</ol></section>`).join("")
   + (indef.length ? `<section class="dc-mes"><h3>Datas a definir</h3><ul class="dc-ind">${[...new Set(indef.map(s => s.d))].map(k => `<li style="--dc:${DISC[k].cor}"><b>${esc(DISC[k].nome)}</b>: ${indef.filter(s => s.d === k).length} ${indef.filter(s => s.d === k).length > 1 ? "encontros" : "encontro"} das ${horaCurta(indef.find(s => s.d === k).h)}, com data a ser definida pela coordenação.</li>`).join("")}</ul></section>` : "");
 }
 
@@ -81,7 +81,7 @@ function calendario() {
 function mostraDia(k) {
   const ss = S.filter(s => s.data === k && daTurma(s)), d = dt(k);
   const el = $("dc-dia"); el.hidden = false;
-  el.innerHTML = `<h3>${cap(dataLonga(d))}</h3>${ss.map(s => `<div class="dc-s" style="--dc:${disc(s).cor}"><span class="dc-hr">${horaCurta(s.h)}</span><span class="dc-n"><b>${esc(disc(s).nome)}</b><small>${esc(disc(s).prof.map(p => p.n).join(", "))}</small></span><span class="dc-tg">${localTag(s)}${turmasTag(s)}</span></div>`).join("")}`;
+  el.innerHTML = `<h3>${cap(dataLonga(d))}</h3>${ss.map(s => `<div class="dc-s" style="--dc:${disc(s).cor}"><span class="dc-hr">${horaCurta(s.h)}</span><div class="dc-nm"><b>${esc(disc(s).nome)}</b><small>${esc(disc(s).prof.map(p => p.n).join(", "))}</small><span class="dc-tg">${localTag(s)}${turmasTag(s)}</span></div></div>`).join("")}`;
 }
 
 // ---------- disciplinas ----------
