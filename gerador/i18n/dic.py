@@ -966,4 +966,6 @@ D = [
 ('memorando de orientações de postura, PDF', 'memo on conduct guidelines, PDF', 'memorando de pautas de conducta, PDF', 'note sur les règles de conduite, PDF'),
 ('tabela de créditos', 'credit table', 'tabla de créditos', 'tableau des crédits'),
 ('próximas e realizadas', 'upcoming and past', 'próximas y realizadas', 'à venir et passées'),
+('Ingresso e titulação', 'Admission and graduation', 'Ingreso y titulación', 'Admission et diplômes'),
+('Impacto', 'Impact', 'Impacto', 'Impact'),
 ]

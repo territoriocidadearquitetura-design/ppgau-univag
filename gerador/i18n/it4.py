@@ -118,5 +118,5 @@ IT4 = {
 951: "Apri tramite DOI", 952: "Trova su Google Scholar", 953: "Nessun articolo registrato quest'anno.", 954: "Articoli per anno",
 955: "Leggi l'articolo",
 956: "Co-supervisioni", 957: "co-supervisione in corso", 958: "co-supervisioni in corso", 959: "co-supervisione conclusa", 960: "co-supervisioni concluse",
-961: 'Corso e calendario', 962: 'Crediti e iscrizione', 963: 'Esame di qualificazione e discussione', 964: 'Lezioni a distanza', 965: "Verbale dell'esame di qualificazione", 966: 'Verbale della discussione', 967: 'Insegnamenti e orari del semestre', 968: 'modello su Google Docs', 969: 'PDF su Google Drive', 970: 'programmi, su Google Drive', 971: 'agenda e calendario delle coorti', 972: 'memorandum sulle norme di comportamento, PDF', 973: 'tabella dei crediti', 974: 'prossime e svolte', 
+961: 'Corso e calendario', 962: 'Crediti e iscrizione', 963: 'Esame di qualificazione e discussione', 964: 'Lezioni a distanza', 965: "Verbale dell'esame di qualificazione", 966: 'Verbale della discussione', 967: 'Insegnamenti e orari del semestre', 968: 'modello su Google Docs', 969: 'PDF su Google Drive', 970: 'programmi, su Google Drive', 971: 'agenda e calendario delle coorti', 972: 'memorandum sulle norme di comportamento, PDF', 973: 'tabella dei crediti', 974: 'prossime e svolte', 975: 'Ammissione e titolo', 976: 'Impatto',
 }
