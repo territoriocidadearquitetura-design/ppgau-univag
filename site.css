@@ -1198,3 +1198,7 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 @media (min-width: 761px) { .kpis.k3 { grid-template-columns: repeat(3, 1fr); } }
 .ip-res { grid-template-columns: repeat(auto-fit, minmax(min(100%, 135px), 1fr)); }
 .ls-lk { font-weight: 700; white-space: nowrap; }
+.dd-col.novo i { background: #1f3f8f; } .dd-col.ult i { background: var(--navy); } .dd-col.parc i { background: repeating-linear-gradient(45deg, var(--navy) 0 6px, #3b5aa8 6px 12px); }
+.dd-cols { gap: 8px; } .dd-col b { font-size: 14px; } .dd-col span { font-size: 12px; }
+
+.dd-grid{align-items:start}

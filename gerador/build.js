@@ -956,7 +956,7 @@ ${proxBancas.length ? proxBancas.map(bancaProx).join("") : `<div class="card"><p
 // ---------- Notícias ----------
 // Para publicar uma notícia: acrescente uma linha em NOTICIAS (d = data AAAA-MM-DD). A página inicial mostra as três mais recentes.
 // Ingresso e titulação e Impacto na sociedade: páginas próprias, reproduzidas do portal (paginas-dados.js).
-P.push(...require("./paginas-dados.js")({ BASE, PROJ, IMPACTO, EVENTOS, REDE, esc, ext, nomeLink, titulo, atualizado: s => (AZ[s] || HOJE) }));
+P.push(...require("./paginas-dados.js")({ BASE, PROJ, IMPACTO, EVENTOS, REDE, PESSOAS, BANCAS, esc, ext, nomeLink, titulo, atualizado: s => (AZ[s] || HOJE) }));
 
 const NOTICIAS = [
   ...BANCAS.filter(b => b.ini > new Date("2026-08-01")).map(b => ({ d: b.dt.slice(0, 10), tag: proxBancas.includes(b) ? "Banca" : "Defesa", t: proxBancas.includes(b) ? `Defesa de ${b.al.split(" ")[0]} ${b.al.split(" ").slice(-1)[0]} em ${cuiaba(b.ini).getUTCDate()}/${cuiaba(b.ini).getUTCMonth() + 1}` : `${b.al.split(" ")[0]} ${b.al.split(" ").slice(-1)[0]} defendeu a dissertação`, p: `“${b.ti}”. Orientação de ${b.or}${b.co ? ", coorientação de " + b.co : ""}.`, links: [["Ver a banca", "bancas.html"]] })),

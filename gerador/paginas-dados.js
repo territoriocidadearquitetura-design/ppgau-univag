@@ -1,7 +1,7 @@
 // Páginas "Ingresso e titulação" (titulacao.html) e "Impacto na sociedade" (impacto.html), reproduzidas do portal
 // PPGAU em dados (seções formacao e impacto) com os mesmos dados (BASE, PROJ, IMPACTO, EVENTOS, REDE), para o site
 // não depender do portal depois do fim das coletas. Nada aqui lê dados/banco nem a coleta da autoavaliação.
-module.exports = ({ BASE, PROJ, IMPACTO, EVENTOS, REDE, esc, ext, nomeLink, titulo, atualizado }) => {
+module.exports = ({ BASE, PROJ, IMPACTO, EVENTOS, REDE, PESSOAS, BANCAS, esc, ext, nomeLink, titulo, atualizado }) => {
   const anos = BASE.anos, ser = BASE.series;
   const leit = (L, rot = ["O que os dados mostram", "O que a CAPES avalia", "Ponto de atenção"]) => `<div class="dd-leit">${L.map((t, i) => `<div class="card dd-l dd-l${i}"><span class="dd-rot">${rot[i]}</span><p>${esc(t)}</p></div>`).join("")}</div>`;
   const kpis = L => `<div class="kpis${L.length > 4 ? " k3" : ""}">${L.map(([v, t, s], i) => `<div class="kpi${i ? "" : " gold"}"><b>${esc(v)}</b><span>${esc(t)}</span>${s ? `<small>${esc(s)}</small>` : ""}</div>`).join("")}</div>`;
@@ -13,27 +13,68 @@ module.exports = ({ BASE, PROJ, IMPACTO, EVENTOS, REDE, esc, ext, nomeLink, titu
   const P = [];
 
   // ---------- Ingresso e titulação ----------
+  // 2021–2024: Coleta CAPES (BASE). 2025–2026: cadastro de discentes e egressos do site (PESSOAS), bancas divulgadas
+  // (BANCAS) e editais do programa. As defesas já realizadas que estão só nas bancas entram na lista de dissertações.
   {
-    const diss = BASE.dissertacoes, anosD = [...new Set(diss.map(d => d[0]))].sort().reverse();
-    const ultCompleto = anosD.find(a => a < String(new Date().getFullYear())) || anosD[0];
+    const nm = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().split(/\s+/);
+    const mesma = (a, b) => { const x = nm(a), y = nm(b); return x[0] === y[0] && x[x.length - 1] === y[y.length - 1]; };
+    const hoje = Date.now();
+    const bk = BANCAS.filter(b => b.ini.getTime() < hoje);
+    const extra = bk.filter(b => !BASE.dissertacoes.some(d => mesma(d[2], b.al))).map(b => { const c = new Date(b.ini.getTime() - 4 * 36e5); return [String(c.getUTCFullYear()), String(c.getUTCDate()).padStart(2, "0") + "/" + String(c.getUTCMonth() + 1).padStart(2, "0"), b.al, b.or + (b.co ? ` (coorientação de ${b.co})` : ""), b.ti.toUpperCase(), ""]; });
+    const diss = [...BASE.dissertacoes, ...extra];
+    const anosD = [...new Set(diss.map(d => d[0]))].sort().reverse();
+    const ANOS = [...anos, "2025", "2026"], ANO_ATUAL = String(new Date().getFullYear());
+    const tit = a => diss.filter(d => d[0] === a).length;
+    // Data da defesa: a da lista, senão a da banca; sem data conhecida, meio do ano (estimativa).
+    const dataDef = d => { if (d[1]) return +d[1].split("/")[1]; const b = BANCAS.find(b => mesma(b.al, d[2])); return b ? new Date(b.ini.getTime() - 4 * 36e5).getUTCMonth() + 1 : 0; };
+    const PES = PESSOAS.filter(p => p.c !== "pos-doc");
+    const tempo = a => { const L = diss.filter(d => d[0] === a).map(d => { const p = PES.find(p => mesma(p.n, d[2])); if (!p || !p.in) return null; const [ia, is] = p.in.split("/"), m = dataDef(d); return { m: (+a - +ia) * 12 + ((m || 6) - (is === "2" ? 8 : 3)), est: !m }; }).filter(Boolean); return L.length ? { v: L.reduce((s, x) => s + x.m, 0) / L.length, n: L.length, est: L.filter(x => x.est).length } : null; };
+    const defendeu = p => { const d = diss.find(d => mesma(d[2], p.n)); return d ? +d[0] : p.c === "egresso" ? +p.de : 0; };
+    const ingAno = a => PES.filter(p => p.in && p.in.startsWith(a)).length;
+    const matAno = a => PES.filter(p => p.in && +p.in.slice(0, 4) <= +a && (!defendeu(p) || defendeu(p) >= +a)).length;
+    const t25 = tempo("2025"), t26 = tempo("2026");
+    const S = {
+      matriculados: { v: [...ser.matriculados.valores, matAno("2025"), matAno("2026")], nota: `Ingressantes: 6, 5, 9 e 18 no quadriênio (Coleta); ${ingAno("2025")} em 2025 e ${ingAno("2026")} em 2026 (cadastro do programa).` },
+      titulados: { v: ANOS.map((a, i) => i < 4 ? ser.titulados.valores[i] : tit(a)), nota: `17 mestres no quadriênio 2021–2024; ${tit("2025")} em 2025 e ${tit("2026")} em 2026, até a data desta versão.` },
+      tempo: { v: [...ser.tempo.valores, Math.round(t25.v), Math.round(t26.v)], nota: `Meses do ingresso à defesa, em média: 25,4, 28,8, 34,3 e 38,4 (Coleta); ${t25.v.toFixed(1).replace(".", ",")} em 2025 e ${t26.v.toFixed(1).replace(".", ",")} em 2026, calculados pelo semestre de ingresso e pela data da banca (estimada no meio do ano quando não divulgada). O prazo regular é de 24 meses.` },
+      bolsas: { v: ser.bolsas.valores, nota: ser.bolsas.nota + " 2025 e 2026 ainda não consolidados no Coleta." },
+      ic: { v: ser.ic.valores, nota: ser.ic.nota + " 2025 e 2026 ainda não consolidados no Coleta." }
+    };
+    const col = (k, t) => { const s = S[k], A = ANOS.slice(0, s.v.length), mx = Math.max(...s.v); return `<div class="card dd-ch"><h3>${esc(t)}</h3>
+<div class="dd-cols" role="img" aria-label="${esc(t)}: ${s.v.map((v, i) => `${A[i]}, ${v}`).join("; ")}">${s.v.map((v, i) => `<div class="dd-col${i >= 4 ? " novo" : ""}${A[i] === ANO_ATUAL ? " parc" : ""}"><b>${v}</b><i style="height:${Math.max(4, v / mx * 100)}%"></i><span>${A[i]}${A[i] === ANO_ATUAL ? "*" : ""}</span></div>`).join("")}</div>
+<p class="meta">${esc(s.nota)}</p></div>`; };
+    // Defesas por orientador(a) principal, 2021 até hoje.
+    const ori = {}; diss.forEach(d => { const o = d[3].replace(/\s*\(.*$/, ""); ori[o] = (ori[o] || 0) + 1; });
+    const SAIU = /Manoel|Soukef|Metello|Maíra|Rodrigo Nogueira/;
+    const oriL = Object.entries(ori).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "pt-BR"));
+    const atuais = oriL.filter(([o]) => !SAIU.test(o)), antigos = oriL.filter(([o]) => SAIU.test(o));
+    const barras = [...atuais.map(([o, n]) => [o, n]), [`Docentes que deixaram o programa (${antigos.length})`, antigos.reduce((s, x) => s + x[1], 0), "cz"]];
+    const sel = [["2025/1", "Edital 2025/1", "10", ""], ["2025/2", "Editais 001 e 002/2025", "5 remanescentes no edital 002", "12"], ["2026/1", "Editais 003 e 004/2025", "3 remanescentes no edital 004", "7 no edital 003"], ["2026/2", "Editais 2026/2 e 005/2026", "10 + 5 remanescentes", "5 no edital 2026/2"]];
+    const nTot = diss.length, n2526 = tit("2025") + tit("2026");
     P.push({
       arq: "titulacao.html", titulo: "Ingresso e titulação", desc: "Processo seletivo, matrículas, bolsas, tempo até o título e dissertações defendidas no mestrado do PPGAU UNIVAG, de 2021 a 2026.",
       hero: { crumb: true, kpis: true, eyebrow: "Formação · 2021 a 2026", h1: "Ingresso e titulação dos mestres", p: "Do processo seletivo à defesa: vagas, matrículas, bolsas, tempo até o título e dissertações defendidas, de 2021 a 2026." },
       corpo: `
-${kpis([["38", "ingressantes", "de 2021 a 2024, 18 só em 2024"], ["17", "mestres titulados", "no quadriênio, todos com dissertação em português"], ["38 meses", "tempo médio até a defesa", "em 2024, acima dos 24 meses previstos"], ["1", "abandono", "registrado no quadriênio, em 2023"]])}
-${leit(BASE.leitura.formacao)}
+${kpis([[String(38 + ingAno("2025") + ingAno("2026")), "ingressantes de 2021 a 2026", `38 no quadriênio 2021–2024, ${ingAno("2025")} em 2025 e ${ingAno("2026")} em 2026`], [String(nTot), "mestres titulados de 2021 a 2026", `17 no quadriênio, ${tit("2025")} em 2025 e ${tit("2026")} em 2026 até agora`], [String(matAno("2026")), "discentes no programa em 2026", `eram 30 em 2024 e ${matAno("2025")} em 2025`], [t25.v.toFixed(0) + " meses", "tempo médio até a defesa em 2025", "eram 38 meses em 2024; o prazo regular é de 24"]])}
+${leit([`De 2021 a 2026 o programa titulou ${nTot} mestres, ${n2526} deles em 2025 e 2026. A entrada cresceu: ${ingAno("2026")} ingressantes em 2026, contra 6 em 2021, e o número de discentes no programa passou de 15 para ${matAno("2026")}.`, BASE.leitura.formacao[1], `Depois de subir até 38 meses em 2024, o tempo médio até a defesa caiu para cerca de ${t25.v.toFixed(0)} meses em 2025, ainda acima dos 24 meses previstos. Com ${matAno("2026")} discentes em curso, o fluxo de qualificações e defesas precisa de acompanhamento.`])}
 <section class="blk" id="selecao"><h2>Processo seletivo</h2>
 <div class="tbl-wrap"><table class="tbl dd-tbl"><thead><tr><th>Ano</th><th class="num">Vagas</th><th class="num">Inscritos</th><th class="num">Aprovados</th><th class="num">Inscritos por vaga</th></tr></thead><tbody>
 ${BASE.selecao.map((x, i) => `<tr><td><b>${anos[i]}</b></td><td class="num" data-l="Vagas">${x[0]}</td><td class="num" data-l="Inscritos">${x[1]}</td><td class="num" data-l="Aprovados">${x[2]}</td><td class="num" data-l="Inscritos por vaga">${(x[1] / x[0]).toFixed(1).replace(".", ",")}</td></tr>`).join("")}
 </tbody></table></div>
-<p class="meta">Proposta do programa no Coleta CAPES. A procura triplicou de 2021 a 2024; em 2021 houve menos inscritos que vagas.</p></section>
+<p class="meta">2021–2024: proposta do programa no Coleta CAPES. A procura triplicou de 2021 a 2024; em 2021 houve menos inscritos que vagas.</p>
+<h3 class="ip-h3">2025 e 2026, por semestre</h3>
+<div class="tbl-wrap"><table class="tbl dd-tbl"><thead><tr><th>Ingresso</th><th>Editais</th><th>Vagas</th><th class="num">Aprovados nas listas publicadas</th><th class="num">Ingressantes no cadastro</th></tr></thead><tbody>
+${sel.map(([s, e, v, ap]) => `<tr><td><b>${s}</b></td><td data-l="Editais">${esc(e)}</td><td data-l="Vagas">${esc(v)}</td><td class="num" data-l="Aprovados">${esc(ap || "lista não publicada")}</td><td class="num" data-l="Ingressantes">${PES.filter(p => p.in === s).length}</td></tr>`).join("")}
+</tbody></table></div>
+<p class="meta">Editais e listas de aprovados publicados pelo programa (ver <a href="documentos.html">Documentos</a>) e cadastro de discentes do site, outubro de 2026. O número de inscritos de 2025 e 2026 ainda não foi informado ao Coleta. Nem todo aprovado se matricula, e o cadastro registra o semestre de matrícula.</p></section>
 <section class="blk" id="fluxo"><h2>Matrículas, titulações e bolsas</h2>
-<div class="dd-grid">${colunas("matriculados", "Discentes matriculados")}${colunas("titulados", "Mestres titulados")}${colunas("tempo", "Tempo médio até a defesa (meses)")}${colunas("bolsas", "Bolsistas CAPES")}${colunas("ic", "Iniciação científica nos projetos")}
-<div class="card dd-ch"><h3>Defesas por orientador(a), 2021–2024</h3>${hbar([["Angelo Palmisano", 4], ["Jeane A. R. de Godoy", 3], ["Antonio Busnardo Filho", 2], ["Maira Vieira Dias", 2, "cz"], ["Outros 6 docentes", 6, "cz"]])}
-<p class="meta">Em cinza, docentes que já deixaram o programa ou orientaram uma defesa cada (Manoel Lemes, Antonio Soukef, Humberto Metello, Rosana Ravache, Diana de Paula e Rodrigo Lima).</p></div></div></section>
+<p class="meta">Colunas azul-claras: Coleta CAPES (2021–2024). Colunas azul-escuras: cadastro do programa e bancas divulgadas (2025–2026). *2026 até outubro, ano incompleto.</p>
+<div class="dd-grid">${col("matriculados", "Discentes no programa")}${col("titulados", "Mestres titulados")}${col("tempo", "Tempo médio até a defesa (meses)")}${col("bolsas", "Bolsistas CAPES")}${col("ic", "Iniciação científica nos projetos")}
+<div class="card dd-ch"><h3>Defesas por orientador(a), 2021–2026</h3>${hbar(barras)}
+<p class="meta">Orientação principal. Em cinza, docentes que já deixaram o programa (${esc(antigos.map(([o]) => o).join("; "))}).</p></div></div></section>
 <section class="blk" id="dissertacoes"><h2>Dissertações defendidas, 2021–2026</h2>
-<div class="dd-anos">${anosD.map(a => { const L = diss.filter(d => d[0] === a); return `<details class="card dd-ano"${a === ultCompleto ? " open" : ""}><summary><b>${a}</b><span>${L.length} ${L.length === 1 ? "defesa" : "defesas"}</span></summary><ol>${L.map(d => `<li><strong>${d[5] ? ext(d[5], esc(titulo(d[4])) + " ↗") : esc(titulo(d[4]))}</strong><span class="meta">${esc(d[2])} · orientação de ${nomeLink(d[3].replace(/\s*\(.*$/, ""))}${/\(/.test(d[3]) ? " " + esc(d[3].replace(/^[^(]*/, "")) : ""} · defesa ${d[1] ? `em ${esc(d[1])}/${a}` : `em ${a}`}</span></li>`).join("")}</ol></details>`; }).join("")}</div>
-<p class="meta">2021–2024: Coleta CAPES, módulo Trabalhos de Conclusão. Desde 2025: site do programa. Os títulos levam ao texto no Repositório Digital do UNIVAG. A comissão de área pediu que 4 dissertações sejam destacadas com justificativa e que o programa informe prêmios e distinções.</p></section>
+<div class="dd-anos">${anosD.map(a => { const L = diss.filter(d => d[0] === a); return `<details class="card dd-ano"${a === anosD[0] ? " open" : ""}><summary><b>${a}</b><span>${L.length} ${L.length === 1 ? "defesa" : "defesas"}</span></summary><ol>${L.map(d => `<li><strong>${d[5] ? ext(d[5], esc(titulo(d[4])) + " ↗") : esc(titulo(d[4]))}</strong><span class="meta">${esc(d[2])} · orientação de ${nomeLink(d[3].replace(/\s*\(.*$/, ""))}${/\(/.test(d[3]) ? " " + esc(d[3].replace(/^[^(]*/, "")) : ""} · defesa ${d[1] ? `em ${esc(d[1])}/${a}` : `em ${a}`}</span></li>`).join("")}</ol></details>`; }).join("")}</div>
+<p class="meta">2021–2024: Coleta CAPES, módulo Trabalhos de Conclusão. Desde 2025: site do programa e bancas divulgadas em <a href="bancas.html">Bancas e defesas</a>. Os títulos com link levam ao texto no Repositório Digital do UNIVAG. A comissão de área pediu que 4 dissertações sejam destacadas com justificativa e que o programa informe prêmios e distinções.</p></section>
 <p class="meta">Dados atualizados em ${esc(atualizado("formacao"))}. Veja também <a href="bancas.html">Bancas e defesas</a>, <a href="egressos.html">Egressos</a> e <a href="ingresso.html">Ingresso</a>.</p>`
     });
   }
