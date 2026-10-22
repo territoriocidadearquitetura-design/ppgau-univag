@@ -1210,3 +1210,4 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .gl-ficha dt{font-weight:700;color:var(--navy)}.gl-ficha dd{margin:0}.gl-ficha .btn{width:100%;justify-content:center}
 @media (max-width:960px){.gl-intro{grid-template-columns:1fr}.gl-txt{columns:1}}
 #cidade-verde-escola .gl-grade::after{display:none}
+#seminario-v-2026 .gl-grade::after{display:none}#seminario-v-2026 .gl-f{height:340px;flex-basis:calc(var(--r) * 340px)}@media (max-width:560px){#seminario-v-2026 .gl-f{height:220px;flex-basis:calc(var(--r) * 220px)}}

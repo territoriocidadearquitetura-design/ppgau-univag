@@ -2,7 +2,7 @@
  {
   "k": "premiacao-cau",
   "t": "CAU: Conferência Internacional e premiação",
-  "d": "",
+  "d": "2024",
   "f": [
    [
     "01",
@@ -537,6 +537,75 @@
     293,
     520
    ]
+  ]
+ },
+ {
+  "k": "seminario-v-2026",
+  "t": "V Seminário de Pesquisa em Arquitetura e Urbanismo",
+  "d": "out. 2026",
+  "f": [
+   [
+    "01",
+    390,
+    520
+   ],
+   [
+    "02",
+    390,
+    520
+   ],
+   [
+    "03",
+    352,
+    520
+   ],
+   [
+    "04",
+    390,
+    520
+   ],
+   [
+    "05",
+    390,
+    520
+   ],
+   [
+    "06",
+    390,
+    520
+   ],
+   [
+    "07",
+    390,
+    520
+   ]
+  ],
+  "txt": [
+   "O V Seminário de Pesquisa em Arquitetura e Urbanismo do PPGAU/UNIVAG é um espaço institucional de divulgação científica, intercâmbio acadêmico e fortalecimento da pesquisa do Programa. O evento promove a socialização dos resultados parciais e finais das investigações dos mestrandos, o debate científico qualificado, a troca de conhecimentos entre pesquisadores e a consolidação de uma cultura de excelência em pesquisa na área de Arquitetura e Urbanismo.",
+   "Vinculado à área de concentração Arquitetura, Cidade e Território, o seminário reafirma o compromisso do Programa com a compreensão crítica das transformações do espaço urbano e regional, da sustentabilidade do ambiente construído, da inovação tecnológica e da gestão territorial. É um ambiente de reflexão, avaliação e aperfeiçoamento das pesquisas em desenvolvimento, que estimula o diálogo interdisciplinar e a articulação entre teoria, metodologia e prática científica.",
+   "O seminário é uma etapa fundamental da formação dos discentes: oferece avaliação crítica das pesquisas, fortalece a produção científica e desenvolve as competências necessárias à atuação como pesquisadores e docentes. Também contribui para consolidar as linhas de pesquisa do PPGAU/UNIVAG e as redes de cooperação científica entre docentes, pesquisadores e pós-graduandos."
+  ],
+  "ficha": [
+   [
+    "Evento",
+    "V Seminário de Pesquisa em Arquitetura e Urbanismo"
+   ],
+   [
+    "Promoção",
+    "PPGAU UNIVAG"
+   ],
+   [
+    "Área",
+    "Arquitetura, Cidade e Território"
+   ],
+   [
+    "Linhas",
+    "Ambiente Construído e Sustentabilidade; Desenvolvimento Territorial e Local; Gestão, Inovação e Tecnologias"
+   ]
+  ],
+  "link": [
+   "Página do evento no Even3 ↗",
+   "https://www.even3.com.br/v-seminario-de-pesquisa-em-arquitetura-e-urbanismo-do-ppgau-univag-764604/"
   ]
  },
  {
