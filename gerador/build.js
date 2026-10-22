@@ -162,6 +162,13 @@ const LOCAL = `<div class="local card"><div class="local-map"><p class="local-al
 <p class="local-btns">${ext("https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(END), "Como chegar (Google Maps)")}${ext("https://waze.com/ul?q=" + encodeURIComponent("UNIVAG Centro Universitário Várzea Grande") + "&navigate=yes", "Abrir no Waze")}${ext("https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(END), "Ver mapa ampliado")}</p></div></div>`;
 
 // ---------- páginas ----------
+// Banners e páginas do Even3 enviados pela coordenação para eventos que já estão no portal (chave: início do nome).
+const AJUSTE = { "1º Seminário Nacional sobre a Educação Ambiental": { pagina: "https://www.even3.com.br/e/ea_cidadeverde-322673", banner: ["img/eventos/cidade-verde-2023.jpg", 1100, 440] },
+  "1º Simpósio Brasileiro \"Território": { pagina: "https://www.even3.com.br/e/1-simposio-brasileiro-de-territorio-cidade-e-arquitetura-351668", banner: ["img/eventos/territorio-2023.jpg", 1100, 440] },
+  "3º Simpósio Brasileiro \"Território": { nome: "3º Simpósio Brasileiro \"Arquitetura, Cidade e Território\"", ano: 2026, datas: "04 a 06/11/2026", local_formato: "Várzea Grande-MT (cidade anfitriã)", ppgau_papel: "organizador", organizacao: ["PPGAU UNIVAG"], lema: "Territórios em transformação, cidades em construção.", pagina: "https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/", banner: ["img/eventos/territorio-2026.jpg", 1100, 440] },
+  "I Congresso Brasileiro \"Mudanças": { banner: ["img/eventos/resiliencia-2024.jpg", 1100, 440] } };
+for (const e of EVENTOS) { const k = Object.keys(AJUSTE).find(k => e.nome.startsWith(k)); if (k) Object.assign(e, AJUSTE[k]); }
+
 const P = [];
 
 // Início
@@ -176,7 +183,7 @@ const P = [];
   AGENDA.sort((a, b) => a.d.localeCompare(b.d) || a.h.localeCompare(b.h));
   const lado = `<div class="chamadas" aria-roledescription="carrossel" aria-label="Chamadas do programa">
 <div class="ch-item ch-agenda" id="agenda-viva"><div class="ch-cab"><span class="ao-vivo"><i></i>Agenda do semestre</span><a href="disciplinas.html">Ver tudo</a></div><ol class="ag-lista"><li class="ag-fim">Veja as próximas aulas em <a href="disciplinas.html">Disciplinas e horários</a>.</li></ol></div>
-<div class="ch-item"><span class="ch-tag">4 a 6 de novembro de 2026</span><h2>3º Simpósio Brasileiro Território, Cidade e Arquitetura</h2><p class="ch-cont" data-contagem="2026-11-04T09:00:00-04:00"></p><a class="btn" href="https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/" target="_blank" rel="noopener">Inscrições e programação ${ICO.seta}</a></div>
+<div class="ch-item"><span class="ch-tag">4 a 6 de novembro de 2026</span><h2>3º Simpósio Brasileiro Arquitetura, Cidade e Território</h2><p class="ch-cont" data-contagem="2026-11-04T09:00:00-04:00"></p><a class="btn" href="https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/" target="_blank" rel="noopener">Inscrições e programação ${ICO.seta}</a></div>
 <div class="ch-item"><span class="ch-tag">Até 03/11/2026</span><h2>Autoavaliação 2026</h2><p>Questionário anônimo para estudantes, egressos, docentes e equipe. Leva poucos minutos.</p><a class="btn" href="dados/#/responder">Responder ${ICO.seta}</a></div>
 <div class="ch-item"><span class="ch-tag">Revista Vernácula · Qualis B2</span><h2>Publique na Vernácula</h2><p>Revista trimestral do programa, com DOI em todos os artigos. Conheça os 11 números publicados.</p><a class="btn" href="revista.html">Conhecer a revista ${ICO.seta}</a></div>
 <div class="ch-pontos">${["Agenda", "Simpósio", "Autoavaliação", "Revista"].map((l, i) => `<button type="button" aria-label="${l}"><span>${l}</span></button>`).join("")}</div>
@@ -216,7 +223,7 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
 <!--BANCA_HOME-->
 <section class="blk" aria-labelledby="h-prox"><h2 id="h-prox">Próximo evento</h2>
 <div class="evd"><div class="evd-data" aria-hidden="true"><span>nov</span><b>4–6</b><span>2026</span></div>
-<div class="evd-t"><span class="eyebrow">Evento do PPGAU UNIVAG · 3ª edição</span><h3>3º Simpósio Brasileiro “Território, Cidade e Arquitetura”</h3>
+<div class="evd-t"><span class="eyebrow">Evento do PPGAU UNIVAG · 3ª edição</span><h3>3º Simpósio Brasileiro “Arquitetura, Cidade e Território”</h3>
 <p>De 4 a 6 de novembro de 2026, das 9h às 17h, em sala híbrida: presencial no UNIVAG e ao vivo on-line. Faz parte do calendário acadêmico de todas as turmas do mestrado.</p>
 <div class="evd-cont" data-contagem="2026-11-04T09:00:00-04:00" data-modo="caixas" aria-live="off"></div>
 <div class="evd-btns"><a class="btn" href="https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/" target="_blank" rel="noopener">Inscrições e programação ${ICO.seta}</a><a class="btn sec" href="simposio-2026.ics" download>${ICO.agenda.replace(/width="26" height="26"/, 'width="18" height="18"')}Salvar na agenda</a><a class="btn sec" href="livros.html">Anais das edições anteriores</a></div></div></div>
@@ -387,24 +394,20 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
 {
   const ANO_ATUAL = new Date().getFullYear();
   // Eventos do programa que ainda não estão no portal "em dados".
-  const EXTRA = [{ nome: "V Seminário de Pesquisa em Arquitetura e Urbanismo do PPGAU UNIVAG", ano: 2026, datas: "out. 2026", ppgau_papel: "organizador", fontes: ["https://www.even3.com.br/v-seminario-de-pesquisa-em-arquitetura-e-urbanismo-do-ppgau-univag-764604/"], anais: {} },
+  const EXTRA = [{ nome: "V Seminário de Pesquisa em Arquitetura e Urbanismo do PPGAU UNIVAG", ano: 2026, datas: "15/08/2026", local_formato: "presencial, Centro Universitário UNIVAG, Várzea Grande-MT", ppgau_papel: "organizador", fontes: ["https://www.even3.com.br/v-seminario-de-pesquisa-em-arquitetura-e-urbanismo-do-ppgau-univag-764604/"], anais: {},
+      banner: ["img/eventos/seminario-v-2026.jpg", 1100, 440], lema: "Pesquisa, inovação e transformação do território." },
     { nome: "III Congresso Brasileiro \"Mudanças Climáticas e a Resiliência Urbana\"", ano: 2026, datas: "23 a 25/09/2026", ppgau_papel: "coorganizador", fontes: ["https://www.even3.com.br/iii-congresso-brasileiro-mudancas-climaticas-e-a-resiliencia-urbana-741291/"], anais: {},
       banner: ["img/eventos/resiliencia-2026.jpg", 1100, 440], lema: "Ciência, políticas e ação por cidades preparadas para os desafios climáticos.", organizacao: ["ANAP", "PPGAU UNIVAG"], abrangencia: "nacional" },
     { nome: "III Latin American Symposium \"City, Architecture and Sustainability\"", ano: 2026, datas: "26 a 28/08/2026", ppgau_papel: "coorganizador", fontes: ["https://www.even3.com.br/city-architecture-and-sustainability-2026-715004/"], anais: {},
       banner: ["img/eventos/latin-american-2026.jpg", 1100, 440], organizacao: ["ANAP", "PPGAU UNIVAG"], abrangencia: "latino-americana" }];
   EXTRA[0].organizacao = ["PPGAU UNIVAG"];
-  // Banners e páginas do Even3 enviados pela coordenação para eventos que já estão no portal (chave: início do nome).
-  const AJUSTE = { "1º Seminário Nacional sobre a Educação Ambiental": { pagina: "https://www.even3.com.br/e/ea_cidadeverde-322673", banner: ["img/eventos/cidade-verde-2023.jpg", 1100, 440] },
-    "1º Simpósio Brasileiro \"Território": { pagina: "https://www.even3.com.br/e/1-simposio-brasileiro-de-territorio-cidade-e-arquitetura-351668", banner: ["img/eventos/territorio-2023.jpg", 1100, 440] },
-    "I Congresso Brasileiro \"Mudanças": { banner: ["img/eventos/resiliencia-2024.jpg", 1100, 440] } };
-  const ajusta = e => { const k = Object.keys(AJUSTE).find(k => e.nome.startsWith(k)); return k ? { ...e, ...AJUSTE[k] } : e; };
   // Ficha curta de cada evento, sem as notas de apuração ("inferido", "não verificado"...).
   const limpa = t => String(t || "").replace(/\s*\((?:[^()]*(?:inferid|verificad|conhecimento geral|pelo nome|logo em)[^()]*)\)/gi, "").replace(/\s*\((?:[^()]*\([^()]*\))*[^()]*(?:inferid|verificad|pelo nome)[^()]*\)/gi, "").trim();
   const util = t => t && !/^(não verificado|não informad)/i.test(t) && !/^—$/.test(t);
   const fichaEv = e => { const lin = [["Datas", limpa(String(e.datas || "").replace(/\s*\(.*\)$/, ""))], ["Formato", limpa(e.local_formato)], ["Realização", (e.organizacao || []).map(limpa).filter(util).join("; ")], ["Abrangência", limpa(e.abrangencia)], ["Números", limpa(e.numeros)], ["Equipe do PPGAU", [...(e.docentes_ppgau || []), ...(e.discentes_ppgau || [])].map(limpa).filter(util).join("; ")]].filter(([, v]) => util(v));
     return `<article class="card ev-card">${e.banner ? `<a class="ev-c-ban" href="${pagEv(e)}" target="_blank" rel="noopener"><img src="${e.banner[0]}" width="${e.banner[1]}" height="${e.banner[2]}" loading="lazy" alt="${esc(e.nome)}"></a>` : ""}<p class="ev-sup">${e.ano} · ${esc(papel[e.ppgau_papel] || "Participação")}</p><h3>${esc(e.nome)}</h3><dl>${lin.map(([a, b]) => `<dt>${a}</dt><dd>${esc(b)}</dd>`).join("")}</dl><p class="links">${linksEv(e).replace(/^—$/, "")}</p></article>`; };
   const mesEv = e => { const d = String(e.datas || ""), m = d.match(/\/(\d{2})\/\d{4}/); if (m) return +m[1]; const i = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"].findIndex(x => d.toLowerCase().includes(x + ".")); return i + 1; };
-  const ev = [...EVENTOS, ...EXTRA].map(ajusta).sort((a, b) => b.ano - a.ano || mesEv(b) - mesEv(a));
+  const ev = [...EVENTOS, ...EXTRA].sort((a, b) => b.ano - a.ano || mesEv(b) - mesEv(a));
   // Página oficial: o primeiro link do Even3 nas fontes. Anais: só os endereços completos.
   const pagEv = e => e.pagina || (e.fontes || []).find(u => /even3\.com\.br/.test(u) && !/618697/.test(u));
   const anaisEv = e => String((e.anais || {}).link || "").split(/\s*;\s*/).filter(u => /^https?:\/\//.test(u));
