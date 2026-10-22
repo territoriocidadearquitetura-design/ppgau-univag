@@ -946,4 +946,5 @@ D = [
 ('Localizar no Google Acadêmico', 'Find on Google Scholar', 'Buscar en Google Académico', 'Trouver sur Google Scholar'),
 ('Nenhum artigo registrado neste ano.', 'No articles recorded this year.', 'Ningún artículo registrado este año.', 'Aucun article enregistré cette année.'),
 ('Artigos por ano', 'Articles by year', 'Artículos por año', 'Articles par année'),
+('Ler o artigo', 'Read the article', 'Leer el artículo', "Lire l'article"),
 ]
