@@ -1209,3 +1209,4 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .gl-ficha{padding:18px 20px}.gl-ficha dl{margin:0 0 14px;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:.92rem}
 .gl-ficha dt{font-weight:700;color:var(--navy)}.gl-ficha dd{margin:0}.gl-ficha .btn{width:100%;justify-content:center}
 @media (max-width:960px){.gl-intro{grid-template-columns:1fr}.gl-txt{columns:1}}
+#cidade-verde-escola .gl-grade::after{display:none}
