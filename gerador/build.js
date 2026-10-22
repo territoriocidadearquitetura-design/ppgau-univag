@@ -41,6 +41,7 @@ const ATZ = {
 const atzDe = arq => ATZ[arq] || (/^docente-/.test(arq) ? [AZ.docentes, "Currículo Lattes e portal PPGAU em dados"] : [HOJE, "coordenação do PPGAU"]);
 
 // ---------- layout ----------
+const VER = Date.now().toString(36);
 const NAV = [
   ["index.html", "Início"], ["programa.html", "O programa"], ["pessoas.html", "Pessoas"], ["disciplinas.html", "Disciplinas"], ["producao.html", "Produção"], ["revista.html", "Revista"], ["livros.html", "Livros"], ["mapa.html", "Mapa da produção"], ["linha-do-tempo.html", "Linha do tempo"],
   ["eventos.html", "Eventos"], ["bancas.html", "Bancas"], ["premiacoes.html", "Premiações"], ["ingresso.html", "Ingresso"], ["academico.html", "Acadêmico"], ["contato.html", "Contato"]
@@ -93,7 +94,7 @@ function pagina({ arq, titulo: t, desc, hero, corpo, js, scripts }) {
 <link rel="icon" href="img/logo-ppgau.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v=${VER}">
 <script>try{var l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("ppgau-lang");if(l&&l!=="pt"&&/^(en|es|fr|it)$/.test(l))document.documentElement.classList.add("trad")}catch(e){}</script>
 </head>
 <body${arq === "relatorio.html" ? ' class="relatorio-pg"' : ""}>
@@ -103,7 +104,7 @@ function pagina({ arq, titulo: t, desc, hero, corpo, js, scripts }) {
 <div class="brand"><div class="wrap"><a href="index.html"><img class="lg-ppgau" src="img/logo-ppgau.png" width="600" height="154" alt="PPGAU, Programa de Pós-Graduação Stricto Sensu em Arquitetura e Urbanismo"></a><div class="brand-dir"><nav class="restrito" aria-label="Acesso restrito"><span class="rs-t">Acesso restrito</span><a class="prof-btn" href="painel-coordenacao.html"${arq === "painel-coordenacao.html" ? ' aria-current="page"' : ""} title="Painel da coordenação (acesso restrito)">${ICO.prancheta}<span>Painel da coordenação</span></a><a class="prof-btn" href="area-professor.html"${arq === "area-professor.html" ? ' aria-current="page"' : ""} title="Painel dos professores (acesso restrito)">${ICO.cadeado}<span>Painel dos professores</span></a></nav><div class="brand-un"><img class="lg-univag" src="img/logo-univag.png" width="327" height="169" alt="UNIVAG Centro Universitário">${redesHtml("rd-topo")}</div></div></div></div>
 <header class="top" id="top"><div class="wrap">
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Menu</button>
-<nav aria-label="Principal"><ul class="nav" id="menu">${nav}<li><a href="dados/">PPGAU em dados</a></li>${NAV.filter(([h]) => h === "contato.html").map(navLi).join("")}</ul></nav>
+<nav aria-label="Principal"><ul class="nav" id="menu">${nav}<li><a href="dados/#/portal/formacao">Ingresso e titulação</a></li><li><a href="dados/#/portal/impacto">Impacto</a></li><li><a href="dados/">PPGAU em dados</a></li>${NAV.filter(([h]) => h === "contato.html").map(navLi).join("")}</ul></nav>
 <div class="acoes"><details class="idioma-dd"><summary aria-label="Idioma / Language" title="Idioma / Language"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><b translate="no">PT</b><i class="dd-seta" aria-hidden="true">▾</i></summary><nav class="idiomas" aria-label="Idioma" translate="no"><a href="?lang=pt" data-lang="pt" hreflang="pt-BR" lang="pt-BR" title="Português">PT</a><a href="?lang=en" data-lang="en" hreflang="en" lang="en" title="English">EN</a><a href="?lang=es" data-lang="es" hreflang="es" lang="es" title="Español">ES</a><a href="?lang=fr" data-lang="fr" hreflang="fr" lang="fr" title="Français">FR</a><a href="?lang=it" data-lang="it" hreflang="it" lang="it" title="Italiano">IT</a></nav></details><button class="busca-btn" type="button" aria-label="Buscar no site (Ctrl+K)" title="Buscar no site (Ctrl+K)">${ICO.busca}<span>Buscar</span></button><button class="tema-btn" type="button" aria-label="Modo escuro" aria-pressed="false" title="Alternar modo claro e escuro">${ICO.lua}${ICO.sol}</button></div>
 </div><div class="progresso" aria-hidden="true"><i></i></div></header>
 <div class="hero${hero.kpis ? " has-kpis" : ""}${hero.lado ? " hero-lado" : ""}"><div class="hero-fundo" aria-hidden="true">${DECO}</div><div class="wrap"><div class="hero-t">${hero.crumb ? `<div class="crumb"><a href="index.html">Início</a> / ${esc(t)}</div>` : ""}<div class="eyebrow">${hero.eyebrow || "Mestrado acadêmico · Várzea Grande, MT"}</div><h1>${hero.h1 || esc(t)}</h1>${hero.p ? `<p>${hero.p}</p>` : ""}${hero.btns || ""}<p class="impr-hero"><button type="button" class="impr-btn2">${ICO.imprimir}Imprimir ou salvar esta página em PDF</button>${arq === "relatorio.html" ? "" : `<a href="relatorio.html">Relatório geral do programa</a>`}</p></div>${hero.lado || ""}</div></div>
@@ -125,7 +126,7 @@ ${corpo}
 document.querySelector(".menu-btn").addEventListener("click",e=>{const t=document.getElementById("top"),o=t.classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",o)});
 ${js || ""}</script>
 ${(scripts || []).map(f => `<script src="${f}"></script>`).join("\n")}
-<script src="busca-dados.js" defer></script><script src="ui.js" defer></script>
+<script src="busca-dados.js" defer></script><script src="ui.js?v=${VER}" defer></script>
 </body>
 </html>
 `;
