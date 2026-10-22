@@ -212,6 +212,11 @@
     const on = a.dataset.lang === lg; a.classList.toggle("on", on); if (on) a.setAttribute("aria-current", "true");
     a.addEventListener("click", e => { e.preventDefault(); const u = new URL(location.href); if (gr(a.dataset.lang)) u.searchParams.delete("lang"); else u.searchParams.set("lang", a.dataset.lang); location.href = u.href; });
   });
+  document.querySelectorAll(".idioma-dd").forEach(d => {
+    const b = d.querySelector("summary b"); if (b) b.textContent = lg.toUpperCase();
+    document.addEventListener("click", e => { if (d.open && !d.contains(e.target)) d.open = false; });
+    d.addEventListener("keydown", e => { if (e.key === "Escape") { d.open = false; d.querySelector("summary").focus(); } });
+  });
   if (lg === "pt") { html.classList.remove("trad"); return; }
   const mostra = () => html.classList.remove("trad");
   setTimeout(mostra, 2500);

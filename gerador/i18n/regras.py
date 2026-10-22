@@ -83,4 +83,5 @@ R = [
   (r"^Rede de colaboração: (\d+) pessoas e (\d+) ligações$", "Collaboration network: {1} people and {2} links", "Red de colaboración: {1} personas y {2} vínculos", "Réseau de collaboration : {1} personnes et {2} liens"),
   (r"^Obras de (.+) no mapa$", "Works by {1} on the map", "Obras de {1} en el mapa", "Travaux de {1} sur la carte"),
   (r"^Obras em comum: (.+)$", "Works in common: {1}", "Obras en común: {1}", "Travaux en commun : {1}"),
+  (r"^(\S+ \S+) defendeu a dissertação$", "{1} defended their dissertation", "{1} defendió su disertación", "{1} a soutenu son mémoire"),
 ]
