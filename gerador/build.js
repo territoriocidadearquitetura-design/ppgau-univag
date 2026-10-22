@@ -178,6 +178,13 @@ const AJUSTE = { "1º Seminário Nacional sobre a Educação Ambiental": { pagin
   "I Congresso Brasileiro \"Mudanças": { banner: ["img/eventos/resiliencia-2024.jpg", 1100, 440] } };
 for (const e of EVENTOS) { const k = Object.keys(AJUSTE).find(k => e.nome.startsWith(k)); if (k) Object.assign(e, AJUSTE[k]); }
 
+// Destaque do próximo evento organizado pelo programa (Início e Eventos).
+const SIMP_DEST = id => `<section class="blk sd" aria-labelledby="${id}"><h2 id="${id}">Próximo evento do programa</h2>
+<div class="sd-card"><a class="sd-ban" href="https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/" target="_blank" rel="noopener"><img src="img/eventos/territorio-2026.jpg" width="1100" height="440" alt="3º Simpósio Brasileiro Arquitetura, Cidade e Território, 4 a 6 de novembro de 2026, Várzea Grande (MT)"></a>
+<div class="sd-t"><div class="sd-l"><span class="eyebrow">Organização do PPGAU UNIVAG · 3ª edição</span><h3>3º Simpósio Brasileiro “Arquitetura, Cidade e Território”</h3>
+<p class="sd-lema">Territórios em transformação, cidades em construção.</p>
+<div class="evd-cont" data-contagem="2026-11-04T09:00:00-04:00" data-modo="caixas" aria-live="off"></div>
+<div class="evd-btns"><a class="btn" href="https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/" target="_blank" rel="noopener">Inscrições, programação e submissão ${ICO.seta}</a><a class="btn sec" href="simposio-2026.ics" download>Salvar na agenda</a></div></div><dl class="sd-dl"><div><dt>Quando</dt><dd>4, 5 e 6 de novembro de 2026, das 9h às 17h</dd></div><div><dt>Onde</dt><dd>Centro Universitário UNIVAG, Várzea Grande (MT), cidade anfitriã. Sala híbrida: presencial e ao vivo on-line</dd></div><div><dt>Para quem</dt><dd>Pesquisadores, docentes, estudantes e profissionais de arquitetura, urbanismo e áreas afins. Faz parte do calendário acadêmico de todas as turmas do mestrado</dd></div><div><dt>Edições anteriores</dt><dd><a href="https://static.even3.com/download/AnaisdoSimpsioBrasileiro-TerritrioCidadeeArquitetura.331cc8799c1f4ff1b580.pdf" target="_blank" rel="noopener">Anais 2023</a> · <a href="https://static.even3.com/download/Anaisdo2SimpsioBrasileiro-TerritrioCidadeeArquitetura.1cea4b89573843ac88e7.pdf" target="_blank" rel="noopener">Anais 2024</a></dd></div></dl></div></div></section>`;
 const P = [];
 
 // Início
@@ -230,13 +237,7 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
 
 <!--PREMIO_HOME-->
 <!--BANCA_HOME-->
-<section class="blk" aria-labelledby="h-prox"><h2 id="h-prox">Próximo evento</h2>
-<div class="evd"><div class="evd-data" aria-hidden="true"><span>nov</span><b>4–6</b><span>2026</span></div>
-<div class="evd-t"><span class="eyebrow">Evento do PPGAU UNIVAG · 3ª edição</span><h3>3º Simpósio Brasileiro “Arquitetura, Cidade e Território”</h3>
-<p>De 4 a 6 de novembro de 2026, das 9h às 17h, em sala híbrida: presencial no UNIVAG e ao vivo on-line. Faz parte do calendário acadêmico de todas as turmas do mestrado.</p>
-<div class="evd-cont" data-contagem="2026-11-04T09:00:00-04:00" data-modo="caixas" aria-live="off"></div>
-<div class="evd-btns"><a class="btn" href="https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/" target="_blank" rel="noopener">Inscrições e programação ${ICO.seta}</a><a class="btn sec" href="simposio-2026.ics" download>${ICO.agenda.replace(/width="26" height="26"/, 'width="18" height="18"')}Salvar na agenda</a><a class="btn sec" href="livros.html">Anais das edições anteriores</a></div></div></div>
-</section>
+${SIMP_DEST("h-prox")}
 
 <section class="blk" aria-labelledby="h-not"><div class="lv-home-cab"><h2 id="h-not">Notícias</h2><a class="btn sec" href="noticias.html">Todas as notícias ${ICO.seta}</a></div>
 <div class="grid g3 noti2"><!--NOT_HOME--></div>
@@ -428,6 +429,7 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
     arq: "eventos.html", titulo: "Eventos", desc: "Eventos organizados pelo PPGAU UNIVAG e participação do programa em eventos externos.",
     hero: { crumb: true, p: "Congressos, simpósios e seminários organizados ou coorganizados pelo programa, e a participação em eventos externos." },
     corpo: `
+${SIMP_DEST("h-sd")}
 <ul class="sub"><li><a href="#eventos">Eventos organizados</a></li><li><a href="#participacao">Participação em eventos</a></li></ul>
 <section class="blk" id="eventos"><h2>Eventos organizados pelo programa</h2>
 <p class="meta">Eventos que o PPGAU UNIVAG organiza ou coorganiza, do mais recente para o mais antigo. Clique em "Página do evento" para ver a programação no Even3 e em "Anais" para ler os trabalhos publicados.</p>

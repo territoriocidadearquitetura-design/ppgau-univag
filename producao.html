@@ -9,7 +9,7 @@
 <link rel="icon" href="img/logo-ppgau.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="site.css?v=mvjig94i">
+<link rel="stylesheet" href="site.css?v=mvjij72u">
 <script>try{var l=new URLSearchParams(location.search).get("lang")||localStorage.getItem("ppgau-lang");if(l&&l!=="pt"&&/^(en|es|fr|it)$/.test(l))document.documentElement.classList.add("trad")}catch(e){}</script>
 </head>
 <body>
@@ -198,7 +198,7 @@ const vai=(id,foca)=>{if(!document.getElementById("p-"+id))id="dissertacoes";aba
 abas.forEach((a,i)=>{a.addEventListener("click",()=>{vai(a.dataset.a);history.replaceState(null,"","#"+a.dataset.a)});a.addEventListener("keydown",e=>{const d=e.key==="ArrowRight"?1:e.key==="ArrowLeft"?-1:0;if(!d)return;e.preventDefault();const n=abas[(i+d+abas.length)%abas.length];vai(n.dataset.a,true);history.replaceState(null,"","#"+n.dataset.a)})});
 const h=()=>vai((location.hash||"#dissertacoes").slice(1).replace(/^p-/,""));addEventListener("hashchange",h);h();})();</script>
 
-<script src="busca-dados.js" defer></script><script src="ui.js?v=mvjig94i" defer></script>
+<script src="busca-dados.js" defer></script><script src="ui.js?v=mvjij72u" defer></script>
 <!-- VLibras: tradução para Libras (Governo Federal) -->
 <div vw class="enabled" translate="no"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
 <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
