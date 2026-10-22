@@ -1211,3 +1211,5 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 @media (max-width:960px){.gl-intro{grid-template-columns:1fr}.gl-txt{columns:1}}
 #cidade-verde-escola .gl-grade::after{display:none}
 #seminario-v-2026 .gl-grade::after{display:none}#seminario-v-2026 .gl-f{height:340px;flex-basis:calc(var(--r) * 340px)}@media (max-width:560px){#seminario-v-2026 .gl-f{height:220px;flex-basis:calc(var(--r) * 220px)}}
+#campus .gl-grade::after{display:none}#campus .gl-f{height:300px;flex-basis:calc(var(--r) * 300px)}@media (max-width:560px){#campus .gl-f{height:200px;flex-basis:calc(var(--r) * 200px)}}
+.gl-m.inteira{background:#1c2b4a}.gl-m.inteira::before{content:"";position:absolute;inset:-20px;background:var(--fundo) center/cover;filter:blur(18px) brightness(.75)}.gl-m.inteira img{position:relative;object-fit:contain}
