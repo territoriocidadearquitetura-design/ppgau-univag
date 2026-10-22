@@ -445,8 +445,6 @@ ${ev.filter(e => !orgEv(e)).map(e => { const p = pagEv(e), q = [...(e.docentes_p
 // Ingresso
 {
   const sel = [
-    ["Discente: vagas remanescentes 2º/2026", "/discente-vagasremanescentes2026", "Edital nº 05/2026", PDF("c32c56de7e2a4fdabd1ddb64cb534d62")],
-    ["Discente: resultado 2º semestre de 2026", "/discente-2º-sem-2026"],
     ["Seleção de bolsista PIBPG/CNPq 2026", "/bolsista2026"],
     ["Pós-doutorado: 1º semestre de 2025", "/pos-doutorado-1º-sem-2025", "Regulamento do pós-doutorado", PDF("250868416ab44b9c932939923d3c11a4")],
     ["Proficiência: 1º semestre de 2025", "/proficiência-1º-sem-2025"]
@@ -455,7 +453,19 @@ ${ev.filter(e => !orgEv(e)).map(e => { const p = pagEv(e), q = [...(e.docentes_p
     arq: "ingresso.html", titulo: "Ingresso", desc: "Processos seletivos do mestrado, pós-doutorado, proficiência e bolsas do PPGAU UNIVAG.",
     hero: { crumb: true, p: "Editais, resultados e seleções de bolsistas. O mestrado tem 24 meses, com aulas às sextas à noite e aos sábados." },
     corpo: `
-<section class="blk"><h2>Seleções</h2>
+<section class="blk" id="mestrado-2026-2"><h2>Mestrado · ingresso no 2º semestre de 2026</h2>
+<p class="lead">Área de concentração Arquitetura, Cidade e Território, com três linhas de pesquisa: Desenvolvimento Territorial e Local; Ambiente Construído e Sustentabilidade; e Gestão, Inovação e Tecnologias. Aulas híbridas às sextas, das 19h às 22h, e aos sábados, das 9h às 12h e das 14h às 17h, com início em 1º de agosto de 2026.</p>
+<div class="grid g2 sel-2026">
+<article class="card sel-c"><span class="tag gold">Resultado</span><h3>Aprovados no processo seletivo · Edital nº 04/2026</h3>
+<p class="meta">10 vagas · prova e entrevista em 18/06/2026 · resultado em 22/06/2026</p>
+<ul class="sel-nomes">${["Allan Augusto Rocha Allan", "Ana Carolina Tonholo Andrade", "Charles Fabiano Araujo Quadro", "Deivis Ceslei Maggi", "Jociani Dalacosta Fávero"].map(n => `<li>${esc(n)}</li>`).join("")}</ul>
+<p class="meta">Em ordem alfabética. Os orientadores são definidos pelo colegiado do programa.</p>
+<p class="links"><a href="docs/aprovados-2026-2.pdf" target="_blank" rel="noopener">Relação dos aprovados (PDF)</a><a href="docs/edital-mestrado-2026-2.pdf" target="_blank" rel="noopener">Edital nº 04/2026 (PDF)</a></p></article>
+<article class="card sel-c"><span class="tag">Vagas remanescentes</span><h3>Edital nº 05/2026 · 5 vagas remanescentes</h3>
+<dl class="sel-dl"><dt>Inscrições</dt><dd>22/06 a 20/07/2026, pelo formulário on-line, sem taxa</dd><dt>Prova e entrevista</dt><dd>22/07/2026, às 19h (Cuiabá), on-line pelo Zoom</dd><dt>Resultado</dt><dd>24/07/2026, por e-mail</dd><dt>Matrícula</dt><dd>até 29/07/2026</dd><dt>Etapas</dt><dd>prova escrita, entrevista e análise do histórico e da produção acadêmica</dd><dt>Valores</dt><dd>24 × R$ 3.769,50 ou 36 × R$ 2.514,75, com bolsas UNIVAG de até 60% por desempenho. Sem bolsas CAPES PROSUP neste semestre</dd></dl>
+<p class="links"><a href="docs/edital-mestrado-2026-2-remanescentes.pdf" target="_blank" rel="noopener">Edital nº 05/2026 (PDF)</a></p></article>
+</div></section>
+<section class="blk"><h2>Outras seleções</h2>
 <div class="grid g2">${sel.map(([t, p, dt, dh]) => `<div class="card"><h3>${esc(t)}</h3><p class="links">${dh ? ext(dh, esc(dt) + " (PDF)") : ""}</p></div>`).join("")}</div></section>
 <section class="blk" id="bolsas"><h2>Bolsas</h2>
 <p>A Comissão de Bolsas acompanha a distribuição e a renovação das bolsas do programa.</p><div class="grid g2"><div class="card"><h3>Comissão de Bolsas · docentes</h3><p>Prof. Dr. Angelo Palmisano, Profa. Dra. Jeane Aparecida Rombi de Godoy, Profa. Dra. Rosana Lia Ravache e Profa. Dra. Natallia Sanches e Souza</p></div><div class="card"><h3>Comissão de Bolsas · discentes</h3><p>Rafaela Ferreira Rosso e Marcelo Luiz Perini Tarachuk</p></div></div></section>

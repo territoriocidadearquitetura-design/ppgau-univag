@@ -1243,3 +1243,5 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .sd-card{grid-template-columns:1fr}.sd-ban img{height:auto}
 .sd-t{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px 32px;align-items:start}.sd-t>.sd-dl{margin:0}.sd-l .evd-btns{margin-top:14px}
 @media (max-width:960px){.sd-t{grid-template-columns:1fr}}
+.sel-2026{align-items:start}.sel-c h3{margin:8px 0 4px}.sel-nomes{margin:10px 0;padding-left:22px;display:grid;gap:4px;font-weight:600}
+.sel-dl{margin:10px 0;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:.92rem}.sel-dl dt{font-weight:700;color:var(--navy)}.sel-dl dd{margin:0}
