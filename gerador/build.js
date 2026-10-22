@@ -252,7 +252,7 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
 <a class="card ac" href="producao.html"><span class="ac-ic">${ICO.producao}</span><h3>Produção</h3><p>${BASE.dissertacoes.length} dissertações defendidas, projetos de pesquisa e extensão.</p></a>
 <a class="card ac" href="linha-do-tempo.html"><span class="ac-ic">${ICO.tempo}</span><h3>Linha do tempo</h3><p>As ações do programa desde 2018: marcos, eventos, defesas, turmas e projetos.</p></a>
 <a class="card ac" href="mapa.html"><span class="ac-ic">${ICO.rede}</span><h3>Mapa da produção</h3><p>Rede de produção dos docentes com discentes, egressos e pós-doutorandos.</p></a>
-<a class="card ac" href="eventos.html"><span class="ac-ic">${ICO.eventos}</span><h3>Eventos e destaques</h3><p>Congressos, simpósios, prêmios e o programa na mídia.</p></a>
+<a class="card ac" href="eventos.html"><span class="ac-ic">${ICO.eventos}</span><h3>Eventos</h3><p>Congressos, simpósios e seminários organizados pelo programa.</p></a>
 <a class="card ac" href="disciplinas.html"><span class="ac-ic">${ICO.agenda}</span><h3>Disciplinas e horários</h3><p>Próxima aula, agenda e calendário do semestre para a sua turma, com os professores.</p></a>
 <a class="card ac" href="academico.html"><span class="ac-ic">${ICO.academico}</span><h3>Vida acadêmica</h3><p>Calendário, disciplinas, créditos, qualificação, defesa e bolsas.</p></a>
 <a class="card ac" href="dados/"><span class="ac-ic">${ICO.dados}</span><h3>PPGAU em dados</h3><p>Indicadores, avaliação CAPES, produção do Lattes e autoavaliação, com as fontes citadas.</p></a>
@@ -399,7 +399,7 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
   });
 }
 
-// Eventos e destaques
+// Eventos
 {
   const ANO_ATUAL = new Date().getFullYear();
   // Eventos do programa que ainda não estão no portal "em dados".
@@ -425,13 +425,10 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
   const dest = IMPACTO.impacto.filter(x => x.tipo !== "evento");
   const papel = { organizador: "Organização", coorganizador: "Coorganização", participante: "Participação" };
   P.push({
-    arq: "eventos.html", titulo: "Eventos e destaques", desc: "Eventos organizados pelo PPGAU UNIVAG, prêmios, financiamentos e o programa na mídia.",
-    hero: { crumb: true, p: "Congressos, simpósios e seminários organizados ou coorganizados pelo programa, e os destaques recentes." },
+    arq: "eventos.html", titulo: "Eventos", desc: "Eventos organizados pelo PPGAU UNIVAG e participação do programa em eventos externos.",
+    hero: { crumb: true, p: "Congressos, simpósios e seminários organizados ou coorganizados pelo programa, e a participação em eventos externos." },
     corpo: `
-<ul class="sub"><li><a href="#destaques">Destaques</a></li><li><a href="#eventos">Eventos organizados</a></li><li><a href="#participacao">Participação em eventos</a></li></ul>
-
-<section class="blk" id="destaques"><h2>Destaques</h2>
-<div class="grid g2">${dest.map(x => `<div class="card"><span class="tag gold">${esc(x.tipo)}</span>${x.ano ? `<span class="tag">${x.ano}</span>` : ""}<h3>${esc(x.titulo)}</h3><p>${esc(x.descricao)}</p>${(x.links || []).length ? `<p class="links">${x.links.slice(0, 3).map((l, i) => ext(l, i ? "Fonte " + (i + 1) : "Saiba mais")).join("")}</p>` : ""}</div>`).join("")}</div></section>
+<ul class="sub"><li><a href="#eventos">Eventos organizados</a></li><li><a href="#participacao">Participação em eventos</a></li></ul>
 <section class="blk" id="eventos"><h2>Eventos organizados pelo programa</h2>
 <p class="meta">Eventos que o PPGAU UNIVAG organiza ou coorganiza, do mais recente para o mais antigo. Clique em "Página do evento" para ver a programação no Even3 e em "Anais" para ler os trabalhos publicados.</p>
 <div class="ev-cards">${ev.filter(orgEv).map(fichaEv).join("")}</div></section>
