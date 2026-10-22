@@ -1053,3 +1053,7 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .ct-card.pessoa > div { display: grid; gap: 4px; min-width: 0; } .ct-card.pessoa a { overflow-wrap: anywhere; }
 @media (max-width: 900px) { .ct-grid { grid-template-columns: 1fr; } }
 .ct-card.pessoa .tag { justify-self: start; }
+/* Idioma: seletor discreto "PT ▾" no lugar das bandeiras (pedido 22/10/2026: mais sóbrio) */
+.idioma-dd summary svg { display: inline !important; }
+.idioma-dd summary .dd-seta { font-style: normal; font-size: 10px; opacity: .8; }
+.idioma-dd .idiomas { display: none; } .idioma-dd[open] .idiomas { display: flex; }
