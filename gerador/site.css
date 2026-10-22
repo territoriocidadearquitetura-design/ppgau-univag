@@ -1057,3 +1057,11 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .idioma-dd summary svg { display: inline !important; }
 .idioma-dd summary .dd-seta { font-style: normal; font-size: 10px; opacity: .8; }
 .idioma-dd .idiomas { display: none; } .idioma-dd[open] .idiomas { display: flex; }
+/* Artigos do docente por ano */
+.ano-abas { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.ano-abas button { font: 700 15px var(--f); padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; display: inline-flex; gap: 6px; align-items: baseline; }
+.ano-abas button small { font-weight: 600; color: var(--muted); font-size: 12.5px; }
+.ano-abas button[aria-selected="true"] { background: var(--navy); border-color: var(--navy); color: #fff; } .ano-abas button[aria-selected="true"] small { color: #c9d3ea; }
+.art-lista li { line-height: 1.5; } .art-lista .art-t { color: var(--ink); text-decoration: none; font-weight: 600; } .art-lista .art-t:hover { text-decoration: underline; color: var(--accent); }
+.art-lista .art-lk { display: inline-block; font-size: 13px; font-weight: 700; color: var(--accent); margin-left: 4px; white-space: nowrap; }
+.art-vazio { color: var(--muted); }

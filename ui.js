@@ -251,3 +251,13 @@
       .observe(document.body, { childList: true, subtree: true, characterData: true });
   }).catch(mostra);
 })();
+
+// Abas por ano (artigos nas páginas dos docentes): mostra só os itens do ano escolhido, ou todos.
+document.querySelectorAll("[data-filtro-ano]").forEach(box => {
+  const lista = document.getElementById(box.dataset.filtroAno); if (!lista) return;
+  const itens = [...lista.querySelectorAll("li[data-ano]")], vazio = lista.querySelector(".art-vazio");
+  const mostra = y => { let n = 0; itens.forEach(li => { const ok = y === "todos" || li.dataset.ano === y; li.hidden = !ok; n += ok; });
+    if (vazio) vazio.hidden = n > 0; box.querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.ano === y)); };
+  box.addEventListener("click", e => { const b = e.target.closest("button[data-ano]"); if (b) mostra(b.dataset.ano); });
+  const ini = box.querySelector('button[aria-selected="true"]'); mostra(ini ? ini.dataset.ano : "todos");
+});

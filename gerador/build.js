@@ -999,6 +999,8 @@ const n=document.querySelector(".eg-n"),it=[...document.querySelectorAll("#l-eg>
 }
 
 // ---------- Páginas dos docentes ----------
+// Ano de entrada no programa quando a Coleta CAPES (que começa em 2021) não mostra: a Profa. Jeane está desde a abertura, em 2019.
+const ENTRADA = { "Jeane Aparecida Rombi de Godoy": 2019 }, FICHA_2025 = D("FICHA_2025");
 {
   const R = globalThis.__REDE, PL_CAT = D("PL_CAT"), CAT = Object.fromEntries([...PL_CAT.bib, ...PL_CAT.tec].map(c => [c[0], c[1]]));
   const PES_T = { dis: "Discente", egr: "Egresso", pos: "Pós-doutorado" };
@@ -1013,7 +1015,21 @@ const n=document.querySelector(".eg-n"),it=[...document.querySelectorAll("#l-eg>
     const dis = PESSOAS.filter(p => (p.c === "discente" || p.c === "pos-doc") && (mesmo(p.or) || mesmo(p.co))).sort((a, b) => a.n.localeCompare(b.n, "pt-BR"));
     const prj = PROJ.filter(p => (p.docs || []).some(mesmo) || mesmo(p.coord)).sort((a, b) => (b.sit === "Em andamento") - (a.sit === "Em andamento") || b.ini - a.ini);
     const liv = LIVROS.filter(l => l.org.split("; ").some(mesmo)).sort((a, b) => b.ano - a.ano);
-    const arts = [...(d.f.arts || [])].sort((a, b) => b[0] - a[0]);
+    // Artigos: 2021–2024 da Coleta CAPES (só anos em que o docente estava no programa) e, desde 2025, OpenAlex por ORCID (com DOI).
+    const yD = BASE.anoDoc[d.n], k0 = yD ? yD.ar.findIndex(v => v !== null) : -1;
+    const entrada = ENTRADA[d.n] || (k0 >= 0 ? +BASE.anos[k0] : 2025);
+    const vistos = new Set(), chaveT = t => semAc(String(t)).toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 60);
+    const arts = [...(d.f.arts || []).map(a => ({ ano: +a[0], t: a[1], rev: a[2], issn: a[3], doi: "" })),
+      ...(FICHA_2025[d.n] || []).filter(x => x.cat === "per").map(x => ({ ano: +x.ano, t: x.titulo, rev: x.periodico, issn: "", doi: x.doi || "" }))]
+      .filter(a => a.ano >= entrada && !vistos.has(chaveT(a.t)) && vistos.add(chaveT(a.t)))
+      .sort((a, b) => b.ano - a.ano || titulo(a.t).localeCompare(titulo(b.t), "pt-BR"));
+    const anosArt = Array.from({ length: 2026 - entrada + 1 }, (_, j) => entrada + j);
+    const artLi = a => { const tt = titulo(a.t), href = a.doi || `https://scholar.google.com/scholar?q=${encodeURIComponent('"' + tt + '"')}`;
+      return `<li data-ano="${a.ano}"><span class="tag">${a.ano}</span> <a class="art-t" href="${esc(href)}" target="_blank" rel="noopener">${esc(tt)}</a> <span class="meta">${esc(a.rev)}${a.issn ? " · ISSN " + esc(a.issn) : ""}</span> <a class="art-lk" href="${esc(href)}" target="_blank" rel="noopener">${a.doi ? "Abrir pelo DOI ↗" : "Localizar no Google Acadêmico ↗"}</a></li>`; };
+    const ultAno = arts.length ? arts[0].ano : 2026;
+    const artHtml = `<div class="ano-abas" data-filtro-ano="art-${slugN(d.n)}" role="tablist" aria-label="Artigos por ano">${anosArt.map(y => { const n = arts.filter(a => a.ano === y).length; return `<button type="button" role="tab" data-ano="${y}" aria-selected="${y === ultAno}">${y} <small>${n}</small></button>`; }).join("")}<button type="button" role="tab" data-ano="todos" aria-selected="false">Todos <small>${arts.length}</small></button></div>
+<ul class="lista card art-lista" id="art-${slugN(d.n)}">${arts.map(artLi).join("")}<li class="art-vazio" hidden>Nenhum artigo registrado neste ano.${entrada < 2021 ? " A base do site começa em 2021 (Coleta CAPES); os anos anteriores entram quando o Lattes completo for carregado." : ""}</li></ul>
+<p class="meta">Desde ${entrada}, ano de entrada no programa. 2021–2024: Coleta CAPES; desde 2025: OpenAlex pelo ORCID, com DOI. Quando não há DOI, o link procura o título no Google Acadêmico.</p>`;
     const bks = BANCAS.filter(b => b.banca.some(m => mesmo(m[0])) || mesmo(b.or) || mesmo(b.co));
     const links = [["Lattes", d.lat], ["ORCID", d.orc], ...(d.f.links || []).filter(l => !/lattes|orcid/i.test(l[0]))].filter(l => l[1]);
     const oriLi = p => `<li><b>${esc(p.n)}</b> <span class="meta">${p.c === "egresso" ? "defesa em " + esc(p.de) : p.c === "pos-doc" ? "pós-doutorado desde " + esc(p.in) : "turma " + esc(p.in)}${mesmo(p.co) ? " · coorientação" : ""}</span>${p.ti ? `<div>${p.re ? ext(p.re, esc(titulo(p.ti))) : esc(titulo(p.ti))}</div>` : ""}</li>`;
@@ -1036,7 +1052,7 @@ ${d.f.form && d.f.form.length ? `<section class="blk" id="formacao" aria-labelle
 ${sec("orientacoes", "Orientações", egr.length + dis.length, `<div class="grid g2">${egr.length ? `<div class="card"><h3>Concluídas</h3><ul class="lista">${egr.map(oriLi).join("")}</ul></div>` : ""}${dis.length ? `<div class="card"><h3>Em curso</h3><ul class="lista">${dis.map(oriLi).join("")}</ul></div>` : ""}</div>`)}
 ${sec("projetos", "Projetos", prj.length, `<ul class="lista card">${mais(prj, 6, p => `<li><span class="tag${p.sit === "Em andamento" ? " ok" : ""}">${esc(p.sit)}</span><span class="tag">${esc(p.t)}</span> <b>${esc(p.tit)}</b><div class="meta">${p.ini}${p.fim === "Atual" ? " – atual" : p.fim ? "–" + esc(p.fim) : ""} · Coordenação: ${nomeLink(p.coord || "não informada")}</div></li>`)}</ul>`)}
 ${sec("livros", "Livros e anais", liv.length, `<ul class="lv-rolo">${liv.map(l => `<li><a href="livros.html" title="${esc(l.t + (l.v ? " · " + l.v : ""))}">${capaLivro(l)}<span>${esc(l.t)}${l.v ? " · " + esc(l.v) : ""}</span></a></li>`).join("")}</ul>`)}
-${sec("artigos", "Artigos em periódicos", arts.length, `<ul class="lista card">${mais(arts, 8, a => `<li><span class="tag">${esc(a[0])}</span> ${esc(titulo(a[1]))} <span class="meta">${esc(a[2])}${a[3] ? " · ISSN " + esc(a[3]) : ""}</span></li>`)}</ul>`)}
+${sec("artigos", "Artigos em periódicos", arts.length, artHtml)}
 ${sec("producao", "Produção por tipo", obras.length, `<div class="card dc-barras">${catL.map(([c, n]) => `<div><span>${esc(CAT[c] || c)}</span><i style="--w:${Math.round(n / maxCat * 100)}%"></i><b>${n}</b></div>`).join("")}</div><p class="meta">Produção declarada no Lattes de 2021 a 2026. Lista completa e filtros no <a href="mapa.html?foco=${i}#lista">mapa da produção</a> e no ${ext(dados("docentes/" + encodeURIComponent(d.n)), "PPGAU em dados")}.</p>`)}
 ${sec("rede", "Rede de colaboração", topD.length + topA.length, `<div class="grid g2">${topD.length ? `<div class="card"><h3>Com outros docentes</h3><ol class="rd-l">${topD.map(([j, n]) => `<li>${nomeLink(R.doc[j].n)} <span class="meta">${n} ${n > 1 ? "obras" : "obra"}</span></li>`).join("")}</ol></div>` : ""}${topA.length ? `<div class="card"><h3>Com discentes, egressos e pós-docs</h3><ol class="rd-l">${topA.map(([k, n]) => `<li>${esc(R.pes[k][0])} <span class="meta">${PES_T[R.pes[k][1]]} · ${n} ${n > 1 ? "obras" : "obra"}</span></li>`).join("")}</ol></div>` : ""}</div><p><a class="btn sec" href="mapa.html?foco=${i}">Ver a rede no mapa da produção ${ICO.seta}</a></p>`)}
 ${sec("bancas", "Bancas divulgadas", bks.length, `<ul class="lista card">${bks.map(b => `<li><span class="tag">${cuiaba(b.ini).getUTCDate()}/${cuiaba(b.ini).getUTCMonth() + 1}/${cuiaba(b.ini).getUTCFullYear()}</span> <b>${esc(b.al)}</b> · ${esc(b.ti)} <span class="meta">${mesmo(b.or) ? "orientação" : mesmo(b.co) ? "coorientação" : "membro da banca"}</span></li>`).join("")}</ul><p><a href="bancas.html">Todas as bancas →</a></p>`)}
