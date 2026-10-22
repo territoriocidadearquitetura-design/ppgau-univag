@@ -171,6 +171,7 @@ const AJUSTE = { "1º Seminário Nacional sobre a Educação Ambiental": { pagin
     abrangencia: "nacional e internacional, com comissão de Brasil, Espanha, Argentina, Portugal e Guatemala", parcerias: ["img/eventos/paisagem-2025-parcerias.jpg", 743, 832] },
   "1st International Congress Landscape": { oculto: true },
   "2º Simpósio Brasileiro \"Território": { pagina: "https://www.even3.com.br/e/simposio-territorio-2024-446534", banner: ["img/eventos/territorio-2024.jpg", 1100, 440] },
+  "IV Encontro Técnico e Científico": { pagina: "https://www.even3.com.br/e/cidadesverdes2024-412828", banner: ["img/eventos/cidades-verdes-2024.jpg", 1100, 440] },
   "Tchá Pesquisa": { pagina: "https://www.even3.com.br/e/tcha-pesquisa-431418", banner: ["img/eventos/tcha-2024.jpg", 1100, 440], anais: { link: "docs/anais-tcha-pesquisa.pdf" } },
   "II Latin American Symposium": { pagina: "https://www.even3.com.br/e/city-architecture-and-sustainability-2024-427680", banner: ["img/eventos/latin-american-2024.jpg", 1100, 440] },
   "II Congresso Brasileiro \"Mudanças": { pagina: "https://www.even3.com.br/e/congresso-resilienciaurbana2025", banner: ["img/eventos/resiliencia-2025.jpg", 1100, 440] },
