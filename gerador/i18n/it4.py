@@ -38,7 +38,7 @@ IT4 = {
 779: "Produzione dichiarata nel Curriculum Lattes dei docenti, contata una volta per opera anche quando gli autori sono più docenti.",
 780: "Per tipo", 781: "Per anno",
 782: ", periodico trimestrale del PPGAU UNIVAG. ISSN 2965-6125, Qualis B2, DOI in tutti gli articoli. 11 numeri pubblicati dal 2023.",
-783: "Indicizzazione e visibilità: ISSN Portal, Crossref (DOI), Google Scholar, OpenAlex, Sudoc/ABES, Scilit, Semantic Scholar, Naver Academic, ROAD.",
+783: "Indicizzazione e visibilità: ISSN Portal, Crossref (DOI), Google Scholar, OpenAlex, Sudoc/ABES, Scilit, Semantic Scholar, ROAD.",
 784: "Eventi del programma",
 785: "PPGAU UNIVAG · Av. Dom Orlando Chaves, 2.655, Cristo Rei, Várzea Grande, MT · (65) 3688-6110. Organizzazione e impaginazione del sito e della relazione: Prof.ssa Dott.ssa Sandra Medina Benini (PPGAU/UNIVAG, 2026).",
 786: "Periodico scientifico del PPGAU UNIVAG · ISSN 2965-6125",
