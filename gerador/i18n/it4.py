@@ -40,7 +40,7 @@ IT4 = {
 782: ", periodico trimestrale del PPGAU UNIVAG. ISSN 2965-6125, Qualis B2, DOI in tutti gli articoli. 11 numeri pubblicati dal 2023.",
 783: "Indicizzazione e visibilità: ISSN Portal, Crossref (DOI), Google Scholar, OpenAlex, Sudoc/ABES, Scilit, Semantic Scholar, ROAD.",
 784: "Eventi del programma",
-785: "PPGAU UNIVAG · Av. Dom Orlando Chaves, 2.655, Cristo Rei, Várzea Grande, MT · (65) 3688-6110. Organizzazione e impaginazione del sito e della relazione: Prof.ssa Dott.ssa Sandra Medina Benini (PPGAU/UNIVAG, 2026).",
+785: "PPGAU UNIVAG · Av. Dom Orlando Chaves, 2.655, Cristo Rei, Várzea Grande, MT · (65) 3688-6110. Sviluppo, programmazione e implementazione del sito web istituzionale e della relazione: Prof.ssa Dott.ssa Sandra Medina Benini (PPGAU/UNIVAG, 2026).",
 786: "Periodico scientifico del PPGAU UNIVAG · ISSN 2965-6125",
 787: "Rivista trimestrale sul progetto, la gestione e la produzione dello spazio urbano, con particolare attenzione agli interventi regionali e locali e ai processi sostenibili. Un ponte tra conoscenza tecnica, pratica professionale e mondo accademico.",
 788: "Invia un articolo", 789: "Leggi tutti i numeri", 790: "Quadriennio 2021–2024", 791: "numeri pubblicati", 792: "3 volumi, dal 2023 al 2025",
