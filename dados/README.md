@@ -10,4 +10,4 @@ Portal de transparência e autoavaliação do Programa de Pós-Graduação Stric
 As informações deste portal pertencem ao PPGAU/UNIVAG.
 
 Coordenação do programa: Profa. Dra. Jeane Aparecida Rombi de Godoy · Coordenação adjunta: Prof. Dr. Angelo Palmisano
-Desenvolvimento e organização do site: Profa. Dra. Sandra Medina Benini
+Desenvolvimento, programação e implementação do website institucional: Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)

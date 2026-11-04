@@ -240,6 +240,13 @@ textarea { min-height: 96px; resize: vertical; }
 .srow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) 92px; gap: 6px 14px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); }
 .srow:first-of-type { border-top: 0; }
 .srow .lab { font-size: 14px; min-width: 0; }
+.vcols { display: grid; grid-template-columns: repeat(var(--nc, 5), 1fr); gap: 6px; height: 96px; align-items: stretch; border-bottom: 1px solid var(--muted); padding: 0 4px; }
+.vcols .vc { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; position: relative; cursor: default; min-width: 0; }
+.vcols .vp { font-size: 11px; font-weight: 700; color: var(--ink-2); line-height: 1; padding-bottom: 3px; }
+.vcols .vb { width: 70%; max-width: 34px; border-radius: 3px 3px 0 0; flex: 0 0 auto; }
+.vcols .vx { position: absolute; bottom: -17px; font-size: 11px; color: var(--muted); }
+.srow:has(.vcols) { padding-bottom: 24px; }
+.vcols.empty { background: repeating-linear-gradient(45deg, var(--line) 0 2px, transparent 2px 6px); }
 .stack { display: flex; gap: 2px; height: 16px; min-width: 0; }
 .stack span { border-radius: 2px; min-width: 2px; cursor: default; }
 .stack.empty { background: repeating-linear-gradient(45deg, var(--line) 0 2px, transparent 2px 6px); border-radius: 2px; }
@@ -502,13 +509,13 @@ h3.sub { font-size: 13px; font-family: var(--f-body); font-weight: 700; letter-s
 .hbars i.b, .leg i.b { background: #02205f; } .hbars i.t, .leg i.t { background: #febf01; } .hbars i.o, .leg i.o { background: #9aa6c2; }
 .leg { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; font-size: 13px; color: var(--ink-2); }
 .leg span { display: inline-flex; align-items: center; gap: 6px; } .leg i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
-.stack { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; height: 200px; align-items: end; margin-top: 12px; }
-.stack .sc { display: grid; grid-template-rows: auto 1fr auto; height: 100%; justify-items: center; gap: 6px; }
-.stack .t { align-self: end; width: 46%; max-width: 64px; display: flex; flex-direction: column-reverse; gap: 2px; border-radius: 6px 6px 0 0; overflow: hidden; min-height: 4px; }
-.stack { background: repeating-linear-gradient(to top, transparent 0 calc(25% - 1px), color-mix(in srgb, var(--line) 70%, transparent) calc(25% - 1px) 25%); border-bottom: 1px solid var(--muted); padding: 0 4px; }
-.stack .v { font-weight: 700; } .stack .x { font-size: 13px; color: var(--muted); }
-.stack i.p0, .leg i.p0 { background: #02205f; } .stack i.p1, .leg i.p1 { background: #4a6aae; } .stack i.p2, .leg i.p2 { background: #febf01; } .stack i.p3, .leg i.p3 { background: #9aa6c2; }
-.stack i { display: block; }
+.pstack { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; height: 200px; align-items: end; margin-top: 12px; }
+.pstack .sc { display: grid; grid-template-rows: auto 1fr auto; height: 100%; justify-items: center; gap: 6px; }
+.pstack .t { align-self: end; width: 46%; max-width: 64px; display: flex; flex-direction: column-reverse; gap: 2px; border-radius: 6px 6px 0 0; overflow: hidden; min-height: 4px; }
+.pstack { background: repeating-linear-gradient(to top, transparent 0 calc(25% - 1px), color-mix(in srgb, var(--line) 70%, transparent) calc(25% - 1px) 25%); border-bottom: 1px solid var(--muted); padding: 0 4px; }
+.pstack .v { font-weight: 700; } .pstack .x { font-size: 13px; color: var(--muted); }
+.pstack i.p0, .leg i.p0 { background: #02205f; } .pstack i.p1, .leg i.p1 { background: #4a6aae; } .pstack i.p2, .leg i.p2 { background: #febf01; } .pstack i.p3, .leg i.p3 { background: #9aa6c2; }
+.pstack i { display: block; }
 .kpi[data-ir] { cursor: pointer; transition: transform .15s, box-shadow .15s; } .kpi[data-ir]:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(2,32,95,.18); }
 @media (max-width: 560px) { .hb { grid-template-columns: minmax(0, 1fr) 3em; } .hb .r { grid-column: 1 / -1; } }
 .qhead { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: #02205f; color: #fff; }
@@ -582,7 +589,7 @@ body:has(.kpis) header.band { padding-bottom: 56px; }
 }
 @media (max-width: 640px) {
   .srow { grid-template-columns: minmax(0, 1fr) 80px; }
-  .srow .stack { grid-column: 1 / -1; grid-row: 2; }
+  .srow .stack { grid-column: 1 / -1; grid-row: 2; } .srow .vcols { grid-column: 1 / -1; grid-row: 2; }
   .bar { grid-template-columns: minmax(0, 1fr) 64px; }
   .bar .track { grid-column: 1 / -1; grid-row: 2; }
 }
@@ -778,7 +785,7 @@ details.mdet > summary::-webkit-details-marker { display: none; }
   .pjan button { padding: 8px; font-size: 14px; } .pjan button b { font-size: 10px; }
   .lwrap { overflow-x: auto; -webkit-overflow-scrolling: touch; } .lwrap .lchart { min-width: 620px; }
   .vbars { height: 170px; gap: 6px; } .vbars .vb .v { font-size: 13px; } .vbars .vb .x { font-size: 11px; }
-  .stack { height: 160px; gap: 8px; }
+  .pstack { height: 160px; gap: 8px; }
   .rede h4 { font-size: 17px; } .rede-n b { font-size: 22px; }
   .mh h4 { font-size: 16px; }
   table { font-size: 13px; }
@@ -1050,7 +1057,7 @@ header .pdfbar .pdf-b.forte { background: #fff; color: #02205f; border-color: #f
   .fonte { font-size: 11px !important; color: #666 !important; }
   .dim { color: #02205f !important; }
   /* Gráficos inteiros na mesma folha e sem o fundo de grade (no PDF ele saía rosa). */
-  .vbars, .stack:not(.empty) { background: none !important; border-bottom: 1px solid #c9cfdb; }
+  .vbars, .pstack { background: none !important; border-bottom: 1px solid #c9cfdb; }
   .vbars { height: 140px !important; }
   .vbars, .cols > .card, .card:has(.vbars), .card:has(.hbar), .qdist { break-inside: avoid !important; }
   .rel-capa { min-height: 320mm !important; }
@@ -1220,7 +1227,7 @@ header .pdfbar .pdf-b.forte { background: #fff; color: #02205f; border-color: #f
     <p class="atz-top" id="atz-top"></p>
     <nav class="tabs" role="tablist">
       <button id="tab-portal" role="tab" aria-selected="true" data-tab="portal">Em dados</button>
-      <button id="tab-auto" role="tab" aria-selected="false" data-tab="responder" data-grupo="auto"><span class="ta-dot" aria-hidden="true"></span>Autoavaliação <span class="ta-badge">até 03/11</span></button>
+      <button id="tab-auto" role="tab" aria-selected="false" data-tab="responder" data-grupo="auto"><span class="ta-dot" aria-hidden="true"></span>Autoavaliação <span class="ta-badge">prorrogado até 08/11</span></button>
     </nav>
     <div class="pdfbar" id="pdfbar"><button class="pdf-b" id="pdf-pag" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a1 1 0 0 1-1-1v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1h-2M7 14h10v7H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>PDF desta página</button><button class="pdf-b forte" id="pdf-rel" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8zM14 3v5h5M9 13h6M9 17h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Relatório executivo (PDF)</button><div class="pdf-menu" id="pdf-menu" role="menu" hidden><button type="button" role="menuitem" data-rel="exec"><b>Relatório executivo</b><small>Análise escrita com gráficos e fontes</small></button><button type="button" role="menuitem" data-rel="anexo"><b>Executivo com anexos</b><small>Inclui todas as páginas do portal no final</small></button></div></div>
   </div>
@@ -1249,7 +1256,7 @@ header .pdfbar .pdf-b.forte { background: #fff; color: #02205f; border-color: #f
     <div class="rd-col rd-equipe"><h4>Responsáveis</h4>
       <dl><div><dt>Coordenação do programa</dt><dd>Profa. Dra. Jeane Aparecida Rombi de Godoy</dd></div>
       <div><dt>Coordenação adjunta</dt><dd>Prof. Dr. Angelo Palmisano</dd></div>
-      <div class="rd-dev"><dt>Desenvolvimento e organização do site</dt><dd>Profa. Dra. Sandra Medina Benini</dd></div></dl></div>
+      <div class="rd-dev"><dt>Desenvolvimento, programação e implementação do website institucional</dt><dd>Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)</dd></div></dl></div>
   </div></div>
   <div class="rd-legal"><div class="wrap">
     <p><strong>© 2026 PPGAU/UNIVAG. Todos os direitos reservados.</strong> As informações, os dados e os indicadores deste portal pertencem ao Programa de Pós-Graduação Stricto Sensu em Arquitetura e Urbanismo do UNIVAG Centro Universitário, responsável pelo seu conteúdo. Reprodução permitida para fins acadêmicos e de transparência, com citação da fonte: <em>PPGAU UNIVAG em dados</em>, PPGAU/UNIVAG.</p>
@@ -1258,20 +1265,20 @@ header .pdfbar .pdf-b.forte { background: #fff; color: #02205f; border-color: #f
 </footer>
 <div id="tip" hidden></div>
 
-<script src="questoes.js?v=20261020c"></script>
-<script src="ficha.js?v=20261020c"></script>
-<script src="portal.js?v=20261020c"></script>
-<script src="emdados.js?v=20261020c"></script>
-<script src="fichas.js?v=20261020c"></script>
-<script src="qualis.js?v=20261020c"></script>
-<script src="impacto.js?v=20261020c"></script>
-<script src="pessoas.js?v=20261020c"></script>
-<script src="historia.js?v=20261020c"></script>
-<script src="icl.js?v=20261020c"></script>
-<script src="prodlattes.js?v=20261020c"></script>
-<script src="projlattes.js?v=20261020c"></script>
-<script src="prod.js?v=20261020c"></script>
-<script src="relatorio.js?v=20261020c"></script>
+<script src="questoes.js?v=20261104"></script>
+<script src="ficha.js?v=20261104"></script>
+<script src="portal.js?v=20261104"></script>
+<script src="emdados.js?v=20261104"></script>
+<script src="fichas.js?v=20261104"></script>
+<script src="qualis.js?v=20261104"></script>
+<script src="impacto.js?v=20261104"></script>
+<script src="pessoas.js?v=20261104"></script>
+<script src="historia.js?v=20261104"></script>
+<script src="icl.js?v=20261104"></script>
+<script src="prodlattes.js?v=20261104"></script>
+<script src="projlattes.js?v=20261104"></script>
+<script src="prod.js?v=20261104"></script>
+<script src="relatorio.js?v=20261104"></script>
 <script>
 "use strict";
 const $view = document.getElementById("view");
@@ -1468,7 +1475,7 @@ function renderEscolha() {
   $view.innerHTML = `
     ${PILOTO ? `<div class="notice" style="margin-bottom:16px">Aplicação piloto. As respostas enviadas por este link ficam marcadas como piloto e não entram nos resultados finais.</div>` : ""}
     <div class="prose">
-      <div class="notice prazo" style="margin-bottom:18px"><b>Prazo final de preenchimento:</b> <span class="data">3 de novembro de 2026</span></div>
+      <div class="notice prazo" style="margin-bottom:18px"><b>Prazo prorrogado:</b> <span class="data">até 8 de novembro de 2026</span></div>
       <h2 style="font-size:26px;">Qual é o seu vínculo com o programa?</h2>
       <p class="muted">Escolha o questionário correspondente. ${LINK_BANCO ? "Funciona no celular e não exige login. Você informa nome e e-mail só para a lista de participação; as respostas são gravadas em outra tabela, sem identificação e sem vínculo com essa lista." : "Estudantes, docentes, pós-doutorandos e egressos respondem sem identificação."}</p>
     </div>
@@ -1871,10 +1878,11 @@ const POSITIVO = { S: [2, 3, 4], F: [3, 4], M: [2], C: [0] };
 function panoramaTemas(p, dp) {
   return p.secoes.map(s => {
     let pos = 0, val = 0;
-    const soma = (scale, cats) => { const E = ESCALAS[scale]; cats.slice(0, E.validos).forEach((c, i) => { val += c.n; if ((POSITIVO[scale] || []).includes(i)) pos += c.n; }); };
+    // inv: pergunta sobre um problema ("com que frequência X prejudica..."), em que nunca ou raramente é o resultado bom.
+    const soma = (scale, cats, inv) => { const E = ESCALAS[scale]; const bom = inv && scale === "F" ? [0, 1] : POSITIVO[scale] || []; cats.slice(0, E.validos).forEach((c, i) => { val += c.n; if (bom.includes(i)) pos += c.n; }); };
     s.qs.forEach(q => {
-      if (q.type === "scale") soma(q.scale, contar(q, dp).cats);
-      else if (q.type === "matrix") q.items.forEach((_, ii) => soma(q.scale, contarItem(q, ii, dp).cats));
+      if (q.type === "scale") soma(q.scale, contar(q, dp).cats, q.inv);
+      else if (q.type === "matrix") q.items.forEach((_, ii) => soma(q.scale, contarItem(q, ii, dp).cats, q.inv));
     });
     const abertas = s.qs.filter(q => q.type === "open").reduce((a, q) => a + dp.filter(d => typeof d.respostas[q.key] === "string" && d.respostas[q.key].trim()).length, 0);
     return { s, pct: val ? Math.round(100 * pos / val) : null, val, abertas };
@@ -1884,7 +1892,7 @@ function nivelTema(pct) { return pct == null ? ["–", "Sem perguntas de escala"
 function tabelaPanorama(p, dp) {
   const temas = panoramaTemas(p, dp);
   return `<div class="table-wrap"><table class="ac-pan"><thead><tr><th>Tema</th><th>Avaliação positiva</th><th>Situação</th><th>Respostas de escala</th><th>Comentários</th></tr></thead><tbody>${temas.map(t => { const [ic, rot, cl] = nivelTema(t.pct); return `<tr><td><span class="small muted">${esc(t.s.id)} · ${esc(t.s.dim)}</span><br><b>${esc(t.s.titulo)}</b></td><td>${t.pct == null ? `<span class="muted">–</span>` : `<div class="ac-bar"><span style="width:${t.pct}%"></span></div><b>${t.pct}%</b>`}</td><td><span class="ac-st ${cl}"><i aria-hidden="true">${ic}</i>${rot}</span></td><td class="n">${t.val || "–"}</td><td class="n">${t.abertas || "–"}</td></tr>`; }).join("")}</tbody></table></div>
-    <p class="fonte">Avaliação positiva: parte das respostas válidas nas alternativas favoráveis (satisfação: satisfatório ou mais; frequência: frequentemente ou sempre; mudança: melhorou; condição: disponível e suficiente). "Não sei" e "não se aplica" ficam fora da conta. Bem avaliado: 70% ou mais; atenção: de 50% a 69%; crítico: abaixo de 50%.</p>`;
+    <p class="fonte">Avaliação positiva: parte das respostas válidas nas alternativas favoráveis (satisfação: satisfatório ou mais; frequência: frequentemente ou sempre, ou nunca e raramente nas perguntas sobre problemas; mudança: melhorou; condição: disponível e suficiente). "Não sei" e "não se aplica" ficam fora da conta. Bem avaliado: 70% ou mais; atenção: de 50% a 69%; crítico: abaixo de 50%.</p>`;
 }
 function renderAcompanhar() {
   syncPdf();
@@ -1905,7 +1913,7 @@ function renderAcompanhar() {
     st.verAbertas = false;
   }
   $view.innerHTML = abasPainel() + topo + `
-    <div class="prose" style="margin-bottom:14px"><h2 style="font-size:24px">Acompanhar respostas</h2><p class="muted">Respostas que já chegaram, sem identificação: gráficos das perguntas fechadas, panorama de cada tema e os comentários das perguntas abertas, organizados por questão. Uso interno da coordenação até o fim da coleta, em 3 de novembro de 2026.${d ? ` Atualizado às ${new Date(d.atualizado).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}.` : ""}</p></div>
+    <div class="prose" style="margin-bottom:14px"><h2 style="font-size:24px">Acompanhar respostas</h2><p class="muted">Respostas que já chegaram, sem identificação: gráficos das perguntas fechadas, panorama de cada tema e os comentários das perguntas abertas, organizados por questão. Uso interno da coordenação até o fim da coleta, prorrogada até 8 de novembro de 2026.${d ? ` Atualizado às ${new Date(d.atualizado).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}.` : ""}</p></div>
     <div class="tiles">${PUBLICOS.map(x => { const k = nDe(x.id); return `<button class="tile" data-acp="${x.id}" aria-pressed="${x.id === p.id}"><span class="dim">Questionário ${x.id}</span><span class="num">${d ? k : "…"}${ESPERADOS_N[x.id] ? `<span class="de">de ${ESPERADOS_N[x.id]}</span>` : ""}</span><span class="lbl">${esc(x.curto)}</span><span class="small ${k >= min ? "" : "muted"}">${!d ? "" : k >= min ? "gráficos liberados" : `a partir de ${min} respostas`}</span></button>`; }).join("")}</div>
     ${corpo}`;
   ligarAbasPainel();
@@ -1925,7 +1933,7 @@ function imprimirRelatorioParcial() {
   st.verAbertas = false; st.abrirTudo = false;
   const rel = document.getElementById("relatorio");
   rel.innerHTML = `<div class="part-rel rp">
-    <div class="pr-head"><img src="logo-ppgau.png" alt="PPGAU"><div><b>Autoavaliação 2026 · Relatório parcial</b><span>PPGAU/UNIVAG · uso interno da coordenação · dados de ${esc(new Date(d.atualizado).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }))} · coleta até 03/11/2026</span></div><img src="logo-univag.png" alt="UNIVAG"></div>
+    <div class="pr-head"><img src="logo-ppgau.png" alt="PPGAU"><div><b>Autoavaliação 2026 · Relatório parcial</b><span>PPGAU/UNIVAG · uso interno da coordenação · dados de ${esc(new Date(d.atualizado).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" }))} · coleta prorrogada até 08/11/2026</span></div><img src="logo-univag.png" alt="UNIVAG"></div>
     <p class="rp-aviso"><b>Relatório parcial.</b> A coleta ainda está aberta e os números vão mudar. Respostas sem identificação; questionários com menos de ${min} respostas não aparecem, para proteger o anonimato.</p>
     <table class="pr-res"><thead><tr><th>Questionário</th><th>Respostas</th><th>Convidados</th><th>Participação</th><th>Neste relatório</th></tr></thead><tbody>
       ${PUBLICOS.map(x => `<tr><td>${esc(x.id)} · ${esc(x.nome)}</td><td>${nDe(x.id)}</td><td>${ESPERADOS_N[x.id] || "–"}</td><td>${ESPERADOS_N[x.id] ? Math.round(100 * nDe(x.id) / ESPERADOS_N[x.id]) + "%" : "–"}</td><td>${nDe(x.id) >= min ? "sim" : `não (menos de ${min})`}</td></tr>`).join("")}
@@ -2219,16 +2227,18 @@ function stackHtml(c, scale, rotulo) {
   const { cats, valid, E, nresp } = c;
   const curto = l => l.startsWith("Não tenho informações") ? "Sem informação" : l.startsWith("Não tenho experiência") ? "Sem base para comparar" : l;
   const aux = cats.slice(E.validos).filter(x => x.n).map(x => `${curto(x.label)}: ${x.n}`).join(" · ");
-  const segs = valid ? cats.slice(0, E.validos).map((x, i) => x.n ? `<span style="flex:${x.n};background:${cor(scale, i)}" data-tip="${esc(rotulo)}&#10;${esc(x.label)}: ${x.n} (${pct(x.n, valid)}%)"></span>` : "").join("") : "";
+  // Barras verticais: uma coluna por alternativa válida, altura = percentual sobre as respostas válidas (0 a 100%).
+  const vals = cats.slice(0, E.validos), mx = Math.max(1, ...vals.map(x => x.n));
+  const cols = vals.map((x, i) => `<div class="vc" data-tip="${esc(rotulo)}&#10;${esc(x.label)}: ${x.n} (${pct(x.n, valid)}%)"><span class="vp">${valid && x.n ? pct(x.n, valid) + "%" : ""}</span><span class="vb" style="height:${x.n ? Math.max(3, Math.round(x.n / valid * 66)) : 0}px;background:${cor(scale, i)}"></span><span class="vx">${i + 1}</span></div>`).join("");
   const label = `${cats.slice(0, E.validos).map(x => `${x.label}: ${x.n}`).join(", ")}${aux ? "; " + aux : ""}`;
-  return { html: `<div class="stack${valid ? "" : " empty"}" role="img" aria-label="${esc(label)}">${segs}</div>`, aux, nresp };
+  return { html: `<div class="vcols${valid ? "" : " empty"}" role="img" aria-label="${esc(label)}" style="--nc:${E.validos}">${cols}</div>`, aux, nresp };
 }
 function legenda(scale) {
   const E = ESCALAS[scale];
   const nota = scale === "M" ? "Saldo = % melhorou − % piorou, sobre respostas válidas."
     : scale === "C" ? "Percentual de “Disponível e suficiente” sobre respostas válidas."
     : "Média de 1 a 5 sobre respostas válidas.";
-  return `<div class="legend">${E.opts.slice(0, E.validos).map((o, i) => `<span><i style="background:${cor(scale, i)}"></i>${esc(o)}</span>`).join("")}<span class="muted">${nota} “Não se aplica” e “Sem informação” ficam fora do cálculo.</span></div>`;
+  return `<div class="legend">${E.opts.slice(0, E.validos).map((o, i) => `<span><i style="background:${cor(scale, i)}"></i>${i + 1} ${esc(o)}</span>`).join("")}<span class="muted">${nota} “Não se aplica” e “Sem informação” ficam fora do cálculo.</span></div>`;
 }
 
 function linhaEscala(rot, n, c, scale) {
@@ -2371,7 +2381,7 @@ function renderResultados() {
   if (st.modoBanco && st.resumoErro && !st.docs.length) {
     corpo = `<div class="card empty-state"><h3>Não foi possível carregar os resultados agora</h3><p>A planilha do programa não respondeu. Tente de novo em instantes.</p><button class="btn" data-recarrega-res>Tentar de novo</button></div>`;
   } else if (st.modoBanco && st.carregado && st.resultadosFechados) {
-    corpo = `<div class="card empty-state"><h3>Coleta em andamento até <span style="color:#c62828">3 de novembro de 2026</span></h3><p>Os resultados serão divulgados ao final da coleta, para não influenciar quem ainda vai responder. Por enquanto, acompanhe acima a participação de cada grupo.</p></div>`;
+    corpo = `<div class="card empty-state"><h3>Coleta em andamento, prazo prorrogado até <span style="color:#c62828">8 de novembro de 2026</span></h3><p>Os resultados serão divulgados ao final da coleta, para não influenciar quem ainda vai responder. Por enquanto, acompanhe acima a participação de cada grupo.</p></div>`;
   } else if (st.modoBanco && st.carregado && dp.length && dp.length < 5) {
     corpo = `<div class="card empty-state"><h3>${dp.length} resposta${dp.length === 1 ? "" : "s"} de ${esc(p.nome.toLowerCase())} recebida${dp.length === 1 ? "" : "s"}</h3><p>Para proteger o anonimato, os gráficos aparecem quando este questionário tiver pelo menos cinco respostas.</p></div>`;
   } else if (!db && !st.modoBanco && st.carregado) {
@@ -2472,7 +2482,7 @@ function renderSobre() {
           <h2>Sobre a coleta</h2>
           <p>Esta plataforma reúne os questionários da Autoavaliação 2026 do programa. As respostas orientam ações de melhoria, o planejamento estratégico e a análise das condições para um doutorado em Arquitetura e Urbanismo.</p>
         </div>
-        <div class="so-prazo"><span>Prazo final</span><b>3 de novembro de 2026</b></div>
+        <div class="so-prazo"><span>Prazo prorrogado</span><b>8 de novembro de 2026</b></div>
       </section>
 
       <h3 class="so-h">Como funciona</h3>
@@ -2603,7 +2613,7 @@ function gerarRelatorio(adm, anexos) {
       <div class="rel-sec-h">Créditos e fontes</div>
       <dl><div><dt>Coordenação do programa</dt><dd>Profa. Dra. Jeane Aparecida Rombi de Godoy</dd></div>
       <div><dt>Coordenação adjunta</dt><dd>Prof. Dr. Angelo Palmisano</dd></div>
-      <div><dt>Desenvolvimento e organização</dt><dd>Profa. Dra. Sandra Medina Benini</dd></div></dl>
+      <div><dt>Desenvolvimento, programação e implementação do website institucional</dt><dd>Profa. Dra. Sandra Medina Benini (PPGAU/UNIVAG, 2026)</dd></div></dl>
       <p>As informações, os dados e os indicadores deste relatório pertencem ao Programa de Pós-Graduação Stricto Sensu em Arquitetura e Urbanismo do UNIVAG. Fontes públicas indicadas em cada seção: Plataforma Sucupira e Ficha de Avaliação CAPES, site do programa, Repositório Digital UNIVAG, Currículo Lattes, OpenAlex e Crossref.</p>
       <p>UNIVAG Centro Universitário · Av. Dom Orlando Chaves, 2.655 · Cristo Rei, Várzea Grande, MT · CEP 78118-900 · (65) 3688-6110</p>
     </section>`;
@@ -2635,7 +2645,7 @@ function imprimirParticipacao(grupos, outros) {
   const rel = document.getElementById("relatorio");
   rel.innerHTML = `
     <div class="part-rel">
-      <div class="pr-head"><img src="logo-ppgau.png" alt="PPGAU"><div><b>Autoavaliação 2026 · Lista de participação</b><span>PPGAU/UNIVAG · uso interno da coordenação · gerado em ${esc(hojeBR())} · prazo final 03/11/2026</span></div><img src="logo-univag.png" alt="UNIVAG"></div>
+      <div class="pr-head"><img src="logo-ppgau.png" alt="PPGAU"><div><b>Autoavaliação 2026 · Lista de participação</b><span>PPGAU/UNIVAG · uso interno da coordenação · gerado em ${esc(hojeBR())} · prazo prorrogado até 08/11/2026</span></div><img src="logo-univag.png" alt="UNIVAG"></div>
       <table class="pr-res"><thead><tr><th>Categoria</th><th>Responderam</th><th>Pendentes</th><th>Total</th><th>Participação</th></tr></thead><tbody>
         ${grupos.map(g => `<tr><td>${esc(g.t)}</td><td>${g.ok}</td><td>${g.l.length - g.ok}</td><td>${g.l.length}</td><td>${g.l.length ? Math.round(100 * g.ok / g.l.length) : 0}%</td></tr>`).join("")}
         <tr class="pr-tot"><td>Total</td><td>${ok}</td><td>${tot - ok}</td><td>${tot}</td><td>${tot ? Math.round(100 * ok / tot) : 0}%</td></tr>

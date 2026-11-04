@@ -29,8 +29,8 @@ const PUBLICOS = [
         multi("4", "Quais fatores influenciam sua escolha entre participação presencial e on-line?", ["Distância até o UNIVAG", "Custos de deslocamento e hospedagem", "Horários de trabalho", "Responsabilidades de cuidado familiar", "Condições de saúde ou acessibilidade", "Disponibilidade de conexão e equipamentos", "Preferência pela participação presencial", "Preferência pela participação on-line"], 3, { outro: true }),
         one("5", "Qual equipamento utiliza principalmente para acompanhar as atividades on-line?", ["Computador de uso próprio", "Computador compartilhado", "Tablet", "Telefone celular", "Outro", "Não participo on-line"]),
         one("6", "O equipamento disponível permite acompanhar as aulas e realizar as atividades propostas?", ["Sim", "Parcialmente", "Não", "Não se aplica"]),
-        F("7", "Com que frequência sua conexão à internet prejudica sua participação?"),
-        F("8", "Com que frequência ruídos, interrupções ou ausência de espaço adequado prejudicam sua participação on-line?")
+        { ...F("7", "Com que frequência sua conexão à internet prejudica sua participação?"), inv: true },
+        { ...F("8", "Com que frequência ruídos, interrupções ou ausência de espaço adequado prejudicam sua participação on-line?"), inv: true }
       ]},
       { id: "A2", titulo: "Qualidade dos encontros híbridos", dim: "Infraestrutura institucional",
         nota: "Esta seção trata da participação on-line. Ela é dispensada para quem participa presencialmente em todos ou quase todos os encontros.",

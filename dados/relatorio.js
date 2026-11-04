@@ -195,7 +195,7 @@ function relExecPublico() {
     rxCaixa("info", "Registros de impacto no portal", imp.map(x => `${esc(x.titulo)}${x.ano ? ` (${esc(x.ano)})` : ""}`)));
 
   add("Autoavaliação 2026",
-    rxP(`A autoavaliação 2026 está <b>em coleta até 3 de novembro de 2026</b>. Os questionários são anônimos e separados por público: estudantes, docentes, pós-doutorandos, egressos, equipe técnica e gestão. A lista de participantes e as respostas ficam em tabelas diferentes, sem vínculo entre elas.`,
+    rxP(`A autoavaliação 2026 está <b>em coleta, com prazo prorrogado até 8 de novembro de 2026</b>. Os questionários são anônimos e separados por público: estudantes, docentes, pós-doutorandos, egressos, equipe técnica e gestão. A lista de participantes e as respostas ficam em tabelas diferentes, sem vínculo entre elas.`,
       `Os resultados só são publicados depois do encerramento da coleta e apenas para questionários com cinco respostas ou mais, para que ninguém seja identificado. Eles vão orientar o planejamento estratégico do programa e o relatório do Coleta CAPES de 2026.`) +
     rxCaixa("info", "Situação", [esc(at.coleta), "Resultados por tema e por questionário: aba Autoavaliação do portal, após o encerramento."]));
 

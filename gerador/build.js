@@ -200,7 +200,7 @@ const P = [];
   const lado = `<div class="chamadas" aria-roledescription="carrossel" aria-label="Chamadas do programa">
 <div class="ch-item ch-agenda" id="agenda-viva"><div class="ch-cab"><span class="ao-vivo"><i></i>Agenda do semestre</span><a href="disciplinas.html">Ver tudo</a></div><ol class="ag-lista"><li class="ag-fim">Veja as próximas aulas em <a href="disciplinas.html">Disciplinas e horários</a>.</li></ol></div>
 <div class="ch-item"><span class="ch-tag">4 a 6 de novembro de 2026</span><h2>3º Simpósio Brasileiro Arquitetura, Cidade e Território</h2><p class="ch-cont" data-contagem="2026-11-04T09:00:00-04:00"></p><a class="btn" href="https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/" target="_blank" rel="noopener">Inscrições e programação ${ICO.seta}</a></div>
-<div class="ch-item"><span class="ch-tag">Até 03/11/2026</span><h2>Autoavaliação 2026</h2><p>Questionário anônimo para estudantes, egressos, docentes e equipe. Leva poucos minutos.</p><a class="btn" href="dados/#/responder">Responder ${ICO.seta}</a></div>
+<div class="ch-item"><span class="ch-tag">Prorrogado até 08/11/2026</span><h2>Autoavaliação 2026</h2><p>Questionário anônimo para estudantes, egressos, docentes e equipe. Leva poucos minutos.</p><a class="btn" href="dados/#/responder">Responder ${ICO.seta}</a></div>
 <div class="ch-item"><span class="ch-tag">Revista Vernácula · Qualis B2</span><h2>Publique na Vernácula</h2><p>Revista trimestral do programa, com DOI em todos os artigos. Conheça os 11 números publicados.</p><a class="btn" href="revista.html">Conhecer a revista ${ICO.seta}</a></div>
 <div class="ch-pontos">${["Agenda", "Simpósio", "Autoavaliação", "Revista"].map((l, i) => `<button type="button" aria-label="${l}"><span>${l}</span></button>`).join("")}</div>
 </div>`;
@@ -209,7 +209,7 @@ const P = [];
     desc: "Programa de Pós-Graduação Stricto Sensu em Arquitetura e Urbanismo do UNIVAG, Várzea Grande, MT. Mestrado acadêmico, nota CAPES 3.",
     hero: { kpis: true, eyebrow: "Mestrado acadêmico · Várzea Grande, MT · Nota CAPES 3", h1: "Programa de Pós-Graduação em Arquitetura e Urbanismo",
       p: "Área de concentração Arquitetura, Cidade e Território. Aulas híbridas às sextas à noite e aos sábados, em 24 meses, no UNIVAG Centro Universitário.",
-      btns: `<a class="auto-dest" href="dados/#/responder"><span class="ad-ic">${ICO.academico}</span><span><b>Autoavaliação 2026 · responda até 03/11</b><small>Questionário anônimo para estudantes, egressos, docentes e equipe. Leva poucos minutos.</small></span><span class="ad-seta">${ICO.seta}</span></a>${BUSCA_VIVA()}`, lado },
+      btns: `<a class="auto-dest" href="dados/#/responder"><span class="ad-ic">${ICO.academico}</span><span><b>Autoavaliação 2026 · prazo prorrogado até 08/11</b><small>Questionário anônimo para estudantes, egressos, docentes e equipe. Leva poucos minutos.</small></span><span class="ad-seta">${ICO.seta}</span></a>${BUSCA_VIVA()}`, lado },
     js: "globalThis.AGENDA = " + JSON.stringify(AGENDA) + ";",
     corpo: `
 <div class="kpis"><div class="kpi gold"><span>Nota CAPES</span><b>3</b><small>Quadrienal 2025 · 2021–2024</small></div>
@@ -228,7 +228,7 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
 </a>
 <div class="grid g2 dest2">
 <a class="card dest vern vn-home" href="revista.html"><div><span class="eyebrow">Periódico do programa · Qualis B2</span><h3>Revista Vernácula · Territórios Contemporâneos</h3><p>Publicação trimestral do PPGAU sobre arquitetura, cidade e território. ISSN 2965-6125, 11 números desde 2023, DOI em todos os artigos.</p><span class="btn">Conhecer a revista</span></div><div class="vn-mini" aria-hidden="true"><!--VERN_CAPAS--></div></a>
-<a class="card dest auto" href="dados/#/responder"><span class="eyebrow">Em coleta até 03/11/2026</span><h3>Autoavaliação 2026</h3><p>Questionário anônimo para estudantes, egressos, docentes, pós-doutorandos, equipe técnica e gestão. Sua resposta orienta o planejamento do programa.</p><span class="btn">Responder agora</span></a>
+<a class="card dest auto" href="dados/#/responder"><span class="eyebrow">Prorrogado: em coleta até 08/11/2026</span><h3>Autoavaliação 2026</h3><p>Questionário anônimo para estudantes, egressos, docentes, pós-doutorandos, equipe técnica e gestão. Sua resposta orienta o planejamento do programa.</p><span class="btn">Responder agora</span></a>
 </div></section>
 
 <section class="blk lv-home" aria-labelledby="h-lvh"><div class="lv-home-cab"><h2 id="h-lvh">Livros e anais</h2><a class="btn sec" href="livros.html">Ver a estante completa ${ICO.seta}</a></div>
@@ -1389,7 +1389,7 @@ for (const b of proxBancas) fs.writeFileSync(path.join(OUT, `banca-${slugN(b.al)
   B.push(...(globalThis.__DOCS_IDX || []));
   for (const b of BANCAS) B.push(["Banca", b.al + ": " + b.ti, (proxBancas.includes(b) ? "Agendada · " : "Realizada · ") + dataLonga(b.ini) + " · orientação " + b.or, "bancas.html", b.banca.map(m => m[0]).join(" ") + " defesa"]);
   for (const n of NOTICIAS) B.push(["Notícia", n.t, dataCurta(n.d) + " · " + n.tag, "noticias.html", n.p]);
-  B.push(["Revista", "Revista Vernácula · Territórios Contemporâneos", "ISSN 2965-6125 · Qualis B2", "revista.html"], ["Atlas", "Atlas Socioambiental da RMVRC", "Mapa interativo dos setores censitários", "https://editoraanap-tupa.github.io/atlas/"], ["Página", "Autoavaliação 2026", "Questionário anônimo, até 03/11/2026", "dados/#/responder"]);
+  B.push(["Revista", "Revista Vernácula · Territórios Contemporâneos", "ISSN 2965-6125 · Qualis B2", "revista.html"], ["Atlas", "Atlas Socioambiental da RMVRC", "Mapa interativo dos setores censitários", "https://editoraanap-tupa.github.io/atlas/"], ["Página", "Autoavaliação 2026", "Questionário anônimo, prazo prorrogado até 08/11/2026", "dados/#/responder"]);
   fs.writeFileSync(path.join(OUT, "busca-dados.js"), "globalThis.BUSCA = " + JSON.stringify(B.map(r => r.map(v => esc(v)))) + ";\n");
 }
 fs.writeFileSync(path.join(OUT, "disciplinas-dados.js"), globalThis.__CAL);
