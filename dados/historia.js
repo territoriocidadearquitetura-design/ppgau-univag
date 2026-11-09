@@ -28,7 +28,7 @@ const HIST = [
   { ano: "2026", cat: "aval", t: "Resultado da Quadrienal 2025", d: "Nota 3 mantida para o período 2021–2024, com conceito Muito Bom no quesito Programa.", f: "CAPES, Avaliação Quadrienal 2025, área Arquitetura, Urbanismo e Design" },
   { ano: "2026", cat: "inst", t: "Terceira linha de pesquisa", d: "Gestão, Inovação e Tecnologias, criada pelo Edital 05/2026. Entra na Sucupira com a Coleta 2026.", f: "Edital 05/2026 do programa" },
   { ano: "2026", cat: "aval", t: "Portaria CAPES nº 246/2026", d: "Permite que mestrado nota 3 proponha doutorado; a proposta é julgada com os dados do quadriênio em curso.", f: "Diário Oficial da União, 03/06/2026" },
-  { ano: "2026", cat: "aval", t: "Autoavaliação 2026 e portal PPGAU UNIVAG em dados", d: "Questionários para seis públicos, com coleta até 8 de novembro de 2026 (prazo prorrogado), e este portal com os dados do programa e as fontes citadas.", f: "Este portal" },
+  { ano: "2026", cat: "aval", t: "Autoavaliação 2026 e portal PPGAU UNIVAG em dados", d: "Questionários para seis públicos, com coleta até 13 de novembro de 2026 (prazo prorrogado), e este portal com os dados do programa e as fontes citadas.", f: "Este portal" },
   { ano: "2026", cat: "form", t: "Maior turma de ingressantes", d: "Vinte novos mestrandos em 2026: 13 na turma de 2026/1 e 7 na de 2026/2.", f: "Lista oficial de alunos do programa" },
   { ano: "2027", cat: "aval", t: "Proposta de doutorado", d: "Preparar regimento, matriz e edital, e submeter a proposta (APCN) se os dados sustentarem nota 4.", f: "Aba Metas para o Doutorado", plano: true },
   { ano: "2028", cat: "aval", t: "Fim do quadriênio 2025–2028", d: "Meta: chegar à nota 4 na Quadrienal, com Bom em Formação.", f: "Aba Metas 2025–2028", plano: true }

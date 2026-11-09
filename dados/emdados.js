@@ -6,7 +6,7 @@
 const ATUALIZ = {
   geral: "19/10/2026",
   secoes: { historia: "19/10/2026", programa: "19/10/2026", capes: "19/10/2026", docentes: "18/10/2026", formacao: "19/10/2026", pessoas: "19/10/2026", producao: "18/10/2026", impacto: "17/10/2026", fontes: "19/10/2026" },
-  coleta: "Autoavaliação 2026 em coleta, prazo prorrogado até 08/11/2026"
+  coleta: "Autoavaliação 2026 em coleta, prazo prorrogado até 13/11/2026"
 };
 function carimbo(id) {
   const ic = `<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
@@ -341,7 +341,7 @@ function renderEmDados(soCapesCoord) {
     <div class="pcont">
     ${atual === "inicio" ? `
       <div class="dest">
-        <div class="dcard auto"><span class="dim">Agora · participe</span><strong>Autoavaliação 2026 aberta</strong><p>Estudantes, docentes, pós-doutorandos, egressos, equipe técnica e gestão: a sua resposta orienta o planejamento do programa. Leva de 10 a 20 minutos, no celular, sem login.</p><span class="auto-prazo">Prazo prorrogado: <b>até 8 de novembro de 2026</b></span><button class="auto-btn" data-goto="responder">Responder agora →</button></div>
+        <div class="dcard auto"><span class="dim">Agora · participe</span><strong>Autoavaliação 2026 aberta</strong><p>Estudantes, docentes, pós-doutorandos, egressos, equipe técnica e gestão: a sua resposta orienta o planejamento do programa. Leva de 10 a 20 minutos, no celular, sem login.</p><span class="auto-prazo">Prazo prorrogado: <b>até 13 de novembro de 2026</b></span><button class="auto-btn" data-goto="responder">Responder agora →</button></div>
         <div class="dcard gold"><span class="dim">Destaque</span><strong>Revista Vernácula: 11 números desde 2023</strong><p>O periódico do programa, ISSN 2965-6125, Qualis B2 (2021–2024), publicou 4 números em 2023, 4 em 2024 e 3 em 2025.</p><a class="lnk" href="https://periodicos.univag.com.br/index.php/Vernacula/index" target="_blank" rel="noopener">Acessar a revista ↗</a></div>
       </div>
       <h3 class="sub">Atalhos</h3>
