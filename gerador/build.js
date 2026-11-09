@@ -199,10 +199,9 @@ const P = [];
   AGENDA.sort((a, b) => a.d.localeCompare(b.d) || a.h.localeCompare(b.h));
   const lado = `<div class="chamadas" aria-roledescription="carrossel" aria-label="Chamadas do programa">
 <div class="ch-item ch-agenda" id="agenda-viva"><div class="ch-cab"><span class="ao-vivo"><i></i>Agenda do semestre</span><a href="disciplinas.html">Ver tudo</a></div><ol class="ag-lista"><li class="ag-fim">Veja as próximas aulas em <a href="disciplinas.html">Disciplinas e horários</a>.</li></ol></div>
-<div class="ch-item"><span class="ch-tag">4 a 6 de novembro de 2026</span><h2>3º Simpósio Brasileiro Arquitetura, Cidade e Território</h2><p class="ch-cont" data-contagem="2026-11-04T09:00:00-04:00"></p><a class="btn" href="https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/" target="_blank" rel="noopener">Inscrições e programação ${ICO.seta}</a></div>
 <div class="ch-item"><span class="ch-tag">Prorrogado até 13/11/2026</span><h2>Autoavaliação 2026</h2><p>Questionário anônimo para estudantes, egressos, docentes e equipe. Leva poucos minutos.</p><a class="btn" href="dados/#/responder">Responder ${ICO.seta}</a></div>
 <div class="ch-item"><span class="ch-tag">Revista Vernácula · Qualis B2</span><h2>Publique na Vernácula</h2><p>Revista trimestral do programa, com DOI em todos os artigos. Conheça os 11 números publicados.</p><a class="btn" href="revista.html">Conhecer a revista ${ICO.seta}</a></div>
-<div class="ch-pontos">${["Agenda", "Simpósio", "Autoavaliação", "Revista"].map((l, i) => `<button type="button" aria-label="${l}"><span>${l}</span></button>`).join("")}</div>
+<div class="ch-pontos">${["Agenda", "Autoavaliação", "Revista"].map((l, i) => `<button type="button" aria-label="${l}"><span>${l}</span></button>`).join("")}</div>
 </div>`;
   P.push({
     arq: "index.html", titulo: "PPGAU UNIVAG",
@@ -237,7 +236,6 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
 
 <!--PREMIO_HOME-->
 <!--BANCA_HOME-->
-${SIMP_DEST("h-prox")}
 
 <section class="blk" aria-labelledby="h-not"><div class="lv-home-cab"><h2 id="h-not">Notícias</h2><a class="btn sec" href="noticias.html">Todas as notícias ${ICO.seta}</a></div>
 <div class="grid g3 noti2"><!--NOT_HOME--></div>
@@ -407,7 +405,6 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
     arq: "eventos.html", titulo: "Eventos", desc: "Eventos organizados pelo PPGAU UNIVAG e participação do programa em eventos externos.",
     hero: { crumb: true, p: "Congressos, simpósios e seminários organizados ou coorganizados pelo programa, e a participação em eventos externos." },
     corpo: `
-${SIMP_DEST("h-sd")}
 <ul class="sub"><li><a href="#eventos">Eventos organizados</a></li><li><a href="#participacao">Participação em eventos</a></li></ul>
 <section class="blk" id="eventos"><h2>Eventos organizados pelo programa</h2>
 <p class="meta">Eventos que o PPGAU UNIVAG organiza ou coorganiza, do mais recente para o mais antigo. Clique em "Página do evento" para ver a programação no Even3 e em "Anais" para ler os trabalhos publicados.</p>
