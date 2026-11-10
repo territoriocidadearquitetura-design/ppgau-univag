@@ -1363,6 +1363,7 @@ for (const l of ["en", "es", "fr", "it"]) fs.copyFileSync(path.join(__dirname, "
 fs.copyFileSync(path.join(__dirname, "mapa.js"), path.join(OUT, "mapa.js"));
 fs.copyFileSync(path.join(__dirname, "disciplinas.js"), path.join(OUT, "disciplinas.js"));
 fs.copyFileSync(path.join(__dirname, "ui.js"), path.join(OUT, "ui.js"));
+fs.copyFileSync(path.join(__dirname, "404.html"), path.join(OUT, "404.html")); // endereços antigos do Wix
 fs.writeFileSync(path.join(OUT, "simposio-2026.ics"), ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//PPGAU UNIVAG//Site//PT", ...[4, 5, 6].flatMap(d => ["BEGIN:VEVENT", `UID:simposio-tca-2026-${d}@ppgau-univag`, "DTSTAMP:20261021T000000Z", `DTSTART:202611${String(d).padStart(2, "0")}T130000Z`, `DTEND:202611${String(d).padStart(2, "0")}T210000Z`, `SUMMARY:3º Simpósio Brasileiro Território, Cidade e Arquitetura (dia ${d - 3})`, "LOCATION:UNIVAG Centro Universitário, Várzea Grande, MT (híbrido)", "URL:https://www.even3.com.br/3-simposio-brasileiro-territorio-cidade-e-arquitetura-757882/", "END:VEVENT"]), "END:VCALENDAR"].join("\r\n") + "\r\n");
 for (const b of proxBancas) fs.writeFileSync(path.join(OUT, `banca-${slugN(b.al)}.ics`), icsBanca(b));
 // Índice da busca rápida: [tipo, título, detalhe, link].

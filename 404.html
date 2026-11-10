@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Página não encontrada · PPGAU UNIVAG</title><meta name="robots" content="noindex">
+<style>body{font-family:system-ui,sans-serif;background:#f4f5f7;color:#1c2333;margin:0;display:grid;place-items:center;min-height:100vh;padding:16px}main{max-width:520px;text-align:center}a{color:#0b3a82;font-weight:600}</style>
+<script>
+// Endereços do site antigo (Wix) levados para as páginas equivalentes do site novo.
+(function () {
+  var MAPA = {
+    "": "index.html", "historico": "programa.html#historico", "missao-e-objetivos": "programa.html#missao", "area-de0concentracao": "programa.html#area",
+    "linhas-de-pesquisa": "programa.html#area", "parcerias-e-acordos": "programa.html#parcerias", "conselho": "pessoas.html#conselho", "coordenacao": "pessoas.html#coordenacao",
+    "corpo-docente": "pessoas.html#docentes", "discentes": "pessoas.html#discentes", "pos-doutorandos": "pessoas.html#posdoc", "egressos": "egressos.html",
+    "dissertacao-defendidas": "producao.html#dissertacoes", "projeto-de-pesquisa": "producao.html#pesquisa", "projeto-de-extensao": "producao.html#extensao", "eventos-externos": "eventos.html#participacao",
+    "pos-doutorado-1o-sem-2025": "ingresso.html", "proficiencia-1o-sem-2025": "ingresso.html", "discente-2o-sem-2026": "ingresso.html#mestrado-2026-2", "discente-vagasremanescentes2026": "ingresso.html#mestrado-2026-2", "bolsista2026": "ingresso.html",
+    "atividades-obrigatoria": "academico.html#atividades", "aproveitamento-de-creditos": "academico.html#aproveitamento", "trancamento-de-matricula": "academico.html#trancamento",
+    "comissao-de-bolsas": "ingresso.html#bolsas", "eventos": "eventos.html", "dezembro2025": "bancas.html", "premiacao-cau": "premiacoes.html", "ciap": "galeria.html#ciap-2026",
+    "copia-comissao-de-bolsas": "contato.html", "contato": "contato.html", "portalvg": "index.html", "projetocnpq": "producao.html#pesquisa"
+  };
+  var base = /github\.io$/.test(location.hostname) ? "/ppgau-univag/" : "/";
+  var p = decodeURIComponent(location.pathname).slice(base.length).replace(/\/+$/, "").toLowerCase()
+    .normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/º/g, "o");
+  var alvo = MAPA[p];
+  if (alvo) location.replace(base + alvo);
+  else window.__base = base;
+})();
+</script></head>
+<body><main><h1>Página não encontrada</h1><p>O site do PPGAU UNIVAG mudou e este endereço não existe mais.</p><p><a id="ini" href="/">Ir para a página inicial</a></p></main>
+<script>if (window.__base) document.getElementById("ini").href = window.__base;</script></body></html>
