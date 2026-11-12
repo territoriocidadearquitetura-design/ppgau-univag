@@ -1265,17 +1265,19 @@ const [h,sub]=location.hash.slice(1).split("/");vai(h||"metas",sub)});})();`
 // Só a Avaliação CAPES 2021–2024 (resultado da Quadrienal 2025), copiada do painel da coordenação do portal por
 // gerador/restrito.mjs e cifrada com a mesma senha em restrito-coord.bin. Não traz nada da coleta da autoavaliação.
 P.push({
-  arq: "painel-coordenacao.html", titulo: "Painel da coordenação", desc: "Acesso restrito da coordenação do PPGAU UNIVAG: Avaliação CAPES 2021–2024, com os conceitos e apontamentos da Quadrienal 2025.",
-  hero: { crumb: true, eyebrow: "Acesso restrito · coordenação", p: "Avaliação CAPES 2021–2024: os conceitos de cada quesito da Quadrienal 2025, os pontos fortes e fracos apontados pela comissão e o que fazer em cada item. Entre com a senha do painel da coordenação." },
+  arq: "painel-coordenacao.html", titulo: "Painel da coordenação", desc: "Acesso restrito da coordenação do PPGAU UNIVAG: participação e respostas da Autoavaliação 2026 e Avaliação CAPES 2021–2024, com os conceitos e apontamentos da Quadrienal 2025.",
+  hero: { crumb: true, eyebrow: "Acesso restrito · coordenação", p: "Autoavaliação 2026 (quem já respondeu e o acompanhamento das respostas) e Avaliação CAPES 2021–2024: os conceitos de cada quesito da Quadrienal 2025, os pontos fortes e fracos apontados pela comissão e o que fazer em cada item. Entre com a senha do painel da coordenação." },
   corpo: `<div class="ap-login card" id="ap-login"><span class="ap-ic">${ICO.prancheta}</span><h2>Entrar no painel da coordenação</h2>
 <form id="ap-f"><label for="ap-s">Senha</label><div class="ap-row"><input id="ap-s" type="password" autocomplete="current-password" required><button class="btn" type="submit">Entrar</button></div><p class="meta ap-msg" id="ap-m" role="alert"></p></form>
 <p class="meta">O conteúdo é cifrado: sem a senha ele não existe no site. A senha fica guardada só nesta aba do navegador.</p></div>
 <div class="ap-painel" id="ap-painel" hidden>
-<div class="ap-topo"><span class="ap-cap"><b>Avaliação CAPES 2021–2024</b><small>resultado da Quadrienal 2025</small></span><button type="button" class="btn sec" id="ap-sair">Sair</button></div>
+<div class="ap-topo"><div class="ap-abas"><a class="ap-cap ap-aba" href="dados/#/cadastro"><b>Autoavaliação 2026 · participação</b><small>quem já respondeu</small></a><a class="ap-cap ap-aba" href="dados/#/cadastro"><b>Acompanhar respostas</b><small>gráficos por tema e relatório parcial</small></a><span class="ap-cap" aria-current="page"><b>Avaliação CAPES 2021–2024</b><small>resultado da Quadrienal 2025</small></span></div><button type="button" class="btn sec" id="ap-sair">Sair</button></div>
+<p class="meta">A participação e as respostas da autoavaliação abrem no painel da coordenação do PPGAU em dados, já com a sua senha (na mesma aba do navegador). Lá ficam também as abas <b>Participação</b> e <b>Acompanhar respostas</b>.</p>
 <p class="meta">Registro do resultado da Quadrienal 2025 (ciclo 2021–2024). É um resultado já publicado pela CAPES e não muda.</p>
 <div class="pt" id="ap-cont"></div></div>`,
   js: `(()=>{${LOGIN_JS}
-login("ppgau-site-coord","restrito-coord.bin",o=>{document.getElementById("ap-cont").innerHTML=o.html});})();`
+login("ppgau-site-coord","restrito-coord.bin",o=>{document.getElementById("ap-cont").innerHTML=o.html;let k="";try{k=document.getElementById("ap-s").value||sessionStorage.getItem("ppgau-site-coord")||"";if(k)sessionStorage.setItem("ppgau-painel",k)}catch(e){}});
+document.getElementById("ap-sair").addEventListener("click",()=>{try{sessionStorage.removeItem("ppgau-painel")}catch(e){}});})();`
 });
 
 // ---------- Galeria de fotos ----------

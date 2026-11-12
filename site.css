@@ -1411,3 +1411,10 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 .av-t .meta { margin: 0; }
 @media (max-width: 560px) { .av-t { grid-template-columns: 1fr; gap: 8px; padding: 14px; } .av-lado .rv3d { width: 200px; height: 270px; } .av-lado .liv { --w: 168px; --h: 238px; } }
 .av-ficha dd { margin: 0; }
+/* abas do painel da coordenação: autoavaliação (abre no PPGAU em dados) e Avaliação CAPES */
+.ap-abas { display: flex; flex-wrap: wrap; gap: 8px; }
+a.ap-aba { background: var(--surface); color: var(--ink); border: 1px solid var(--line); text-decoration: none; transition: border-color .15s, transform .15s; }
+a.ap-aba b { color: var(--navy); } a.ap-aba small { color: var(--muted, #5b6575); }
+a.ap-aba:hover { border-color: var(--gold); transform: translateY(-1px); }
+:root[data-theme="dark"] a.ap-aba b { color: var(--gold); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) a.ap-aba b { color: var(--gold); } }
