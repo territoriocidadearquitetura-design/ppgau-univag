@@ -1359,3 +1359,45 @@ html.trad body { opacity: 0; } body { transition: opacity .15s; }
 :root[data-theme="light"] .sd .evd-cont small { color: #5a6474; }
 :root[data-theme="light"] .sd .evd-btns .btn.sec { background: #fff; color: var(--navy); border-color: #b9c0ca; box-shadow: inset 0 0 0 1px #b9c0ca; }
 
+
+/* chamadas com imagem: ilustração da autoavaliação e livros em 3D */
+.ch-vis { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; }
+.ilu-auto { width: 138px; height: auto; filter: drop-shadow(0 10px 18px rgba(0,0,0,.28)); }
+.ilu-auto .ck { stroke-dasharray: 40; stroke-dashoffset: 40; animation: ck-risca 6s ease-in-out infinite; }
+.ilu-auto .ck1 { animation-delay: .5s; } .ilu-auto .ck2 { animation-delay: 1s; } .ilu-auto .ck3 { animation-delay: 1.5s; }
+@keyframes ck-risca { 0% { stroke-dashoffset: 40; } 12%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 40; } }
+.ilu-auto .lapis { transform-box: fill-box; transform-origin: 10% 90%; animation: lapis 1.6s ease-in-out infinite; }
+@keyframes lapis { 0%, 100% { transform: rotate(0) translate(0,0); } 50% { transform: rotate(-6deg) translate(-3px,2px); } }
+.ilu-auto .estrelas { transform-box: fill-box; transform-origin: center; animation: brilha 2.4s ease-in-out infinite; }
+@keyframes brilha { 0%, 100% { opacity: .55; transform: scale(.9); } 50% { opacity: 1; transform: scale(1.08); } }
+.rv3d { position: relative; display: block; width: 168px; height: 176px; perspective: 900px; }
+.liv { position: absolute; left: 32px; top: 14px; width: 104px; height: 142px; transform-style: preserve-3d; animation: gira 7s ease-in-out infinite; }
+.liv > span { position: absolute; display: block; }
+.liv-fr { inset: 0; background: #02205f center / cover no-repeat; transform: translateZ(7px); border-radius: 2px 5px 5px 2px; box-shadow: inset 4px 0 6px rgba(0,0,0,.25); }
+.liv-tr { inset: 0; background: #02205f; transform: rotateY(180deg) translateZ(7px); border-radius: 5px 2px 2px 5px; }
+.liv-lo { top: 0; bottom: 0; left: 45px; width: 14px; background: linear-gradient(90deg, #011a4d, #0a3a8f, #011a4d); transform: rotateY(-90deg) translateZ(52px); }
+.liv-mi { top: 2px; bottom: 2px; left: 46px; width: 12px; background: repeating-linear-gradient(90deg, #fff 0 1px, #e6e2d8 1px 2px); transform: rotateY(90deg) translateZ(50px); }
+.rv3d .liv::after { content: ""; position: absolute; left: 6px; right: -6px; bottom: -16px; height: 12px; background: radial-gradient(closest-side, rgba(0,0,0,.35), transparent); transform: rotateX(90deg); }
+.rv3d .l0 { left: 4px; top: 30px; width: 88px; height: 120px; animation-delay: -2.3s; z-index: 1; }
+.rv3d .l1 { left: 70px; top: 30px; width: 88px; height: 120px; animation-delay: -4.6s; z-index: 1; }
+.rv3d .l2 { left: 38px; top: 8px; width: 96px; height: 132px; z-index: 2; }
+.rv3d .l0 .liv-lo, .rv3d .l1 .liv-lo { left: 37px; transform: rotateY(-90deg) translateZ(44px); }
+.rv3d .l0 .liv-mi, .rv3d .l1 .liv-mi { left: 38px; transform: rotateY(90deg) translateZ(42px); }
+.rv3d .l2 .liv-lo { left: 41px; transform: rotateY(-90deg) translateZ(48px); }
+.rv3d .l2 .liv-mi { left: 42px; transform: rotateY(90deg) translateZ(46px); }
+.rv3d.um .liv { left: 30px; top: 10px; width: 108px; height: 152px; }
+.rv3d.um .liv-lo { left: 47px; transform: rotateY(-90deg) translateZ(54px); }
+.rv3d.um .liv-mi { left: 48px; transform: rotateY(90deg) translateZ(52px); }
+@keyframes gira { 0%, 100% { transform: rotateY(-32deg) rotateX(6deg); } 50% { transform: rotateY(18deg) rotateX(2deg) translateY(-4px); } }
+.ch-item:not(.on) .liv, .ch-item:not(.on) .ilu-auto * { animation-play-state: paused; }
+@media (max-width: 560px) {
+  .ch-vis { grid-template-columns: 1fr; gap: 6px; }
+  .ch-vis > :last-child { order: -1; justify-self: center; }
+  .ilu-auto { width: 96px; }
+  .rv3d { width: 168px; height: 120px; transform: scale(.7); transform-origin: center top; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .liv, .ilu-auto * { animation: none !important; }
+  .liv { transform: rotateY(-22deg) rotateX(4deg); }
+  .ilu-auto .ck { stroke-dashoffset: 0; }
+}
