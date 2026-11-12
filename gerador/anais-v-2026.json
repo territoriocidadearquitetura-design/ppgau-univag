@@ -1,0 +1,371 @@
+[
+ {
+  "n": 1,
+  "t": "A PAISAGEM PERFORMATIVA DO SIRIRI",
+  "s": "Patrimônio, território e políticas culturais na capital mato-grossense",
+  "a": [
+   "Natali de Paula",
+   "Érica Lemos Gulinelli",
+   "Sandra Medina Benini"
+  ],
+  "pg": 8,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 2,
+  "t": "AMBIÊNCIA E FORMAS DE HABITAR INDÍGENAS",
+  "s": "UMA ANÁLISE ESPACIAL DE UMA CASA DE APOIO À SAÚDE INDÍGENA",
+  "a": [
+   "João Paulo Kayoli",
+   "Rosana Lia Ravache",
+   "Jessica Seabra"
+  ],
+  "pg": 11,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 3,
+  "t": "ARTE URBANA EM CUIABÁ E O PROJETO CUIABÁ CIDADE VIVA",
+  "s": "",
+  "a": [
+   "Vicente Paulo José da Silva Justo",
+   "Jessica Seabra"
+  ],
+  "pg": 15,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 4,
+  "t": "ASSOCIAÇÃO ENTRE A DISTRIBUIÇÃO DA RENDA E AS CONDIÇÕES AMBIENTAIS URBANAS NO PERÍMETRO URBANO DE RONDONÓPOLIS (MT)",
+  "s": "",
+  "a": [
+   "Nycolas Martins de Araujo Braga de Moraes",
+   "Fábio Friol Guedes de Paiva",
+   "Diana Carolina Jesus de Paula"
+  ],
+  "pg": 19,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 5,
+  "t": "AVALIAÇÃO DA MOBILIDADE URBANA EM CIDADES MÉDIAS EMERGENTES DO NORTE DE MATO GROSSO A PARTIR DO ÍNDICE DE MOBILIDADE URBANA SUSTENTÁVEL (IMUS)",
+  "s": "",
+  "a": [
+   "Alex Sandro Morais do Nascimento",
+   "Gisele Carignani",
+   "Natallia Sanches e Souza"
+  ],
+  "pg": 22,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 6,
+  "t": "CAPACIDADE INSTITUCIONAL MUNICIPAL PARA PLANEJAMENTO URBANO-CLIMÁTICO",
+  "s": "Análise da governança em cidades da Amazônia Legal",
+  "a": [
+   "Guilherme Brescancim",
+   "Flávio Henrique dos Santos Foguel",
+   "Jessica Seabra"
+  ],
+  "pg": 26,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 7,
+  "t": "CHECKLIST PARA AVALIAÇÃO DO NÍVEL DE ADOÇÃO DE PRÁTICAS SUSTENTÁVEIS EM ESTABELECIMENTOS DE ALIMENTAÇÃO FORA DO LAR",
+  "s": "Adaptação e validação de instrumento diagnóstico aplicado na Região Metropolitana do Vale do Rio Cuiabá",
+  "a": [
+   "Bruno Kimura",
+   "Fábio Friol Guedes de Paiva",
+   "Flávio Henrique dos Santos Foguel"
+  ],
+  "pg": 30,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 8,
+  "t": "CIDADES INTELIGENTES COMO UMA ALTERNATIVA À SUSTENTABILIDADE URBANA",
+  "s": "Um estudo de caso das cidades do Centro-Oeste brasileiro",
+  "a": [
+   "Lucas Vicente Nunes",
+   "Angelo Palmisano",
+   "Jeane Aparecida Rombi de Godoy"
+  ],
+  "pg": 33,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 9,
+  "t": "CIDADES INTELIGENTES E PLANEJAMENTO URBANO",
+  "s": "ANÁLISE DA IMPLEMENTAÇÃO TERRITORIAL DO PROGRAMA INOVA TANGARÁ, EM TANGARÁ DA SERRA-MT",
+  "a": [
+   "Viviane Lúcia de Quadros",
+   "Jeane Aparecida Rombi de Godoy",
+   "Sandra Medina Benini"
+  ],
+  "pg": 37,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 10,
+  "t": "COMPORTAMENTO DO CONSUMIDOR E EXPERIÊNCIAS DE MAL-ESTAR ASSOCIADAS À AMBIÊNCIA DA INTERNET",
+  "s": "UMA NETNOGRAFIA",
+  "a": [
+   "Maria Augusta Fonseca Dias Ribeiro",
+   "Angelo Palmisano",
+   "Antonio Busnardo Filho"
+  ],
+  "pg": 41,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 11,
+  "t": "CONECTIVIDADE E FRAGMENTAÇÃO DAS ÁREAS VERDES PÚBLICAS EM TANGARÁ DA SERRA (MT)",
+  "s": "Uma leitura territorial a partir da ecologia da paisagem e da infraestrutura verde",
+  "a": [
+   "Vandreia Cristiane Fernandes Santos Pironnet",
+   "Sandra Medina Benini",
+   "Jeane Aparecida Rombi de Godoy"
+  ],
+  "pg": 45,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 12,
+  "t": "CONSTRUÇÃO DE UM ÍNDICE INTEGRADO DE VULNERABILIDADE CLIMÁTICA URBANA",
+  "s": "UMA ABORDAGEM SOCIOAMBIENTAL NA MICROBACIA DO CÓRREGO DO BARBADO, CUIABÁ – MT",
+  "a": [
+   "Emili Sayuri Takimoto",
+   "Diana Carolina Jesus de Paula",
+   "Natallia Sanches e Souza"
+  ],
+  "pg": 50,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 13,
+  "t": "DESENVOLVIMENTO HUMANO E COBERTURA VEGETAL URBANA",
+  "s": "EVIDÊNCIAS DOS MUNICÍPIOS DE MATO GROSSO",
+  "a": [
+   "Cacio Zanatta",
+   "Fábio Friol Guedes de Paiva",
+   "Diana Carolina Jesus de Paula"
+  ],
+  "pg": 54,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 14,
+  "t": "DIAGNÓSTICO DA MOBILIDADE ATIVA EM CAMPO NOVO DO PARECIS (MT)",
+  "s": "Uma análise por meio dos métodos ICam e QualiCiclos",
+  "a": [
+   "Vanessa Knutzen Lourenço",
+   "Érica Lemos Gulinelli",
+   "Gisele Carignani"
+  ],
+  "pg": 57,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 15,
+  "t": "DIREITO AO SOL",
+  "s": "LEGISLAÇÃO URBANÍSTICA, MORFOLOGIA URBANA E ACESSO À LUZ SOLAR EM CUIABÁ",
+  "a": [
+   "Déborah Karen Mansilha Guebara",
+   "Natallia Sanches e Souza",
+   "Diana Carolina Jesus de Paula"
+  ],
+  "pg": 60,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 16,
+  "t": "ENTRE O PLANO E A IMPLEMENTAÇÃO",
+  "s": "SUSTENTABILIDADE, INOVAÇÃO URBANA E CAPACIDADE INSTITUCIONAL EM INSTRUMENTOS DE PLANEJAMENTO MUNICIPAL: Análise dos planos diretores de municípios mato-grossenses reconhecidos por inovação",
+  "a": [
+   "Fernanda Moreira Rondon Foguel",
+   "Angelo Palmisano",
+   "Flávio Henrique dos Santos Foguel"
+  ],
+  "pg": 63,
+  "l": "Gestão, Inovação e Tecnologias"
+ },
+ {
+  "n": 17,
+  "t": "ESPAÇOS DE CURA",
+  "s": "AVALIAÇÃO PÓS-OCUPAÇÃO DE AMBIENTES PEDIÁTRICOS COM ENFOQUE NA HUMANIZAÇÃO",
+  "a": [
+   "Edmar Celestino de Souza Neto",
+   "Natallia Sanches e Souza",
+   "Érica Lemos Gulinelli"
+  ],
+  "pg": 67,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 18,
+  "t": "ESPAÇOS LIVRES URBANOS",
+  "s": "Estudos dos parques de Tangará da Serra – MT",
+  "a": [
+   "Mayara Kauany Silva Fagundes",
+   "Érica Lemos Gulinelli",
+   "Gisele Carignani"
+  ],
+  "pg": 71,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 19,
+  "t": "GÊMEO DIGITAL URBANO PARTICIPATIVO",
+  "s": "Protótipo para Barra do Bugres – MT",
+  "a": [
+   "Ângela Cristina Goês dos Santos",
+   "Diana Carolina Jesus de Paula",
+   "Fábio Friol Guedes de Paiva"
+  ],
+  "pg": 74,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 20,
+  "t": "GOVERNANÇA DE DADOS URBANOS E INTEROPERABILIDADE DE INDICADORES TERRITORIAIS EM MUNICÍPIOS DE PEQUENO PORTE",
+  "s": "Proposição de um framework diagnóstico para o planejamento urbano sustentável",
+  "a": [
+   "Marcos de Sá Fernandes da Silva",
+   "Flávio Henrique dos Santos Foguel",
+   "Jeane Aparecida Rombi de Godoy"
+  ],
+  "pg": 79,
+  "l": "Gestão, Inovação e Tecnologias"
+ },
+ {
+  "n": 21,
+  "t": "HBIM E SIMULAÇÃO DE CONFORTO TÉRMICO EM PATRIMÔNIO EDIFICADO EM CLIMA TROPICAL QUENTE",
+  "s": "O CASO DO GRANDE HOTEL, EM CUIABÁ-MT",
+  "a": [
+   "Isabella Helwig Alves",
+   "Jessica Seabra",
+   "Natallia Sanches e Souza"
+  ],
+  "pg": 82,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 22,
+  "t": "ÍNDICE DE SEVERIDADE TÉRMICA URBANA (ISTU) BASEADO NA TEMPERATURA DA SUPERFÍCIE TERRESTRE PARA IDENTIFICAÇÃO DE ÁREAS PRIORITÁRIAS AO PLANEJAMENTO URBANO EM CUIABÁ-MT",
+  "s": "",
+  "a": [
+   "Isabela Machado Pereira Morgado",
+   "Fábio Friol Guedes de Paiva",
+   "Natallia Sanches e Souza"
+  ],
+  "pg": 87,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 23,
+  "t": "INFRAESTRUTURA VERDE VIÁRIA E ADAPTAÇÃO CLIMÁTICA EM CUIABÁ/MT",
+  "s": "Integração entre sensoriamento remoto e simulação computacional para a avaliação do potencial mitigador da arborização urbana",
+  "a": [
+   "Ana Carolina de Oliveira Lima",
+   "Fábio Friol Guedes de Paiva",
+   "Angelo Palmisano"
+  ],
+  "pg": 91,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 24,
+  "t": "INJUSTIÇA CLIMÁTICA E VULNERABILIDADE AO CALOR EXTREMO EM CUIABÁ-MT",
+  "s": "Estruturação do Sistema Integrado de Avaliação da Vulnerabilidade Climática Urbana (SIAV-Clima)",
+  "a": [
+   "Isabel Leticia Machado",
+   "Natallia Sanches e Souza",
+   "Érica Lemos Gulinelli"
+  ],
+  "pg": 94,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 25,
+  "t": "INSTITUCIONALIZAÇÃO DA INFRAESTRUTURA VERDE NO PLANEJAMENTO URBANO DE MUNICÍPIOS DE PEQUENO PORTE EM MATO GROSSO",
+  "s": "A arborização urbana como componente estruturante da sustentabilidade urbana",
+  "a": [
+   "Otávio Henrique Ribeiro França",
+   "Jeane Aparecida Rombi de Godoy"
+  ],
+  "pg": 97,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 26,
+  "t": "O ENVELHECIMENTO NA CIDADE CONTEMPORÂNEA",
+  "s": "Políticas públicas, acessibilidade e a realidade das ILPIs em Cuiabá – MT",
+  "a": [
+   "Tarsila Athena Borba Oliveira da Cunha Fernandes",
+   "Gisele Carignani",
+   "Antonio Busnardo Filho"
+  ],
+  "pg": 101,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 27,
+  "t": "PAISAGEM COMO INFRAESTRUTURA ECOLÓGICA",
+  "s": "Princípios e diretrizes multiescalares para o planejamento urbano ecologicamente integrado",
+  "a": [
+   "Claudio Mirrair Farias Donoso Facheti",
+   "Sandra Medina Benini",
+   "Érica Lemos Gulinelli"
+  ],
+  "pg": 106,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 28,
+  "t": "PARÂMETROS PROJETUAIS PARA JARDINS BOTÂNICOS",
+  "s": "DO EMBASAMENTO HISTÓRICO-NORMATIVO AO PROCESSO DE CONSOLIDAÇÃO EM CUIABÁ – MT (1825– 2026)",
+  "a": [
+   "Kethylin Vanessa Melo",
+   "Jeane Aparecida Rombi de Godoy",
+   "Diana Carolina Jesus de Paula"
+  ],
+  "pg": 110,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 29,
+  "t": "REGULARIZAÇÃO FUNDIÁRIA PARA A RESILIÊNCIA CLIMÁTICA E JUSTIÇA TERRITORIAL NO CENTRO-OESTE BRASILEIRO",
+  "s": "Desafios socioambientais em áreas urbanas de interesse social",
+  "a": [
+   "Thaiz Freitas Pessoa",
+   "Jeane Aparecida Rombi de Godoy",
+   "Sandra Medina Benini"
+  ],
+  "pg": 114,
+  "l": "Desenvolvimento Territorial e Local"
+ },
+ {
+  "n": 30,
+  "t": "REGULARIZAÇÃO FUNDIÁRIA URBANA DE INTERESSE SOCIAL E DIREITO À CIDADE",
+  "s": "Diagnóstico integrado e proposições para o bairro Sobral, em Rio Branco (AC)",
+  "a": [
+   "Paulo Franco Teles de Oliveira",
+   "Sandra Medina Benini",
+   "Jeane Aparecida Rombi de Godoy"
+  ],
+  "pg": 117,
+  "l": "Ambiente Construído e Sustentabilidade"
+ },
+ {
+  "n": 31,
+  "t": "SUSTENTABILIDADE EM HABITAÇÕES DE INTERESSE SOCIAL",
+  "s": "ESTUDO NOS CONJUNTOS HABITACIONAIS JOSÉ CARLOS GUIMARÃES E COLINAS DOURADAS I E II NA CIDADE DE VÁRZEA GRANDE-MT",
+  "a": [
+   "Priscilla Tábida Silva Enoré",
+   "Angelo Palmisano"
+  ],
+  "pg": 121,
+  "l": "Ambiente Construído e Sustentabilidade"
+ }
+]

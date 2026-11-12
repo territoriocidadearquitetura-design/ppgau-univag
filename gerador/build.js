@@ -201,11 +201,11 @@ const P = [];
   const livro3d = (src, cls = "") => `<span class="liv ${cls}"><span class="liv-fr" style="background-image:url('${src}')"></span><span class="liv-lo"></span><span class="liv-mi"></span><span class="liv-tr"></span></span>`;
   const ILU_AUTO = `<svg class="ilu-auto" viewBox="0 0 160 170" aria-hidden="true"><rect x="22" y="22" width="112" height="140" rx="12" fill="#fff"/><rect x="22" y="22" width="112" height="140" rx="12" fill="none" stroke="#febf01" stroke-width="4"/><rect x="55" y="12" width="46" height="22" rx="7" fill="#febf01"/><circle cx="78" cy="23" r="4" fill="#02205f"/>${[0, 1, 2, 3].map(i => `<rect x="42" y="${56 + i * 25}" width="16" height="16" rx="4" fill="none" stroke="#02205f" stroke-width="2.5"/><path class="ck ck${i}" d="M45 ${64 + i * 25} l4 4 l8 -9" fill="none" stroke="#1baf7a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="66" y="${59 + i * 25}" width="${[52, 44, 50, 36][i]}" height="5" rx="2.5" fill="#c9d4ee"/><rect x="66" y="${67 + i * 25}" width="${[34, 40, 28, 42][i]}" height="4" rx="2" fill="#e3e9f6"/>`).join("")}<g class="lapis"><path d="M118 132 l26 -26 l8 8 l-26 26 z" fill="#febf01"/><path d="M118 132 l-5 13 l13 -5 z" fill="#f3d9a6"/><path d="M144 106 l4 -4 a5.6 5.6 0 0 1 8 8 l-4 4 z" fill="#eb6834"/></g><g class="estrelas" fill="#febf01"><path d="M10 40 l3 7 7 1 -5 5 1 7 -6 -3 -6 3 1 -7 -5 -5 7 -1z"/><path d="M146 30 l2 5 5 .5 -4 3.5 1 5 -4 -2.5 -4 2.5 1 -5 -4 -3.5 5 -.5z"/></g></svg>`;
   const ANAIS_V = fs.existsSync(path.join(__dirname, "midia/livros/anais-v-seminario-2026.jpg"));
-  const ANAIS_CH = ANAIS_V ? `<div class="ch-item ch-vis"><div><span class="ch-tag">Novo · Anais 2026</span><h2>Anais do V Seminário de Pesquisa</h2><p>31 resumos expandidos das pesquisas de mestrado apresentadas em 15 de agosto de 2026. Conheça os trabalhos do programa.</p><a class="btn" href="docs/anais-v-seminario-2026.pdf" target="_blank" rel="noopener">Ler os anais ${ICO.seta}</a></div><a class="rv3d um" href="docs/anais-v-seminario-2026.pdf" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">${livro3d("img/livros/anais-v-seminario-2026.jpg")}</a></div>` : "";
+  const ANAIS_CH = ANAIS_V ? `<div class="ch-item ch-vis"><div><span class="ch-tag">Novo · Anais 2026</span><h2>Anais do V Seminário de Pesquisa</h2><p>31 resumos expandidos das pesquisas de mestrado apresentadas em 15 de agosto de 2026. Conheça os trabalhos do programa.</p><a class="btn" href="anais-v-seminario.html">Conhecer os trabalhos ${ICO.seta}</a></div><a class="rv3d" href="anais-v-seminario.html" tabindex="-1" aria-hidden="true">${livro3d("img/livros/anais-v-seminario-2026.jpg")}</a></div>` : "";
   const lado = `<div class="chamadas" aria-roledescription="carrossel" aria-label="Chamadas do programa">
 <div class="ch-item ch-agenda" id="agenda-viva"><div class="ch-cab"><span class="ao-vivo"><i></i>Agenda do semestre</span><a href="disciplinas.html">Ver tudo</a></div><ol class="ag-lista"><li class="ag-fim">Veja as próximas aulas em <a href="disciplinas.html">Disciplinas e horários</a>.</li></ol></div>
 <div class="ch-item ch-vis"><div><span class="ch-tag">Prorrogado até 13/11/2026</span><h2>Autoavaliação 2026</h2><p>Questionário anônimo para estudantes, egressos, docentes e equipe. Leva poucos minutos.</p><a class="btn" href="dados/#/responder">Responder ${ICO.seta}</a></div>${ILU_AUTO}</div>
-<div class="ch-item ch-vis"><div><span class="ch-tag">Revista Vernácula · Qualis B2</span><h2>Publique na Vernácula</h2><p>Revista trimestral do programa, com DOI em todos os artigos. Conheça os 11 números publicados.</p><a class="btn" href="revista.html">Conhecer a revista ${ICO.seta}</a></div><a class="rv3d" href="revista.html" tabindex="-1" aria-hidden="true">${["v9", "v10", "v11"].map((v, i) => livro3d("img/vernacula/" + v + ".jpg", "l" + i)).join("")}</a></div>${ANAIS_CH}
+<div class="ch-item ch-vis"><div><span class="ch-tag">Revista Vernácula · Qualis B2</span><h2>Publique na Vernácula</h2><p>Revista trimestral do programa, com DOI em todos os artigos. Conheça os 11 números publicados.</p><a class="btn" href="revista.html">Conhecer a revista ${ICO.seta}</a></div><a class="rv3d" href="revista.html" tabindex="-1" aria-hidden="true">${livro3d("img/vernacula/v" + Math.max(...fs.readdirSync(path.join(__dirname, "midia/vernacula")).map(f => +(f.match(/^v(\d+)\.jpg$/) || [0, 0])[1])) + ".jpg")}</a></div>${ANAIS_CH}
 <div class="ch-pontos">${["Agenda", "Autoavaliação", "Revista", ...(ANAIS_CH ? ["Anais"] : [])].map((l, i) => `<button type="button" aria-label="${l}"><span>${l}</span></button>`).join("")}</div>
 </div>`;
   P.push({
@@ -384,7 +384,7 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
 {
   const ANO_ATUAL = new Date().getFullYear();
   // Eventos do programa que ainda não estão no portal "em dados".
-  const EXTRA = [{ nome: "V Seminário de Pesquisa em Arquitetura e Urbanismo do PPGAU UNIVAG", ano: 2026, datas: "15/08/2026", local_formato: "presencial, Centro Universitário UNIVAG, Várzea Grande-MT", ppgau_papel: "organizador", fontes: ["https://www.even3.com.br/v-seminario-de-pesquisa-em-arquitetura-e-urbanismo-do-ppgau-univag-764604/"], anais: {},
+  const EXTRA = [{ nome: "V Seminário de Pesquisa em Arquitetura e Urbanismo do PPGAU UNIVAG", ano: 2026, datas: "15/08/2026", local_formato: "presencial, Centro Universitário UNIVAG, Várzea Grande-MT", ppgau_papel: "organizador", fontes: ["https://www.even3.com.br/v-seminario-de-pesquisa-em-arquitetura-e-urbanismo-do-ppgau-univag-764604/"], anais: { link: "anais-v-seminario.html" },
       banner: ["img/eventos/seminario-v-2026.jpg", 1100, 440], lema: "Pesquisa, inovação e transformação do território." },
     { nome: "III Congresso Brasileiro \"Mudanças Climáticas e a Resiliência Urbana\"", ano: 2026, datas: "23 a 25/09/2026", ppgau_papel: "coorganizador", fontes: ["https://www.even3.com.br/iii-congresso-brasileiro-mudancas-climaticas-e-a-resiliencia-urbana-741291/"], anais: {},
       banner: ["img/eventos/resiliencia-2026.jpg", 1100, 440], lema: "Ciência, políticas e ação por cidades preparadas para os desafios climáticos.", organizacao: ["ANAP", "PPGAU UNIVAG"], abrangencia: "nacional" },
@@ -402,7 +402,7 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
   const ev = [...EVENTOS, ...EXTRA].filter(e => !e.oculto).sort((a, b) => b.ano - a.ano || mesEv(b) - mesEv(a));
   // Página oficial: o primeiro link do Even3 nas fontes. Anais: só os endereços completos.
   const pagEv = e => e.pagina || (e.fontes || []).find(u => /even3\.com\.br/.test(u) && !/618697/.test(u));
-  const anaisEv = e => String((e.anais || {}).link || "").split(/\s*;\s*/).filter(u => /^(https?:\/\/|docs\/)/.test(u));
+  const anaisEv = e => String((e.anais || {}).link || "").split(/\s*;\s*/).filter(u => /^(https?:\/\/|docs\/|[\w-]+\.html$)/.test(u));
   const linksEv = e => { const a = anaisEv(e), p = pagEv(e); return [p ? ext(p, "Página do evento") : "", ...a.map((u, i) => ext(u, a.length > 1 ? `Anais ${["vol. I", "vol. II", "3", "4"][i]}` : "Anais"))].filter(Boolean).join("") || "—"; };
   const dest = IMPACTO.impacto.filter(x => x.tipo !== "evento");
   const papel = { organizador: "Organização", coorganizador: "Coorganização", participante: "Participação" };
@@ -749,6 +749,7 @@ fs.mkdirSync(path.join(OUT, "img/fotos"), { recursive: true });
 // Para incluir um livro: acrescente uma linha em LIVROS. capa = id da imagem na Estante ANAP (static.wixstatic.com/media/<id>).
 const EST = "https://www.estantedaanap.org/product-page/", E3 = "https://even3.blob.core.windows.net/download/";
 const LIVROS = [
+  { t: "Anais do V Seminário de Pesquisa em Arquitetura e Urbanismo do PPGAU-UNIVAG", sub: "pesquisa, inovação e transformação do território", org: "Jeane Aparecida Rombi de Godoy; Angelo Palmisano; Sandra Medina Benini", ed: "UNIVAG", loc: "Várzea Grande", ano: 2026, pg: 144, isbn: "978-65-88419-16-8", tipo: "anais", prog: 1, ler: "anais-v-seminario.html", ...(fs.existsSync(path.join(__dirname, "docs/anais-v-seminario-2026.pdf")) ? { pdf: "docs/anais-v-seminario-2026.pdf" } : {}) },
   { t: "Anais do 2º Simpósio Brasileiro Território, Cidade e Arquitetura", org: "Jeane Aparecida Rombi de Godoy; Angelo Palmisano; Sandra Medina Benini", ed: "UNIVAG", loc: "Várzea Grande", ano: 2024, pg: 468, tipo: "anais", prog: 1, pdf: E3 + "Anaisdo2SimpsioBrasileiro-TerritrioCidadeeArquitetura.1cea4b89573843ac88e7.pdf" },
   { t: "Anais do Latin American Symposium City, Architecture and Sustainability", v: "Volume I", org: "Jeane Aparecida Rombi de Godoy; Angelo Palmisano; Sandra Medina Benini", ed: "ANAP/UNIVAG", loc: "Várzea Grande", ano: 2024, tipo: "anais", prog: 1, pdf: E3 + "...ANAIS-volumeI-CityArchitectureandSustainability.c85d06935fed4092b2a4.pdf" },
   { t: "Anais do Latin American Symposium City, Architecture and Sustainability", v: "Volume II", org: "Jeane Aparecida Rombi de Godoy; Angelo Palmisano; Sandra Medina Benini", ed: "ANAP/UNIVAG", loc: "Várzea Grande", ano: 2024, pg: 810, tipo: "anais", prog: 1, pdf: E3 + "...ANAIS-volumeII-CityArchitectureandSustainability.2f17bc5b7fe74dd2a879.pdf" },
@@ -769,6 +770,32 @@ const LIVROS = [
   { t: "Estruturas ambientais urbanas e a ambiência", org: "Sandra Medina Benini; Geise Brizotti Pasquotto; Jeane Aparecida Rombi de Godoy", ed: "ANAP", loc: "Tupã", ano: 2021, pg: 159, isbn: "978-65-86753-45-5", tipo: "colet", capa: "f414e0_e0d07faffe40478cac8df688fc237188~mv2.jpg", est: "estruturas-ambientais-urbanas-e-a-ambiência" },
   { t: "Múltiplos olhares sobre a cidade contemporânea", org: "Geise Brizotti Pasquotto; Jeane Aparecida Rombi de Godoy; Sandra Medina Benini", ed: "ANAP", loc: "Tupã", ano: 2021, pg: 131, isbn: "978-65-86753-46-2", tipo: "colet", capa: "f414e0_477de2d21ef147f0a1658330a57471b7~mv2.jpg", est: "múltiplos-olhares-sobre-a-cidade-contemporânea" },
 ];
+// Anais do V Seminário de Pesquisa (15/08/2026): página com os 31 resumos expandidos (gerador/anais-v-2026.json, extraído do sumário dos anais).
+{
+  const TR = JSON.parse(fs.readFileSync(path.join(__dirname, "anais-v-2026.json"), "utf8"));
+  const PDF_AV = fs.existsSync(path.join(__dirname, "docs/anais-v-seminario-2026.pdf")) ? "docs/anais-v-seminario-2026.pdf" : "";
+  const LINHAS = [...new Set(TR.map(t => t.l))].sort((a, b) => TR.filter(t => t.l === b).length - TR.filter(t => t.l === a).length);
+  const docA = n => { const d = corpo.find(c => slugN(c.n) === slugN(n)); return d ? `<a href="docente-${slugN(d.n)}.html">${esc(n)}</a>` : esc(n); };
+  const livro = `<span class="liv"><span class="liv-fr" style="background-image:url('img/livros/anais-v-seminario-2026.jpg')"></span><span class="liv-lo"></span><span class="liv-mi"></span><span class="liv-tr"></span></span>`;
+  const item = t => `<li class="av-t" data-v="${slugN(t.l)}" id="trabalho-${t.n}"><span class="av-n">${t.n}</span><div><h3>${esc(t.t)}${t.s ? `<small>${esc(t.s)}</small>` : ""}</h3>
+<p class="av-aut"><b>${esc(t.a[0])}</b>${t.a.length > 1 ? ` · orientação: ${t.a.slice(1).map(docA).join(", ")}` : ""}</p>
+<p class="meta"><span class="tag">${esc(t.l)}</span> p. ${t.pg}${PDF_AV ? ` · <a href="${PDF_AV}#page=${t.pg}" target="_blank" rel="noopener">Ler o resumo</a>` : ""}</p></div></li>`;
+  P.push({
+    arq: "anais-v-seminario.html", titulo: "Anais do V Seminário de Pesquisa", desc: "Anais do V Seminário de Pesquisa em Arquitetura e Urbanismo do PPGAU-UNIVAG (2026): 31 resumos expandidos das pesquisas de mestrado do programa.",
+    hero: { crumb: true, eyebrow: "Anais · 2026 · ISBN 978-65-88419-16-8", h1: "Anais do V Seminário de Pesquisa em Arquitetura e Urbanismo",
+      p: `Pesquisa, inovação e transformação do território. ${TR.length} resumos expandidos das pesquisas de mestrado apresentadas em 15 de agosto de 2026, no UNIVAG, em Várzea Grande-MT.`,
+      btns: `<p class="hero-btns">${PDF_AV ? `<a class="btn" href="${PDF_AV}" target="_blank" rel="noopener" download>${ICO.baixar} Baixar os anais (PDF)</a>` : ""}<a class="btn sec" href="#trabalhos">Ver os trabalhos ${ICO.seta}</a></p>`,
+      lado: `<div class="av-lado"><span class="rv3d">${livro}</span></div>` },
+    corpo: `<section class="blk av-apres"><h2>Apresentação</h2>
+<p>O Seminário reuniu discentes, docentes orientadores e convidados para socializar e debater as pesquisas de mestrado em desenvolvimento no programa. É um espaço de acompanhamento acadêmico, de troca de experiências e de integração entre as linhas de pesquisa.</p>
+<dl class="av-ficha"><div><dt>Organização</dt><dd>${["Jeane Aparecida Rombi de Godoy", "Angelo Palmisano", "Sandra Medina Benini"].map(docA).join(", ")}</dd></div><div><dt>Realização</dt><dd>PPGAU · Centro Universitário UNIVAG</dd></div><div><dt>Data</dt><dd>15 de agosto de 2026</dd></div><div><dt>Editora</dt><dd>UNIVAG, Várzea Grande-MT, 2026 · 144 p. · publicação digital</dd></div><div><dt>ISBN</dt><dd>978-65-88419-16-8</dd></div></dl>
+${PDF_AV ? "" : `<p class="meta">O PDF completo dos anais será disponibilizado nesta página em breve.</p>`}</section>
+<section class="blk" id="trabalhos"><h2>Trabalhos apresentados</h2>
+<div class="chips" data-chips="av-lista" role="group" aria-label="Filtrar por linha de pesquisa"><button type="button" data-v="*">Todos</button>${LINHAS.map(l => `<button type="button" data-v="${slugN(l)}">${esc(l)}</button>`).join("")}<span class="chips-n" data-um="trabalho" data-varios="trabalhos"></span></div>
+<ol class="av-lista" id="av-lista">${TR.map(item).join("\n")}</ol>
+<p class="meta">Ver também o <a href="eventos.html">V Seminário na página de eventos</a> e a <a href="livros.html">estante de livros e anais</a>.</p></section>`
+  });
+}
 const TIPO_LIV = { anais: "Anais", colet: "Coletânea", livro: "Livro" };
 const capaURL = id => /^https?:/.test(id) ? id : `https://static.wixstatic.com/media/${id}/v1/fit/w_480,h_680,q_85/${id.replace(/^.*\./, "file.")}`;
 // Referência ABNT do livro: SOBRENOME, Nome; ... (org.). Título: subtítulo. ed. Local: Editora, ano.
