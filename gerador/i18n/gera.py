@@ -19,3 +19,19 @@ d = {norm(e[0]): IT[i] for i, e in enumerate(D) if i in IT}
 r = [[p, t] for (p, *_), t in zip(R, RIT) if t is not None]
 json.dump({"d": d, "r": r}, open("it.json", "w"), ensure_ascii=False, separators=(",", ":"))
 print("it", len(d), "termos,", len(r), "regras; faltam", [i for i in range(len(D)) if i not in IT][:20])
+# Extras de novembro de 2026: extra*.py (pt, en, es, fr, it) e extra_regras.py, somados aos arquivos já gerados.
+import glob, importlib
+XT, XR = [], []
+from extra_regras import RX
+XR += RX
+for f in sorted(glob.glob("extra[0-9]*.py")):
+    m = importlib.import_module(f[:-3])
+    for nome in dir(m):
+        if nome.startswith("X"): XT += getattr(m, nome)
+        if nome.startswith("RX"): XR += getattr(m, nome)
+for i, lg in enumerate(["en", "es", "fr", "it"]):
+    j = json.load(open(f"{lg}.json"))
+    for e in XT: j["d"].setdefault(norm(e[0]), e[i + 1])
+    j["r"] += [[p, e[i]] for p, *e in XR if e[i] is not None]
+    json.dump(j, open(f"{lg}.json", "w"), ensure_ascii=False, separators=(",", ":"))
+    print(lg, "com extras:", len(j["d"]), "termos,", len(j["r"]), "regras")
