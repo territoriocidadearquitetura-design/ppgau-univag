@@ -1771,7 +1771,7 @@ async function carregarPainel(senha) {
     if (!d || !d.ok) { senhaPainel(null); st.painelErro = "Senha incorreta."; st.painelDados = null; }
     else {
       senhaPainel(senha); st.painelErro = null; st.painelDados = d;
-      st.cadastros = (d.part || []).map(c => ({ id: c.email + "|" + c.pub, nome: c.nome, email: c.email, lattes: c.lattes, publicos: [c.pub], criadoEm: c.data, atualizadoEm: c.data }));
+      st.cadastros = ajustaCadastros(d.part || []).map(c => ({ id: c.email + "|" + c.pub, nome: c.nome, email: c.email, lattes: c.lattes, publicos: [c.pub], criadoEm: c.data, atualizadoEm: c.data })));
       st.cadCarregado = true;
     }
   } catch (e) { st.painelErro = /inválida/.test(e && e.message || "") ? "O código do Apps Script ainda é a versão anterior: cole o código novo e implante uma nova versão." : "Não foi possível falar com a planilha agora." + (st.bancoDiag ? " Detalhe técnico: " + st.bancoDiag + "." : ""); }
@@ -2347,11 +2347,28 @@ function docsDoResumo(j) {
 // Total de pessoas convidadas por questionário (lista do programa usada no painel da coordenação).
 // Convidados por questionário: mesma lista da seção Discentes, egressos e pós-doutorandos
 // (discentes em curso, incluindo os ingressantes de 2026/2).
+
+// Ajustes da coordenação (14/11/2026) na lista de participação; não alteram a planilha nem as respostas.
+// Quem preencheu o nome incompleto ou com erro de digitação ("Alex Morais", "Vanessa Knutzen") passa a contar pelo nome
+// da lista do programa, quando só um nome da lista combina: mesmo primeiro nome e todas as outras partes presentes nele,
+// aceitando uma letra de diferença em partes com 4 letras ou mais.
+const AJ_LIG = ["de", "da", "do", "das", "dos", "e"];
+const AJ_NZ = t => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z ]/g, " ").split(/\s+/).filter(x => x && !AJ_LIG.includes(x));
+const AJ_D1 = (a, b) => { if (a === b) return true; if (a.length < 4 || b.length < 4 || Math.abs(a.length - b.length) > 1) return false; let i = 0, j = 0, d = 0; while (i < a.length && j < b.length) { if (a[i] === b[j]) { i++; j++; continue; } if (++d > 1) return false; if (a.length > b.length) i++; else if (b.length > a.length) j++; else { i++; j++; } } return d + (a.length - i) + (b.length - j) <= 1; };
+const AJ_EH = (cad, oficial) => { const a = AJ_NZ(cad), b = AJ_NZ(oficial); return a.length > 1 && a[0] === b[0] && a.slice(1).every(x => b.slice(1).some(y => AJ_D1(x, y))); };
+function ajustaCadastros(l) {
+  const oficiais = [...new Set(listaEsperados().flatMap(g => g[2]))];
+  const igual = (x, y) => AJ_NZ(x).join(" ") === AJ_NZ(y).join(" ");
+  return l.filter(c => !(AJ_EH(c.nome, "Priscila Tábida Silva Enoré") && c.publicos[0] === "C")).map(c => {
+    if (!oficiais.some(o => igual(c.nome, o))) { const cand = oficiais.filter(o => AJ_EH(c.nome, o)); if (cand.length === 1) c = { ...c, nome: cand[0], nomeCadastro: c.nome }; }
+    if (AJ_EH(c.nome, "Andrieli Caroline Lima") && c.publicos[0] === "D") c = { ...c, publicos: ["C"], id: c.email + "|C" };
+    return c; });
+}
 function listaEsperados() {
   const PS = typeof PESSOAS === "object" ? PESSOAS : [];
   return [
     ["B", "Docentes", (BASE.corpo || []).map(c => c[0])],
-    ["A", "Discentes em curso", PS.filter(p => p.c === "discente" && !["Jonath Elias Duarte","Maxwel Pires Pedroso","Renan Antônio Lorenzon Rigotti","Lauro Boa Sorte Carneiro"].includes(p.n)).map(p => p.n)],
+    ["A", "Discentes em curso", PS.filter(p => p.c === "discente").map(p => p.n)],
     ["P", "Pós-doutorandos", PS.filter(p => p.c === "pos-doc").map(p => p.n)],
     ["C", "Egressos", PS.filter(p => p.c === "egresso").map(p => p.n)]
   ];

@@ -13,6 +13,10 @@ for (const f of ["questoes", "ficha", "emdados", "fichas", "impacto", "pessoas",
 const D = n => vm.runInContext(n, ctx);
 const BASE = D("BASE"), PG_INFO = D("PG_INFO"), PG_DOCS = D("PG_DOCS"), FICHA_DOC = D("FICHA_DOC"), PESSOAS = D("PESSOAS"),
   HIST = D("HIST"), HIST_CAT = D("HIST_CAT"), PROJ = D("PROJ"), IMPACTO = D("IMPACTO"), EVENTOS = D("EVENTOS"), REDE = D("REDE"), ATUALIZ = D("ATUALIZ");
+// Discentes que constam no portal mas não estão matriculados (coordenação, 14/11/2026): saem de Pessoas, das listas de
+// orientandos e da cópia do portal em /dados. Continuam nas equipes de projetos e eventos de que participaram.
+const NAO_MATRICULADOS = ["Jonath Elias Duarte", "Maxwel Pires Pedroso", "Renan Antônio Lorenzon Rigotti", "Lauro Boa Sorte Carneiro"];
+for (let i = PESSOAS.length - 1; i >= 0; i--) if (NAO_MATRICULADOS.includes(PESSOAS[i].n)) PESSOAS.splice(i, 1);
 
 const WIX = "https://www.univag-ppgau.com";
 // PDFs do site antigo que a coordenação enviou: servidos do próprio site (pasta docs/); os demais seguem no Wix.
@@ -1435,15 +1439,39 @@ for (const f of ["restrito-prof.bin", "restrito-coord.bin"]) if (fs.existsSync(p
 for (const f of fs.readdirSync(path.join(SRC, "fotos"))) fs.copyFileSync(path.join(SRC, "fotos", f), path.join(OUT, "img/fotos", f));
 // Portal "em dados" completo em /dados, sem alteração de código.
 fs.cpSync(SRC, path.join(OUT, "dados"), { recursive: true, filter: s => !/[\\/]\.git($|[\\/])/.test(s) });
-// Autoavaliação 2026, lista de participação do painel da coordenação: discentes que constam no PESSOAS do portal
-// mas não estão matriculados (pedido da coordenação em 14/11/2026). Só muda a lista de convidados; não toca na coleta nem no banco.
+// Cópia do portal em /dados: tira os não matriculados de PESSOAS (pessoas.js) e das orientações em andamento (emdados.js),
+// e corrige, só na exibição do painel da coordenação, cadastros da autoavaliação com nome ou questionário errados
+// (pedido da coordenação em 14/11/2026). Nada é alterado na planilha da coleta nem nas respostas.
 {
-  const NAO_MATRICULADOS = ["Jonath Elias Duarte", "Maxwel Pires Pedroso", "Renan Antônio Lorenzon Rigotti", "Lauro Boa Sorte Carneiro"];
-  const f = path.join(OUT, "dados", "index.html"), velho = '["A", "Discentes em curso", PS.filter(p => p.c === "discente").map(p => p.n)]';
-  const h = fs.readFileSync(f, "utf8");
-  if (!h.includes(velho)) throw new Error("listaEsperados mudou no portal: revisar a exclusão dos não matriculados");
-  fs.writeFileSync(f, h.replace(velho, `["A", "Discentes em curso", PS.filter(p => p.c === "discente" && !${JSON.stringify(NAO_MATRICULADOS)}.includes(p.n)).map(p => p.n)]`));
+  const troca = (arq, fn) => { const f = path.join(OUT, "dados", arq); fs.writeFileSync(f, fn(fs.readFileSync(f, "utf8"))); };
+  const rx = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  troca("pessoas.js", t => { for (const n of NAO_MATRICULADOS) { const r = new RegExp(`\\{"n":"${rx(n)}"[^{}]*(\\{[^{}]*\\}[^{}]*)*\\},?`); if (!r.test(t)) throw new Error("pessoas.js: não achei " + n); t = t.replace(r, ""); } return t.replace(/,\]/g, "]"); });
+  troca("emdados.js", t => { for (const n of NAO_MATRICULADOS) t = t.replace(new RegExp(`\\["${rx(n)}", "[^"]*", \\[[^\\]]*\\], "[^"]*", "[^"]*"\\],? ?`), ""); return t.replace(/, \]/g, "]"); });
+  const AJUSTE_CAD = `
+// Ajustes da coordenação (14/11/2026) na lista de participação; não alteram a planilha nem as respostas.
+// Quem preencheu o nome incompleto ou com erro de digitação ("Alex Morais", "Vanessa Knutzen") passa a contar pelo nome
+// da lista do programa, quando só um nome da lista combina: mesmo primeiro nome e todas as outras partes presentes nele,
+// aceitando uma letra de diferença em partes com 4 letras ou mais.
+const AJ_LIG = ["de", "da", "do", "das", "dos", "e"];
+const AJ_NZ = t => String(t || "").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase().replace(/[^a-z ]/g, " ").split(/\\s+/).filter(x => x && !AJ_LIG.includes(x));
+const AJ_D1 = (a, b) => { if (a === b) return true; if (a.length < 4 || b.length < 4 || Math.abs(a.length - b.length) > 1) return false; let i = 0, j = 0, d = 0; while (i < a.length && j < b.length) { if (a[i] === b[j]) { i++; j++; continue; } if (++d > 1) return false; if (a.length > b.length) i++; else if (b.length > a.length) j++; else { i++; j++; } } return d + (a.length - i) + (b.length - j) <= 1; };
+const AJ_EH = (cad, oficial) => { const a = AJ_NZ(cad), b = AJ_NZ(oficial); return a.length > 1 && a[0] === b[0] && a.slice(1).every(x => b.slice(1).some(y => AJ_D1(x, y))); };
+function ajustaCadastros(l) {
+  const oficiais = [...new Set(listaEsperados().flatMap(g => g[2]))];
+  const igual = (x, y) => AJ_NZ(x).join(" ") === AJ_NZ(y).join(" ");
+  return l.filter(c => !(AJ_EH(c.nome, "Priscila Tábida Silva Enoré") && c.publicos[0] === "C")).map(c => {
+    if (!oficiais.some(o => igual(c.nome, o))) { const cand = oficiais.filter(o => AJ_EH(c.nome, o)); if (cand.length === 1) c = { ...c, nome: cand[0], nomeCadastro: c.nome }; }
+    if (AJ_EH(c.nome, "Andrieli Caroline Lima") && c.publicos[0] === "D") c = { ...c, publicos: ["C"], id: c.email + "|C" };
+    return c; });
 }
+`;
+  troca("index.html", t => {
+    const velho = 'st.cadastros = (d.part || []).map(c => ({ id: c.email + "|" + c.pub, nome: c.nome, email: c.email, lattes: c.lattes, publicos: [c.pub], criadoEm: c.data, atualizadoEm: c.data }));';
+    if (!t.includes(velho) || !t.includes("function listaEsperados()")) throw new Error("painel da coordenação mudou no portal: revisar os ajustes da lista de participação");
+    return t.replace(velho, velho.replace("st.cadastros = (", "st.cadastros = ajustaCadastros(").replace("}));", "})));")).replace("function listaEsperados()", AJUSTE_CAD + "function listaEsperados()");
+  });
+}
+
 // Na cópia do portal, as fontes que citavam o site antigo (Wix) passam a apontar para as páginas deste site.
 // Só troca endereços: dados, questionários e coleta da autoavaliação ficam como estão.
 {
