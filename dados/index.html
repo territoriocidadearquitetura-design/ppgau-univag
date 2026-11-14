@@ -2349,13 +2349,13 @@ function docsDoResumo(j) {
 // (discentes em curso, incluindo os ingressantes de 2026/2).
 
 // Ajustes da coordenação (14/11/2026) na lista de participação; não alteram a planilha nem as respostas.
-// Quem preencheu o nome incompleto ou com erro de digitação ("Alex Morais", "Vanessa Knutzen") passa a contar pelo nome
-// da lista do programa, quando só um nome da lista combina: mesmo primeiro nome e todas as outras partes presentes nele,
+// Quem preencheu o nome incompleto ou com erro de digitação ("Alex Morais", "Vanessa Knutzen", "Priscilla") passa a contar pelo
+// nome da lista do programa, quando só um nome da lista combina: primeiro nome e todas as outras partes presentes nele,
 // aceitando uma letra de diferença em partes com 4 letras ou mais.
 const AJ_LIG = ["de", "da", "do", "das", "dos", "e"];
 const AJ_NZ = t => String(t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z ]/g, " ").split(/\s+/).filter(x => x && !AJ_LIG.includes(x));
 const AJ_D1 = (a, b) => { if (a === b) return true; if (a.length < 4 || b.length < 4 || Math.abs(a.length - b.length) > 1) return false; let i = 0, j = 0, d = 0; while (i < a.length && j < b.length) { if (a[i] === b[j]) { i++; j++; continue; } if (++d > 1) return false; if (a.length > b.length) i++; else if (b.length > a.length) j++; else { i++; j++; } } return d + (a.length - i) + (b.length - j) <= 1; };
-const AJ_EH = (cad, oficial) => { const a = AJ_NZ(cad), b = AJ_NZ(oficial); return a.length > 1 && a[0] === b[0] && a.slice(1).every(x => b.slice(1).some(y => AJ_D1(x, y))); };
+const AJ_EH = (cad, oficial) => { const a = AJ_NZ(cad), b = AJ_NZ(oficial); return a.length > 1 && b.length > 0 && AJ_D1(a[0], b[0]) && a.slice(1).every(x => b.slice(1).some(y => AJ_D1(x, y))); };
 function ajustaCadastros(l) {
   const oficiais = [...new Set(listaEsperados().flatMap(g => g[2]))];
   const igual = (x, y) => AJ_NZ(x).join(" ") === AJ_NZ(y).join(" ");
