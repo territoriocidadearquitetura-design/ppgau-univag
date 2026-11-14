@@ -1771,7 +1771,7 @@ async function carregarPainel(senha) {
     if (!d || !d.ok) { senhaPainel(null); st.painelErro = "Senha incorreta."; st.painelDados = null; }
     else {
       senhaPainel(senha); st.painelErro = null; st.painelDados = d;
-      st.cadastros = ajustaCadastros(d.part || []).map(c => ({ id: c.email + "|" + c.pub, nome: c.nome, email: c.email, lattes: c.lattes, publicos: [c.pub], criadoEm: c.data, atualizadoEm: c.data })));
+      st.cadastros = ajustaCadastros((d.part || []).map(c => ({ id: c.email + "|" + c.pub, nome: c.nome, email: c.email, lattes: c.lattes, publicos: [c.pub], criadoEm: c.data, atualizadoEm: c.data })));
       st.cadCarregado = true;
     }
   } catch (e) { st.painelErro = /inválida/.test(e && e.message || "") ? "O código do Apps Script ainda é a versão anterior: cole o código novo e implante uma nova versão." : "Não foi possível falar com a planilha agora." + (st.bancoDiag ? " Detalhe técnico: " + st.bancoDiag + "." : ""); }

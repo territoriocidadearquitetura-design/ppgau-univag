@@ -1468,7 +1468,7 @@ function ajustaCadastros(l) {
   troca("index.html", t => {
     const velho = 'st.cadastros = (d.part || []).map(c => ({ id: c.email + "|" + c.pub, nome: c.nome, email: c.email, lattes: c.lattes, publicos: [c.pub], criadoEm: c.data, atualizadoEm: c.data }));';
     if (!t.includes(velho) || !t.includes("function listaEsperados()")) throw new Error("painel da coordenação mudou no portal: revisar os ajustes da lista de participação");
-    return t.replace(velho, velho.replace("st.cadastros = (", "st.cadastros = ajustaCadastros(").replace("}));", "})));")).replace("function listaEsperados()", AJUSTE_CAD + "function listaEsperados()");
+    return t.replace(velho, velho.replace("st.cadastros = (", "st.cadastros = ajustaCadastros((").replace("}));", "})));")).replace("function listaEsperados()", AJUSTE_CAD + "function listaEsperados()");
   });
 }
 
