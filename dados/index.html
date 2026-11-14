@@ -1265,20 +1265,20 @@ header .pdfbar .pdf-b.forte { background: #fff; color: #02205f; border-color: #f
 </footer>
 <div id="tip" hidden></div>
 
-<script src="questoes.js?v=20261109"></script>
-<script src="ficha.js?v=20261109"></script>
-<script src="portal.js?v=20261109"></script>
-<script src="emdados.js?v=20261109"></script>
-<script src="fichas.js?v=20261109"></script>
-<script src="qualis.js?v=20261109"></script>
-<script src="impacto.js?v=20261109"></script>
-<script src="pessoas.js?v=20261109"></script>
-<script src="historia.js?v=20261109"></script>
-<script src="icl.js?v=20261109"></script>
-<script src="prodlattes.js?v=20261109"></script>
-<script src="projlattes.js?v=20261109"></script>
-<script src="prod.js?v=20261109"></script>
-<script src="relatorio.js?v=20261109"></script>
+<script src="questoes.js?v=20261110"></script>
+<script src="ficha.js?v=20261110"></script>
+<script src="portal.js?v=20261110"></script>
+<script src="emdados.js?v=20261110"></script>
+<script src="fichas.js?v=20261110"></script>
+<script src="qualis.js?v=20261110"></script>
+<script src="impacto.js?v=20261110"></script>
+<script src="pessoas.js?v=20261110"></script>
+<script src="historia.js?v=20261110"></script>
+<script src="icl.js?v=20261110"></script>
+<script src="prodlattes.js?v=20261110"></script>
+<script src="projlattes.js?v=20261110"></script>
+<script src="prod.js?v=20261110"></script>
+<script src="relatorio.js?v=20261110"></script>
 <script>
 "use strict";
 const $view = document.getElementById("view");
@@ -1695,6 +1695,12 @@ async function enviar(p) {
 
 // ---------- cadastro (controle interno, separado das respostas) ----------
 const LATTES_RE = /^https?:\/\/(www\.)?(lattes\.cnpq\.br|buscatextual\.cnpq\.br)\//i;
+function normLattes(v) {
+  const t = String(v || "").trim();
+  if (/^\d{16}$/.test(t)) return "http://lattes.cnpq.br/" + t;
+  if (/^(www\.)?(lattes|buscatextual|wwws)\.cnpq\.br\//i.test(t)) return "http://" + t;
+  return t;
+}
 function renderCadastro(p) {
   const c = st.cad || store.get("ppgau-id") || {};
   st.cadErroHtml = st.cadErro ? st.cadErroHtml : "";
@@ -1708,7 +1714,7 @@ function renderCadastro(p) {
     <form id="fcad" novalidate>
       <div class="q"><label class="qt" for="cad-nome">Nome completo</label><input type="text" id="cad-nome" autocomplete="name" value="${esc(c.nome || "")}" required></div>
       <div class="q"><label class="qt" for="cad-email">E-mail</label><input type="text" id="cad-email" inputmode="email" autocomplete="email" value="${esc(c.email || "")}" required></div>
-      ${pedeLattes ? `<div class="q"><label class="qt" for="cad-lattes">Link do Currículo Lattes</label><div class="hint">Exemplo: http://lattes.cnpq.br/1234567890123456</div><input type="text" id="cad-lattes" inputmode="url" value="${esc(c.lattes || "")}"></div>` : ""}
+      ${pedeLattes ? `<div class="q"><label class="qt" for="cad-lattes">Link do Currículo Lattes <span class="muted" style="font-weight:400">(opcional)</span></label><div class="hint">Exemplo: http://lattes.cnpq.br/1234567890123456</div><input type="text" id="cad-lattes" inputmode="url" value="${esc(c.lattes || "")}"></div>` : ""}
       ${st.cadErro ? `<div class="notice" role="alert">${esc(st.cadErro)}${st.cadErroHtml ? " " + st.cadErroHtml : ""}</div>` : ""}
       <div class="nav-form">
         <button type="button" class="btn" id="cad-voltar">Voltar à apresentação</button>
@@ -1721,9 +1727,9 @@ function renderCadastro(p) {
 async function salvarCadastro(p, pedeLattes) {
   const nome = document.getElementById("cad-nome").value.trim();
   const email = document.getElementById("cad-email").value.trim();
-  const lattes = pedeLattes ? document.getElementById("cad-lattes").value.trim() : (st.cad && st.cad.lattes) || "";
-  st.cadErro = !nome ? "Informe seu nome completo." : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "Informe um e-mail válido, como nome@univag.edu.br."
-    : (lattes && !LATTES_RE.test(lattes)) ? "O link do Lattes deve começar com http://lattes.cnpq.br/. Deixe em branco se não tiver." : null;
+  // O Lattes nunca impede a participação: aceita o link sem "http", só o número de 16 dígitos ou qualquer outro formato.
+  const lattes = normLattes(pedeLattes ? document.getElementById("cad-lattes").value : (st.cad && st.cad.lattes) || "");
+  st.cadErro = !nome ? "Informe seu nome completo." : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "Informe um e-mail válido, como nome@univag.edu.br." : null;
   if (st.cadErro) return renderCadastro(p);
   if (LINK_BANCO) {
     st.salvandoCad = true; renderCadastro(p);
@@ -2345,7 +2351,7 @@ function listaEsperados() {
   const PS = typeof PESSOAS === "object" ? PESSOAS : [];
   return [
     ["B", "Docentes", (BASE.corpo || []).map(c => c[0])],
-    ["A", "Discentes em curso", PS.filter(p => p.c === "discente").map(p => p.n)],
+    ["A", "Discentes em curso", PS.filter(p => p.c === "discente" && !["Jonath Elias Duarte","Maxwel Pires Pedroso","Renan Antônio Lorenzon Rigotti","Lauro Boa Sorte Carneiro"].includes(p.n)).map(p => p.n)],
     ["P", "Pós-doutorandos", PS.filter(p => p.c === "pos-doc").map(p => p.n)],
     ["C", "Egressos", PS.filter(p => p.c === "egresso").map(p => p.n)]
   ];

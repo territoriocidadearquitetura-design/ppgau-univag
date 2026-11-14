@@ -1435,6 +1435,15 @@ for (const f of ["restrito-prof.bin", "restrito-coord.bin"]) if (fs.existsSync(p
 for (const f of fs.readdirSync(path.join(SRC, "fotos"))) fs.copyFileSync(path.join(SRC, "fotos", f), path.join(OUT, "img/fotos", f));
 // Portal "em dados" completo em /dados, sem alteração de código.
 fs.cpSync(SRC, path.join(OUT, "dados"), { recursive: true, filter: s => !/[\\/]\.git($|[\\/])/.test(s) });
+// Autoavaliação 2026, lista de participação do painel da coordenação: discentes que constam no PESSOAS do portal
+// mas não estão matriculados (pedido da coordenação em 14/11/2026). Só muda a lista de convidados; não toca na coleta nem no banco.
+{
+  const NAO_MATRICULADOS = ["Jonath Elias Duarte", "Maxwel Pires Pedroso", "Renan Antônio Lorenzon Rigotti", "Lauro Boa Sorte Carneiro"];
+  const f = path.join(OUT, "dados", "index.html"), velho = '["A", "Discentes em curso", PS.filter(p => p.c === "discente").map(p => p.n)]';
+  const h = fs.readFileSync(f, "utf8");
+  if (!h.includes(velho)) throw new Error("listaEsperados mudou no portal: revisar a exclusão dos não matriculados");
+  fs.writeFileSync(f, h.replace(velho, `["A", "Discentes em curso", PS.filter(p => p.c === "discente" && !${JSON.stringify(NAO_MATRICULADOS)}.includes(p.n)).map(p => p.n)]`));
+}
 // Na cópia do portal, as fontes que citavam o site antigo (Wix) passam a apontar para as páginas deste site.
 // Só troca endereços: dados, questionários e coleta da autoavaliação ficam como estão.
 {
