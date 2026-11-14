@@ -1459,7 +1459,9 @@ const AJ_EH = (cad, oficial) => { const a = AJ_NZ(cad), b = AJ_NZ(oficial); retu
 function ajustaCadastros(l) {
   const oficiais = [...new Set(listaEsperados().flatMap(g => g[2]))];
   const igual = (x, y) => AJ_NZ(x).join(" ") === AJ_NZ(y).join(" ");
-  return l.filter(c => !(AJ_EH(c.nome, "Priscila Tábida Silva Enoré") && c.publicos[0] === "C")).map(c => {
+  // Estudantes que também preencheram o cadastro de egresso por engano: só conta o de estudante.
+  const SO_ESTUDANTE = ["Priscila Tábida Silva Enoré", "Rafaela Alves Bernardes"];
+  return l.filter(c => !(c.publicos[0] === "C" && SO_ESTUDANTE.some(n => AJ_EH(c.nome, n)))).map(c => {
     if (!oficiais.some(o => igual(c.nome, o))) { const cand = oficiais.filter(o => AJ_EH(c.nome, o)); if (cand.length === 1) c = { ...c, nome: cand[0], nomeCadastro: c.nome }; }
     if (AJ_EH(c.nome, "Andrieli Caroline Lima") && c.publicos[0] === "D") c = { ...c, publicos: ["C"], id: c.email + "|C" };
     return c; });
