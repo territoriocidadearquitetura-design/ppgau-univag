@@ -934,6 +934,86 @@
   ]
  },
  {
+  "k": "sau-2026",
+  "t": "XII SAU – Semana de Arquitetura e Urbanismo da UNIVAG",
+  "d": "nov. 2026",
+  "f": [
+   [
+    "01",
+    520,
+    253
+   ],
+   [
+    "02",
+    390,
+    520
+   ],
+   [
+    "03",
+    390,
+    520
+   ],
+   [
+    "04",
+    390,
+    520
+   ],
+   [
+    "05",
+    390,
+    520
+   ],
+   [
+    "06",
+    390,
+    520
+   ],
+   [
+    "07",
+    389,
+    520
+   ],
+   [
+    "08",
+    293,
+    520
+   ],
+   [
+    "09",
+    293,
+    520
+   ],
+   [
+    "10",
+    293,
+    520
+   ]
+  ],
+  "txt": [
+   "Nos dias 5 e 6 de novembro de 2026, foi realizada a XII SAU – Semana de Arquitetura e Urbanismo da UNIVAG, iniciativa do curso de Arquitetura e Urbanismo, em parceria com o Programa de Pós-Graduação em Arquitetura e Urbanismo. O evento promoveu um espaço de encontro, reflexão e diálogo sobre a arquitetura, o urbanismo, a cidade e o território, aproximando diferentes perspectivas de conhecimento e pesquisa.",
+   "A programação contou com a participação do professor Flávio Foguel, com a palestra “Cidades inteligentes”; da professora Jessica Seabra, com “Pesquisar a cidade, disputar seus futuros: urbanismo neoliberal, participação social e produção do conhecimento”; e de Isabel, mestranda do Programa de Pós-Graduação em Arquitetura e Urbanismo, com a palestra “Da cidade industrial à cidade contemporânea”.",
+   "As apresentações abordaram diferentes perspectivas sobre os processos de transformação das cidades e os desafios contemporâneos da arquitetura e do urbanismo, promovendo o intercâmbio de conhecimentos e a integração entre docentes, estudantes de graduação e pós-graduação."
+  ],
+  "ficha": [
+   [
+    "Evento",
+    "XII SAU – Semana de Arquitetura e Urbanismo da UNIVAG"
+   ],
+   [
+    "Data",
+    "5 e 6 de novembro de 2026"
+   ],
+   [
+    "Local",
+    "Centro Universitário UNIVAG, Várzea Grande (MT)"
+   ],
+   [
+    "Realização",
+    "Curso de Arquitetura e Urbanismo do UNIVAG, em parceria com o PPGAU"
+   ]
+  ]
+ },
+ {
   "k": "campus",
   "t": "O campus do UNIVAG",
   "d": "",

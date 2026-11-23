@@ -398,6 +398,10 @@ ${filtro("g-ext", "Buscar projeto de extensão")}
       banner: ["img/eventos/latin-american-2026.jpg", 1100, 440], organizacao: ["ANAP", "PPGAU UNIVAG"], abrangencia: "latino-americana" }];
   EXTRA.push({ nome: "XV Bienal del Coloquio de Transformaciones Territoriales (AUGM)", ano: 2026, datas: "21 a 23/10/2026", local_formato: "Faculdade de Arquitetura e Urbanismo da Universidade do Chile, Santiago (híbrido)", ppgau_papel: "participante", pagina: "https://grupomontevideo.org/site/la-xv-bienal-del-coloquio-sobre-transformaciones-territoriales-abre-inscripciones-y-extiende-plazo-para-trabajos-completos/", docentes_ppgau: ["Jessica Seabra"], discentes_ppgau: ["Amabili Alencar Reis (apresentação de “A Usina Itaicy e a construção da memória industrial em Mato Grosso”)"], fontes: [], anais: {} });
   EXTRA[0].organizacao = ["PPGAU UNIVAG"];
+  // XII SAU 2026: texto e fotos enviados pela coordenação em 23/11/2026 (curso de Arquitetura e Urbanismo com o PPGAU).
+  EXTRA.push({ nome: "XII SAU – Semana de Arquitetura e Urbanismo da UNIVAG", ano: 2026, datas: "05 e 06/11/2026", local_formato: "presencial, Centro Universitário UNIVAG, Várzea Grande-MT", ppgau_papel: "coorganizador",
+    organizacao: ["Curso de Arquitetura e Urbanismo do UNIVAG, em parceria com o PPGAU UNIVAG"], palestras: "Flávio Foguel (Cidades inteligentes); Jessica Seabra (Pesquisar a cidade, disputar seus futuros); Isabel, mestranda do PPGAU (Da cidade industrial à cidade contemporânea)",
+    fontes: [], anais: {}, banner: ["img/eventos/sau-2026.jpg", 1100, 440], fotos: "galeria.html#sau-2026" });
   // 9º SHIS 2023: texto e fotos enviados pela coordenação em 22/11/2026.
   EXTRA.push({ nome: "9º Seminário Mato-grossense de Habitação de Interesse Social (SHIS 2023)", ano: 2023, datas: "09 e 10/11/2023", local_formato: "presencial, Centro Universitário UNIVAG, Várzea Grande-MT", ppgau_papel: "coorganizador",
     organizacao: ["UNIVAG (PPGAU)", "UFMT", "IFMT", "UNEMAT"], coord: "Angelo Palmisano, Diana Carolina Jesus de Paula, Jeane Aparecida Rombi de Godoy, Natallia Sanches e Souza e Rosana Lia Ravache",
