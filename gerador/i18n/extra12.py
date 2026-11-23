@@ -32,3 +32,8 @@ X12 = [
  "Les présentations ont abordé différentes perspectives sur les processus de transformation des villes et les défis contemporains de l'architecture et de l'urbanisme, en favorisant l'échange de connaissances et l'intégration entre enseignants, étudiants de licence et de troisième cycle.",
  "Le presentazioni hanno affrontato diverse prospettive sui processi di trasformazione delle città e sulle sfide contemporanee dell'architettura e dell'urbanistica, favorendo lo scambio di conoscenze e l'integrazione tra docenti, studenti di laurea e post-laurea."),
 ]
+X12 += [
+("Discussões de arquitetura, território e cidade", "Discussions on architecture, territory and the city", "Debates sobre arquitectura, territorio y ciudad", "Débats sur l'architecture, le territoire et la ville", "Discussioni su architettura, territorio e città"),
+("presencial, Auditório do Bloco D do UNIVAG, Várzea Grande-MT", "in person, UNIVAG Block D Auditorium, Várzea Grande-MT", "presencial, Auditorio del Bloque D del UNIVAG, Várzea Grande-MT", "en présentiel, auditorium du bloc D de l'UNIVAG, Várzea Grande-MT", "in presenza, Auditorium del Blocco D dell'UNIVAG, Várzea Grande-MT"),
+("Auditório do Bloco D do UNIVAG, Várzea Grande (MT)", "UNIVAG Block D Auditorium, Várzea Grande (MT)", "Auditorio del Bloque D del UNIVAG, Várzea Grande (MT)", "Auditorium du bloc D de l'UNIVAG, Várzea Grande (MT)", "Auditorium del Blocco D dell'UNIVAG, Várzea Grande (MT)"),
+]
