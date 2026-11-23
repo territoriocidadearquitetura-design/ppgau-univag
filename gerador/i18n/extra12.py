@@ -37,3 +37,4 @@ X12 += [
 ("presencial, Auditório do Bloco D do UNIVAG, Várzea Grande-MT", "in person, UNIVAG Block D Auditorium, Várzea Grande-MT", "presencial, Auditorio del Bloque D del UNIVAG, Várzea Grande-MT", "en présentiel, auditorium du bloc D de l'UNIVAG, Várzea Grande-MT", "in presenza, Auditorium del Blocco D dell'UNIVAG, Várzea Grande-MT"),
 ("Auditório do Bloco D do UNIVAG, Várzea Grande (MT)", "UNIVAG Block D Auditorium, Várzea Grande (MT)", "Auditorio del Bloque D del UNIVAG, Várzea Grande (MT)", "Auditorium du bloc D de l'UNIVAG, Várzea Grande (MT)", "Auditorium del Blocco D dell'UNIVAG, Várzea Grande (MT)"),
 ]
+X12 += [("10 fotos e 1 vídeo", "10 photos and 1 video", "10 fotos y 1 video", "10 photos et 1 vidéo", "10 foto e 1 video")]

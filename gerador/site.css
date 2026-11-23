@@ -1418,3 +1418,4 @@ a.ap-aba b { color: var(--navy); } a.ap-aba small { color: var(--muted, #5b6575)
 a.ap-aba:hover { border-color: var(--gold); transform: translateY(-1px); }
 :root[data-theme="dark"] a.ap-aba b { color: var(--gold); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) a.ap-aba b { color: var(--gold); } }
+.gl-vid{display:block;width:auto;max-width:100%;height:auto;max-height:520px;margin-top:12px;border-radius:12px;background:#000}
