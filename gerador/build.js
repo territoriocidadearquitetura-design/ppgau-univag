@@ -183,7 +183,7 @@ const AJUSTE = { "1º Seminário Nacional sobre a Educação Ambiental": { pagin
   // I ENSAU 2025: texto enviado pela coordenação em 22/11/2026 (organizado pelo programa, Grupo de Pesquisa AMB.TEC.SUS).
   "I Encontro Nacional de Sustentabilidade": { ppgau_papel: "organizador", datas: "26 a 28/08/2025", local_formato: "online", organizacao: ["PPGAU UNIVAG, por meio do Grupo de Pesquisa AMB.TEC.SUS, com apoio da coordenação do programa"],
     tema: "A Emergência Climática e a Construção de Cidades Resilientes", palestras: "Carmen Castro (Universidade do Chile); Denise Duarte (USP); Alex Neves (UFMT); Douglas Gallo (IFSP)",
-    abrangencia: "nacional, com participação internacional (Universidade do Chile)", numeros: "108 participantes", fotos: "galeria.html#ensau-2025" } };
+    abrangencia: "nacional, com participação internacional (Universidade do Chile)", numeros: "108 participantes", fotos: "galeria.html#ensau-2025", banner: ["img/eventos/ensau-2025.jpg", 1100, 440] } };
 for (const e of EVENTOS) { const k = Object.keys(AJUSTE).find(k => e.nome.startsWith(k)); if (k) Object.assign(e, AJUSTE[k]); }
 
 // Destaque do próximo evento organizado pelo programa (Início e Eventos).
@@ -212,16 +212,15 @@ const P = [];
   const ANAIS_CH = ANAIS_V ? `<div class="ch-item ch-vis"><div><span class="ch-tag">Novo · Anais 2026</span><h2>Anais do V Seminário de Pesquisa</h2><p>31 resumos expandidos das pesquisas de mestrado apresentadas em 15 de agosto de 2026. Conheça os trabalhos do programa.</p><a class="btn" href="anais-v-seminario.html">Conhecer os trabalhos ${ICO.seta}</a></div><a class="rv3d" href="anais-v-seminario.html" tabindex="-1" aria-hidden="true">${livro3d("img/livros/anais-v-seminario-2026.jpg")}</a></div>` : "";
   const lado = `<div class="chamadas" aria-roledescription="carrossel" aria-label="Chamadas do programa">
 <div class="ch-item ch-agenda" id="agenda-viva"><div class="ch-cab"><span class="ao-vivo"><i></i>Agenda do semestre</span><a href="disciplinas.html">Ver tudo</a></div><ol class="ag-lista"><li class="ag-fim">Veja as próximas aulas em <a href="disciplinas.html">Disciplinas e horários</a>.</li></ol></div>
-<div class="ch-item ch-vis"><div><span class="ch-tag">Prorrogado até 13/11/2026</span><h2>Autoavaliação 2026</h2><p>Questionário anônimo para estudantes, egressos, docentes e equipe. Leva poucos minutos.</p><a class="btn" href="dados/#/responder">Responder ${ICO.seta}</a></div>${ILU_AUTO}</div>
 <div class="ch-item ch-vis"><div><span class="ch-tag">Revista Vernácula · Qualis B2</span><h2>Publique na Vernácula</h2><p>Revista trimestral do programa, com DOI em todos os artigos. Conheça os 11 números publicados.</p><a class="btn" href="revista.html">Conhecer a revista ${ICO.seta}</a></div><a class="rv3d" href="revista.html" tabindex="-1" aria-hidden="true">${livro3d("img/vernacula/v" + Math.max(...fs.readdirSync(path.join(__dirname, "midia/vernacula")).map(f => +(f.match(/^v(\d+)\.jpg$/) || [0, 0])[1])) + ".jpg")}</a></div>${ANAIS_CH}
-<div class="ch-pontos">${["Agenda", "Autoavaliação", "Revista", ...(ANAIS_CH ? ["Anais"] : [])].map((l, i) => `<button type="button" aria-label="${l}"><span>${l}</span></button>`).join("")}</div>
+<div class="ch-pontos">${["Agenda", "Revista", ...(ANAIS_CH ? ["Anais"] : [])].map((l, i) => `<button type="button" aria-label="${l}"><span>${l}</span></button>`).join("")}</div>
 </div>`;
   P.push({
     arq: "index.html", titulo: "PPGAU UNIVAG",
     desc: "Programa de Pós-Graduação Stricto Sensu em Arquitetura e Urbanismo do UNIVAG, Várzea Grande, MT. Mestrado acadêmico, nota CAPES 3.",
     hero: { kpis: true, eyebrow: "Mestrado acadêmico · Várzea Grande, MT · Nota CAPES 3", h1: "Programa de Pós-Graduação em Arquitetura e Urbanismo",
       p: "Área de concentração Arquitetura, Cidade e Território. Aulas híbridas às sextas à noite e aos sábados, em 24 meses, no UNIVAG Centro Universitário.",
-      btns: `<a class="auto-dest" href="dados/#/responder"><span class="ad-ic">${ICO.academico}</span><span><b>Autoavaliação 2026 · prazo prorrogado até 13/11</b><small>Questionário anônimo para estudantes, egressos, docentes e equipe. Leva poucos minutos.</small></span><span class="ad-seta">${ICO.seta}</span></a>${BUSCA_VIVA()}`, lado },
+      btns: `${BUSCA_VIVA()}`, lado },
     js: "globalThis.AGENDA = " + JSON.stringify(AGENDA) + ";",
     corpo: `
 <div class="kpis"><div class="kpi gold"><span>Nota CAPES</span><b>3</b><small>Quadrienal 2025 · 2021–2024</small></div>
@@ -239,8 +238,7 @@ ${(() => { const AM = JSON.parse(fs.readFileSync(path.join(__dirname, "atlas-map
 <span class="btn">Explorar o Atlas ↗</span></div>
 </a>
 <div class="grid g2 dest2">
-<a class="card dest vern vn-home" href="revista.html"><div><span class="eyebrow">Periódico do programa · Qualis B2</span><h3>Revista Vernácula · Territórios Contemporâneos</h3><p>Publicação trimestral do PPGAU sobre arquitetura, cidade e território. ISSN 2965-6125, 11 números desde 2023, DOI em todos os artigos.</p><span class="btn">Conhecer a revista</span></div><div class="vn-mini" aria-hidden="true"><!--VERN_CAPAS--></div></a>
-<a class="card dest auto" href="dados/#/responder"><span class="eyebrow">Prorrogado: em coleta até 13/11/2026</span><h3>Autoavaliação 2026</h3><p>Questionário anônimo para estudantes, egressos, docentes, pós-doutorandos, equipe técnica e gestão. Sua resposta orienta o planejamento do programa.</p><span class="btn">Responder agora</span></a>
+<a class="card dest vern vn-home" href="revista.html" style="grid-column:1/-1"><div><span class="eyebrow">Periódico do programa · Qualis B2</span><h3>Revista Vernácula · Territórios Contemporâneos</h3><p>Publicação trimestral do PPGAU sobre arquitetura, cidade e território. ISSN 2965-6125, 11 números desde 2023, DOI em todos os artigos.</p><span class="btn">Conhecer a revista</span></div><div class="vn-mini" aria-hidden="true"><!--VERN_CAPAS--></div></a>
 </div></section>
 
 <section class="blk lv-home" aria-labelledby="h-lvh"><div class="lv-home-cab"><h2 id="h-lvh">Livros e anais</h2><a class="btn sec" href="livros.html">Ver a estante completa ${ICO.seta}</a></div>
